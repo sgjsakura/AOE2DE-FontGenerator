@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style x:Key="DefaultButtonStyle" TargetType="Button">
+		<Setter Property="Padding" Value="3" />
+		<Setter Property="MinWidth" Value="75" />
+		<Setter Property="MinHeight" Value="24" />
+	</Style>
+
+	<Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}"></Style>
+
+	<Style x:Key="DefaultSingleLineTextBoxStyle" TargetType="TextBox">
+		<Setter Property="Padding" Value="3" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+	</Style>
+
+	<Style TargetType="TextBox" BasedOn="{StaticResource DefaultSingleLineTextBoxStyle}"></Style>
+
+</ResourceDictionary>
