@@ -6,14 +6,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800">
 	<Grid>
-		<ListBox Name="MainListBox" ItemsSource="{Binding ElementName=Me, Path=CharSetFontMappings}" HorizontalContentAlignment="Stretch">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<ListBox Grid.Row="1" Margin="3" Name="MainListBox" ItemsSource="{Binding ElementName=Me, Path=CharSetFontMappings}" HorizontalContentAlignment="Stretch">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<local:CharSetMappingSettingPanel CharSetFontMapping="{Binding}" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+
+		<Grid Grid.Row="2" Name="ActionGrid">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Button Margin="3" Grid.Column="1" Name="StartButton" Content="_Start Generation" Click="StartButton_OnClick" />
+
+		</Grid>
+
 	</Grid>
 </Window>

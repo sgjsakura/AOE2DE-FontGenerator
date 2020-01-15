@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
@@ -40,6 +41,29 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		{
 			get => (ObservableCollection<CharSetFontMapping>)GetValue(CharSetFontMappingsProperty);
 			set => SetValue(CharSetFontMappingsProperty, value);
+		}
+
+		private void StartButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			if (CharSetFontMappings.Count == 0)
+			{
+				this.ShowMessage(this.FindResString("AppName"), "No charset mapping is defined",
+					"You must define at least one charset mapping in order to generate the font atlas file.", TaskDialogStandardIcon.Error, TaskDialogStandardButtons.Ok);
+				return;
+			}
+
+			foreach (var item in CharSetFontMappings)
+			{
+				if (item.Font == null || item.CharSet == null)
+				{
+					this.ShowMessage(this.FindResString("AppName"), "Charset mapping setting is invalid",
+						"Please set both the font source and the charset source for all mappings before starting the font generation.", TaskDialogStandardIcon.Error, TaskDialogStandardButtons.Ok);
+
+					return;
+				}
+			}
+
+			
 		}
 	}
 }

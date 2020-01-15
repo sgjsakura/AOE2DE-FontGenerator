@@ -37,6 +37,9 @@
     <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -68,17 +71,28 @@
       <DependentUpon>CharSetMappingSettingPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="CharSetSource.cs" />
+    <Compile Include="CharSetSourceSelector.xaml.cs">
+      <DependentUpon>CharSetSourceSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DirectCharSetSource.cs" />
     <Compile Include="FileCharSetSource.cs" />
     <Compile Include="FileFontSource.cs" />
+    <Compile Include="FontGenerator.cs" />
     <Compile Include="FontInfoConverter.cs" />
     <Compile Include="FontSourceConverter.cs" />
     <Compile Include="FontSourceSelector.xaml.cs">
       <DependentUpon>FontSourceSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FullCharSetSource.cs" />
     <Compile Include="RangeCharSetSource.cs" />
+    <Compile Include="ResourceUtility.cs" />
     <Compile Include="SystemFontSource.cs" />
+    <Compile Include="TaskDialogUtility.cs" />
     <Page Include="Assets\Objects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Strings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CharSetMappingSettingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharSetSourceSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

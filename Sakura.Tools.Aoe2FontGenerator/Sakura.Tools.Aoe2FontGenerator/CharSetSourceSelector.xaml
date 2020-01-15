@@ -1,5 +1,4 @@
-﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.CharSetMappingSettingPanel"
-			 x:Name="Me"
+﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.CharSetSourceSelector"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,19 +6,17 @@
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Grid DataContext="{Binding ElementName=Me, Path=CharSetFontMapping}">
+	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Expander Grid.Row="0" Margin="3" Header="{Binding Path=Font, Converter={StaticResource FontSourceConverter}}" IsExpanded="True">
-			<local:FontSourceSelector ActiveFontSource="{Binding Path=Font, Mode=TwoWay}" />
-		</Expander>
-
-		<Expander Grid.Row="1" Margin="3" Header="Charset" IsExpanded="True">
-			<local:CharSetSourceSelector />
-		</Expander>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <RadioButton Margin="3" Content="_All" IsChecked="True" Name="FullCharSetRadioButton" Checked="FullCharSetRadioButton_OnChecked" />
+            <RadioButton Margin="3" Content="_Code Print Range" IsEnabled="False" />
+            <RadioButton Margin="3" Content="_String" IsEnabled="False" />
+            <RadioButton Margin="3" Content="_From File" IsEnabled="False" />
+        </StackPanel>
 
 	</Grid>
 </UserControl>
