@@ -63,7 +63,11 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				}
 			}
 
-			
+			var generator = new FontGenerator();
+			generator.Generate(CharSetFontMappings);
+
+			MessageBox.Show("Ok!");
+
 		}
 	}
 }

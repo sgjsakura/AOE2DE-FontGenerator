@@ -12,8 +12,8 @@
 		</Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <RadioButton Margin="3" Content="_All" IsChecked="True" Name="FullCharSetRadioButton" Checked="FullCharSetRadioButton_OnChecked" />
-            <RadioButton Margin="3" Content="_Code Print Range" IsEnabled="False" />
+            <RadioButton Margin="3" Content="_All" Name="FullCharSetRadioButton" Checked="FullCharSetRadioButton_OnChecked" />
+            <RadioButton Margin="3" Content="_Code Print Range" />
             <RadioButton Margin="3" Content="_String" IsEnabled="False" />
             <RadioButton Margin="3" Content="_From File" IsEnabled="False" />
         </StackPanel>

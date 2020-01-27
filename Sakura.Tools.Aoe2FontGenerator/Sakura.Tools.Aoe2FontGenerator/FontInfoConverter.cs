@@ -10,13 +10,22 @@ using WpfColorFontDialog;
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
+	/// <summary>
+	/// Convert <see cref="FontInfo"/> into display string.
+	/// </summary>
 	[ValueConversion(typeof(FontInfo), typeof(string))]
 	public class FontInfoConverter : IValueConverter
 	{
-		public string Convert(FontInfo value, CultureInfo cultureInfo)
+		/// <summary>
+		/// Core method used for conversion.
+		/// </summary>
+		/// <param name="value">The <see cref="FontInfo"/> to be convertedd.</param>
+		/// <param name="cultureInfo">The culture info.</param>
+		/// <returns></returns>
+		public static string Convert(FontInfo value, CultureInfo cultureInfo)
 		{
 			return string.Format(CultureInfo.CurrentCulture, "{0} {1} {2} {3}",
-				value.Family.FamilyNames[XmlLanguage.GetLanguage(cultureInfo.IetfLanguageTag)],
+				value.Family.FamilyNames[cultureInfo.ToXmlLanguage()],
 				value.Size,
 				value.Style.ToString(),
 				value.Weight.ToString());

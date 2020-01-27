@@ -18,7 +18,7 @@
 		</Expander>
 
 		<Expander Grid.Row="1" Margin="3" Header="Charset" IsExpanded="True">
-			<local:CharSetSourceSelector />
+			<local:CharSetSourceSelector ActiveCharSetSource="{Binding Path=CharSet, Mode=TwoWay}" />
 		</Expander>
 
 	</Grid>

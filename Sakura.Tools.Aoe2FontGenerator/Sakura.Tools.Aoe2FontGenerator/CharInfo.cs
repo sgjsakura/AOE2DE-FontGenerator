@@ -52,7 +52,5 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// The real width of the glyph i.e. room until the next glyph in pixel.
 		/// </summary>
 		public float HAdvance { get; set; }
-
-		public char CodePoint { get; set; }
 	}
 }

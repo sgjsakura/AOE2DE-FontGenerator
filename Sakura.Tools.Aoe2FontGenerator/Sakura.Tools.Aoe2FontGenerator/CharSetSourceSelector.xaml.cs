@@ -30,7 +30,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			FullCharSetSource = new FullCharSetSource();
 		}
 
-		public static readonly DependencyProperty ActiveCharSetSourceProperty = DependencyProperty.Register(nameof(CharSetSource), typeof(CharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null));
+		public static readonly DependencyProperty ActiveCharSetSourceProperty = DependencyProperty.Register(nameof(ActiveCharSetSource), typeof(CharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null));
 
 		/// <summary>
 		/// Get the active <see cref="CharSetSource"/>.
@@ -49,7 +49,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		public FullCharSetSource FullCharSetSource
 		{
 			get => (FullCharSetSource) GetValue(FullCharSetSourceProperty);
-			private set => SetValue(FullCharSetSourceProperty, value);
+			private set => SetValue(FullCharSetSourcePropertyKey, value);
 		}
 
 		private void FullCharSetRadioButton_OnChecked(object sender, RoutedEventArgs e)

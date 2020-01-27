@@ -17,7 +17,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			{
 				case SystemFontSource systemFontSource when systemFontSource.FontInfo != null:
 					return string.Format(CultureInfo.CurrentUICulture, "System font - {0}",
-						new FontInfoConverter().Convert(systemFontSource.FontInfo, culture));
+						FontInfoConverter.Convert(systemFontSource.FontInfo, culture));
 				case FileFontSource fileFontSource when fileFontSource.FontFilePath != null:
 					return string.Format(CultureInfo.CurrentUICulture, "Font file - {0}", fileFontSource.FontFilePath);
 				default:
