@@ -8,9 +8,9 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	{
 		public string Chars { get; set; }
 
-		public override IEnumerable<int> GetCodePrints()
+		public override IEnumerable<int> GetValidCodePrints(IEnumerable<int> fontCodePrints)
 		{
-			return Chars.Select(c => (int) c);
+			throw new NotImplementedException();
 		}
 	}
 }

@@ -13,6 +13,11 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	public class CharInfo
 	{
 		/// <summary>
+		/// The code print of the glyph.
+		/// </summary>
+		public ushort CodePrint { get; set; }
+
+		/// <summary>
 		/// Glyph width in pixel.
 		/// </summary>
 		public float W { get; set; }

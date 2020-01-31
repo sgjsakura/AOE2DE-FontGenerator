@@ -3,5 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
     
     <sys:String x:Key="AppName">Age of Empires 2 Definitive Edition Font Generator</sys:String>
+
+	<sys:String x:Key="MappingSettingHeaderStringFormat">Additional Setting - Font ratio: {0}, Baseline Offset: {1}</sys:String>
     
 </ResourceDictionary>

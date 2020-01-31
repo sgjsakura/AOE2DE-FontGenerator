@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.MappingSettingPanel"
+			 x:Name="Me"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
+             mc:Ignorable="d" 
+            d:DesignWidth="800" Loaded="MappingSettingPanel_OnLoaded">
+	<Grid DataContext="{Binding ElementName=Me, Path=Data}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+
+		<Label Margin="3" Grid.Row="0" Grid.Column="0" ToolTip="This application will use the global excepted glyph size to generate glyphs in default, while for lots of fonts, the actual glyph size may not adapt with the required size (usually be larger). This may cause display problems. Particularly, glyphs larger than the max excepted size may cause Video RAM buffer overflow and you will see chaotic texts.">_Glyph size ratio:</Label>
+		<Slider Margin="3" Grid.Row="1" Grid.Column="0" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" Minimum="0" Name="GlyphSizeRatioSlider" TickPlacement="BottomRight" AutoToolTipPrecision="2" IsSnapToTickEnabled="True" Maximum="2" />
+		<TextBox Margin="3" Grid.Row="2" Grid.Column="0" Text="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" />
+
+		<Label Margin="3" Grid.Row="0" Grid.Column="1" ToolTip="Some fonts does not provide correct baseline location, under such circumstance glyphs may not vertically be aligned. Use this setting to adjust the baseline location (ratio with typeface glyph unit full-height).">_Glyph baseline offset:</Label>
+		<Slider Margin="3" Grid.Row="1" Grid.Column="1" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" Name="GlyphBaselineOffsetSlider" Minimum="-1" Maximum="1" TickPlacement="BottomRight" AutoToolTipPrecision="2" IsSnapToTickEnabled="True" />
+		<TextBox Margin="3" Grid.Row="2" Grid.Column="1" VerticalAlignment="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
+
+	</Grid>
+</UserControl>

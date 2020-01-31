@@ -1,4 +1,6 @@
-﻿namespace Sakura.Tools.Aoe2FontGenerator
+﻿using System.Windows.Media;
+
+namespace Sakura.Tools.Aoe2FontGenerator
 {
 	/// <summary>
 	/// Record all layout information for a glyph.
@@ -50,5 +52,15 @@
 		/// The total height of the glyph bounding box.
 		/// </summary>
 		public double BoxHeight => TopSideBearing + BottomSideBearing + AdvanceHeight;
+
+		/// <summary>
+		/// The actual size in EM unit for this glyph.
+		/// </summary>
+		public double EmSize { get; set; }
+		
+		/// <summary>
+		/// The corresponding <see cref="GlyphTypeface"/> for this glyph.
+		/// </summary>
+		public GlyphTypeface Typeface { get; set; }
 	}
 }

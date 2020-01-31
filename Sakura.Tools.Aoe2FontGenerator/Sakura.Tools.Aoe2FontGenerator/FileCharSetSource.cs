@@ -8,11 +8,9 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	public class FileCharSetSource : CharSetSource
 	{
 		public string FilePath { get; set; }
-
-		public override IEnumerable<int> GetCodePrints()
+		public override IEnumerable<int> GetValidCodePrints(IEnumerable<int> fontCodePrints)
 		{
-			var str = File.ReadAllText(FilePath, Encoding.UTF8);
-			return str.Select(i => (int)i);
+			throw new System.NotImplementedException();
 		}
 	}
 }

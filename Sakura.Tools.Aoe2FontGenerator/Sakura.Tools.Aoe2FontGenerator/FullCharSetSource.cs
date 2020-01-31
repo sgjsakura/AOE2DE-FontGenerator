@@ -7,13 +7,6 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	/// </summary>
 	public class FullCharSetSource : CharSetSource
 	{
-		/// <inheritdoc />
-		public override IEnumerable<int> GetCodePrints()
-		{
-			for (int i = ushort.MinValue; i <= ushort.MaxValue; i++)
-			{
-				yield return i;
-			}
-		}
+		public override IEnumerable<int> GetValidCodePrints(IEnumerable<int> fontCodePrints) => fontCodePrints;
 	}
 }

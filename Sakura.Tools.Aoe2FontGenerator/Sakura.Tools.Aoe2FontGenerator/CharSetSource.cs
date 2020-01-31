@@ -12,6 +12,6 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// Get all the code prints included in the source.
 		/// </summary>
 		/// <returns>A collection of all code prints included in this source. If the source is empty, it returns an empty collection.</returns>
-		public abstract IEnumerable<int> GetCodePrints();
+		public abstract IEnumerable<int> GetValidCodePrints(IEnumerable<int> fontCodePrints);
 	}
 }

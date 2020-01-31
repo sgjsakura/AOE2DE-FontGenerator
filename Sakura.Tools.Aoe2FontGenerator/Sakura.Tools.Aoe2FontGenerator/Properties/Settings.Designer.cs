@@ -22,5 +22,48 @@ namespace Sakura.Tools.Aoe2FontGenerator.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>0.5</string>
+  <string>0.6</string>
+  <string>0.7</string>
+  <string>0.8</string>
+  <string>0.9</string>
+  <string>1.0</string>
+  <string>1.1</string>
+  <string>1.2</string>
+  <string>1.3</string>
+  <string>1.4</string>
+  <string>1.5</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DefaultGlyphRatioTicks {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DefaultGlyphRatioTicks"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>-1</string>
+  <string>-0.8</string>
+  <string>-0.4</string>
+  <string>-0.2</string>
+  <string>0</string>
+  <string>0.2</string>
+  <string>0.4</string>
+  <string>0.6</string>
+  <string>0.8</string>
+  <string>1</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DefaultBaselineOffsetTicks {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DefaultBaselineOffsetTicks"]));
+            }
+        }
     }
 }

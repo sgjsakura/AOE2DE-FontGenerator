@@ -11,14 +11,36 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
-		<Expander Grid.Row="0" Margin="3" Header="{Binding Path=Font, Converter={StaticResource FontSourceConverter}}" IsExpanded="True">
+		<Expander Grid.Row="0" Margin="3" Header="{Binding Path=Font}" IsExpanded="True">
 			<local:FontSourceSelector ActiveFontSource="{Binding Path=Font, Mode=TwoWay}" />
 		</Expander>
 
 		<Expander Grid.Row="1" Margin="3" Header="Charset" IsExpanded="True">
+			<Expander.HeaderTemplateSelector>
+				<DataTemplateSelector>
+					
+				</DataTemplateSelector>
+			</Expander.HeaderTemplateSelector>
 			<local:CharSetSourceSelector ActiveCharSetSource="{Binding Path=CharSet, Mode=TwoWay}" />
+		</Expander>
+
+		<Expander Grid.Row="2" Margin="3" IsExpanded="True" Header="{Binding Path=Setting}">
+			<Expander.HeaderTemplate>
+				<DataTemplate>
+					<TextBlock>
+						<TextBlock.Text>
+							<MultiBinding StringFormat="{StaticResource MappingSettingHeaderStringFormat}">
+								<Binding Path="GlyphSizeRatio" />
+								<Binding Path="BaselineOffsetRatio" />
+							</MultiBinding>
+						</TextBlock.Text>
+					</TextBlock>
+				</DataTemplate>
+			</Expander.HeaderTemplate>
+			<local:MappingSettingPanel Data="{Binding Path=Setting}" />
 		</Expander>
 
 	</Grid>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Globalization;
@@ -14,6 +15,8 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
+using TeximpNet;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
@@ -22,265 +25,235 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	/// </summary>
 	public class FontGenerator
 	{
+
 		public void Generate(IEnumerable<CharSetFontMapping> mappings)
 		{
-			var layouts = mappings.Select(HandleSingleMapping);
+			double atlasWidth = 4096, atlasHeight = 4096;
+			double pixelHeight = 64;
+			double space = 8;
 
-			var visual = new DrawingVisual();
-			var drawingContext = visual.RenderOpen();
+			var visualList = new List<Visual>();
+			var charBoxList = new List<CharInfo>();
 
-			var totalWidth = 2048;
-			var totalHeight = 2048;
+			var currentVisual = new DrawingVisual();
+			var drawingContext = currentVisual.RenderOpen();
 
-			const double defaultDpi = 96;
+			double currentX = space, currentY = space, lineHeight = 0;
 
-			var layoutContext = new AtlasGenerateContext(totalWidth, totalHeight);
-
-			foreach (var layout in layouts)
+			foreach (var charSetFontMapping in mappings)
 			{
-				DrawGlyphList(layout, 1000, drawingContext, layoutContext);
+				var typeface = charSetFontMapping.Font.GetGlyphTypeface();
+
+				var emSize = pixelHeight / 1.5;
+				var baseline = typeface.Baseline;
+
+				// Get valid chars
+				var fontChars = typeface.CharacterToGlyphMap.Keys;
+				var validChars = charSetFontMapping.CharSet.GetValidCodePrints(fontChars);
+
+				foreach (var c in validChars)
+				{
+					if (c > ushort.MaxValue)
+					{
+						Debug.WriteLine("字符 {0} 超过允许范围，无法显示，可能会覆盖的字是 {1}。", (char)c, (char)(c % 65536));
+						continue;
+					}
+
+					var index = typeface.CharacterToGlyphMap[c];
+
+					var advancedWidth = typeface.AdvanceWidths[index];
+					var advancedHeight = typeface.AdvanceHeights[index];
+
+					var leftSideBearing = typeface.LeftSideBearings[index];
+					var rightSideBearing = typeface.RightSideBearings[index];
+
+					var topSideBearing = typeface.TopSideBearings[index];
+					var bottomSizeBearing = typeface.BottomSideBearings[index];
+
+					var geometry = typeface.GetGlyphOutline(index, emSize, 0);
+
+					//var totalWidth = (advancedWidth - leftSideBearing - rightSideBearing) * emSize;
+					//var totalHeight = (advancedHeight - topSideBearing - bottomSizeBearing) * emSize;
+
+					var totalWidth = geometry.Bounds.Width;
+					var totalHeight = geometry.Bounds.Height;
+
+					if (geometry.Bounds.IsEmpty)
+					{
+						totalWidth = 0;
+						totalHeight = 0;
+					}
+
+					if (totalWidth > atlasWidth || totalHeight > atlasHeight)
+					{
+						throw new InvalidOperationException("Glyph is larger than the atlas.");
+					}
+
+					if (currentX + space + totalWidth <= atlasWidth && currentY + space + totalHeight <= atlasHeight)
+					{
+						// Current line, do nothing
+					}
+					else if (currentY + lineHeight + space + totalHeight <= atlasHeight)
+					{
+						// New line
+						currentX = space;
+						currentY += lineHeight + space;
+						lineHeight = 0;
+					}
+					else
+					{
+						// new Atlas
+						currentX = space;
+						currentY = space;
+						lineHeight = 0;
+
+						// Close current
+						drawingContext.Close();
+						visualList.Add(currentVisual);
+
+						// Open new drawing context
+						currentVisual = new DrawingVisual();
+						drawingContext = currentVisual.RenderOpen();
+					}
+
+					var charInfo = new CharInfo
+					{
+						Atlas = visualList.Count,
+
+						W = (float)totalWidth,
+						H = (float)totalHeight,
+
+						U = (float)(currentX / atlasWidth),
+						V = (float)(currentY / atlasHeight),
+
+						S = (float)((currentX + totalWidth) / atlasWidth),
+						T = (float)((currentY + totalHeight) / atlasHeight),
+
+						X0 = (float)(leftSideBearing * emSize),
+						Y0 = (float)(geometry.Bounds.Top + baseline * emSize),
+
+						HAdvance = (float)(advancedWidth * emSize),
+
+						CodePrint = (ushort)c,
+					};
+
+					charBoxList.Add(charInfo);
+
+					var transform = new TransformGroup();
+
+					// Move to baseline
+					transform.Children.Add(new TranslateTransform(-geometry.Bounds.Left, -geometry.Bounds.Top));
+
+					// Move to start location
+					transform.Children.Add(new TranslateTransform(currentX, currentY));
+
+					geometry.Transform = transform;
+
+					// Draw
+					drawingContext.DrawGeometry(Brushes.White, new Pen(Brushes.Black, 1), geometry);
+
+					// Advance the start location
+					currentX += totalWidth + space;
+
+					// Update line height if necessary
+					if (totalHeight > lineHeight)
+					{
+						lineHeight = totalHeight;
+					}
+				}
 			}
 
+			// Close the final drawing
 			drawingContext.Close();
+			visualList.Add(currentVisual);
 
-			Window w;
-			PresentationSource s = PresentationSource.FromVisual(w);
+			var atlasIndex = 0;
 
-			var bitmap = new RenderTargetBitmap(totalWidth, totalHeight, defaultDpi, defaultDpi, PixelFormats.Pbgra32);
-			bitmap.Render(visual);
+			var dir = @"d:\test";
+			Directory.CreateDirectory(dir);
 
-			var encoder = new PngBitmapEncoder();
-			encoder.Frames.Add(BitmapFrame.Create(bitmap));
-
-			using (var file = File.OpenWrite(@"e:\1.png"))
+			foreach (var v in visualList)
 			{
-				encoder.Save(file);
-				file.Close();
+				var bitmap = new RenderTargetBitmap((int)atlasWidth, (int)atlasHeight, 96, 96, PixelFormats.Pbgra32);
+				bitmap.Render(v);
+
+				var encoder = new BmpBitmapEncoder();
+				encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+
+				using (var memoryStream = new MemoryStream())
+				{
+					// Save image and set to start
+					encoder.Save(memoryStream);
+					memoryStream.Seek(0, SeekOrigin.Begin);
+
+					using (var surface = Surface.LoadFromStream(memoryStream))
+					{
+						surface.SaveToFile(ImageFormat.PNG, Path.Combine(dir, $"combined_{atlasIndex:D4}.dds"));
+						surface.SaveToFile(ImageFormat.PNG, Path.Combine(dir, $"combined_{atlasIndex:D4}.png"));
+					}
+				}
+
+				atlasIndex++;
+			}
+
+			using (var boxFile = File.Create(Path.Combine(dir, @"combined.box")))
+			{
+				WriteCharInfo(charBoxList, visualList.Count, (float)pixelHeight, boxFile);
+				boxFile.Close();
+			}
+
+			using (var boxTxt = File.Create(Path.Combine(dir, "combined.txt")))
+			{
+				var writer = new StreamWriter(boxTxt);
+
+				writer.WriteLine("Char Count = {0}", charBoxList.Count);
+				writer.WriteLine("Total Atlas = {0}", visualList.Count);
+				writer.WriteLine("Source Font Size = {0}", pixelHeight);
+
+				foreach (var c in charBoxList)
+				{
+					writer.WriteLine("Char {0} - W({1}), H({2}), U({3}), V({4}), S({5}), T({6}), Atlas({7}), X0({8}), Y0({9}), HA({10})", (char)c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance);
+				}
+
+				boxTxt.Close();
 			}
 		}
 
-		/// <summary>
-		/// Calcualte the box infomation for a glyph.
-		/// </summary>
-		/// <param name="info">The information aboue the glyph.</param>
-		/// <param name="emSize">The EM-size used to calcuate the real glyph size information.</param>
-		/// <returns>The calculated box information.</returns>
-		private GlyphBoxInfo CalculateBox(GlyphDetailInfo info, double emSize)
+		private static double AddPositive(params double[] values) => values.Where(i => i >= 0).Sum();
+
+		private static void WriteCharInfo(IList<CharInfo> charInfos, int pages, float sourceFontPixelSize, Stream stream)
 		{
-			double AddPositive(params double[] values) => values.Where(i => i >= 0).Sum();
+			var binaryWriter = new BinaryWriter(stream);
 
-			var result = new GlyphBoxInfo
+			// Version: 0x2
+			binaryWriter.Write(0x2, Endianness.LittleEndian);
+			// Glyph Count
+			binaryWriter.Write(charInfos.Count, Endianness.LittleEndian);
+			// Page count
+			binaryWriter.Write(pages, Endianness.LittleEndian);
+			// Source font size
+			binaryWriter.Write(sourceFontPixelSize);
+
+			foreach (var c in charInfos)
 			{
-				TotalWidth = AddPositive(info.AdvanceWidth, info.LeftSideBearing, info.RightSideBearing) * emSize,
-				TotalHeight = AddPositive(info.AdvanceHeight, info.TopSideBearing, info.BottomSideBearing) * emSize,
-				XOffset = info.LeftSideBearing * emSize,
-				YOffset = info.TopSideBearing * emSize,
-				AdvanceWdith = info.AdvanceWidth * emSize,
-				AdvanceHeight = info.AdvanceHeight * emSize,
-			};
-
-			return result;
-		}
-
-		/// <summary>
-		/// Calculate the drawing location.
-		/// </summary>
-		/// <param name="boxInfo">The box information for a </param>
-		/// <param name="generateContext"></param>
-		/// <returns></returns>
-		private (int AtlasIndex, Point Location) CalculateDrawLocation(GlyphBoxInfo boxInfo, AtlasGenerateContext generateContext)
-		{
-
-			if (generateContext.TotalWidth < boxInfo.TotalWidth || generateContext.TotalHeight < boxInfo.TotalHeight)
-			{
-				throw new InvalidOperationException("The size of atlas is less than the size of the glyph.");
+				binaryWriter.Write(c.W);
+				binaryWriter.Write(c.H);
+				binaryWriter.Write(c.U);
+				binaryWriter.Write(c.S);
+				binaryWriter.Write(c.V);
+				binaryWriter.Write(c.T);
+				binaryWriter.Write(c.Atlas, Endianness.LittleEndian);
+				binaryWriter.Write(c.X0);
+				binaryWriter.Write(c.Y0);
+				binaryWriter.Write(c.HAdvance);
 			}
 
-			// Can place the current glyph in the same line.
-			if (generateContext.TotalWidth - generateContext.CurrentXStart >= boxInfo.TotalWidth && generateContext.TotalHeight - generateContext.CurrentYStart >= boxInfo.TotalHeight)
+			for (var i = 0; i < charInfos.Count; i++)
 			{
-				// Do nothing
-			}
-			// put on new line
-			else if (generateContext.TotalHeight - generateContext.CurrentYStart >= boxInfo.TotalHeight)
-			{
-				generateContext.CurrentXStart = 0;
-				generateContext.CurrentYStart += generateContext.LineHeight;
-				generateContext.LineHeight = 0;
-			}
-			// new atlas
-			else
-			{
-				generateContext.CurrentAtlasIndex++;
-				generateContext.CurrentXStart = 0;
-				generateContext.CurrentYStart = 0;
-			}
-
-			// Set draw location
-			var drawLocation = new Point(generateContext.CurrentXStart, generateContext.CurrentYStart);
-
-			// Update X location
-			generateContext.CurrentXStart += boxInfo.TotalWidth;
-
-			// Update line height if necessary
-			if (generateContext.LineHeight < boxInfo.TotalHeight)
-			{
-				generateContext.LineHeight = boxInfo.TotalHeight;
-			}
-
-			return (generateContext.CurrentAtlasIndex, drawLocation);
-
-			//return new CharInfo
-			//{
-			//	Atlas = generateContext.CurrentAtlasIndex,
-			//	W = (float) boxInfo.TotalWidth,
-			//	H = (float) boxInfo.TotalHeight,
-			//	U = (float) (drawLocation.X / generateContext.TotalWidth),
-			//	V = (float) (drawLocation.Y / generateContext.TotalHeight),
-			//	S = (float) ((drawLocation.X + boxInfo.TotalWidth) / generateContext.TotalWidth),
-			//	T = (float) ((drawLocation.Y + boxInfo.TotalHeight) / generateContext.TotalHeight),
-			//	X0 = (float)boxInfo.XOffset,
-			//	Y0 = (float)boxInfo.YOffset,
-			//	HAdvance = (float)boxInfo.AdvanceWdith
-			//};
-		}
-
-		private void DrawGlyphList(TypefaceGlyphs typefaceGlyphs, double size, DrawingContext context, AtlasGenerateContext layoutContext)
-		{
-			foreach (var glyphInfo in typefaceGlyphs.GlyphInfos)
-			{
-				DrawGlyph(typefaceGlyphs.Typeface, glyphInfo.Value, size, context, layoutContext);
+				binaryWriter.Write(charInfos[i].CodePrint, Endianness.LittleEndian);
+				binaryWriter.Write((ushort)i, Endianness.LittleEndian);
 			}
 		}
-
-		private void DrawGlyph(GlyphTypeface typeface, GlyphDetailInfo info, double size, DrawingContext drawingContext, AtlasGenerateContext layoutContext)
-		{
-			var boxInfo = CalculateBox(info, size);
-			var drawLocation = CalculateDrawLocation(boxInfo, layoutContext);
-
-			
-
-			var g = typeface.GetGlyphOutline(info.Key, size, 0);
-
-			var transform = new TransformGroup();
-			transform.Children.Add(new TranslateTransform(0, typeface.Baseline * size));
-
-			g.Transform = transform;
-			Debug.Print("Drawing {0}, Bound = {1}", (char)info.CodePrint, g.Bounds);
-			drawingContext.DrawGeometry(Brushes.Black, null, g);
-		}
-
-		/// <summary>
-		/// Reteirve all the information of the actual typeface and related glyphs for a <see cref="CharSetFontMapping"/> setting. 
-		/// </summary>
-		/// <param name="mapping">The <see cref="CharSetFontMapping"/> instance.</param>
-		/// <returns>The generated <see cref="TypefaceGlyphs"/> instance, which contains the typeface information and all glyph typefaceGlyphs.</returns>
-		private TypefaceGlyphs HandleSingleMapping(CharSetFontMapping mapping)
-		{
-			var codePrints = new SortedSet<int>(mapping.CharSet.GetCodePrints());
-			var typeface = mapping.Font.GetGlyphTypeface();
-			codePrints.IntersectWith(typeface.CharacterToGlyphMap.Keys);
-
-			var glyphLayouts = codePrints.Take(50).ToDictionary(i => i, i => HandleSingleChar(i, typeface));
-
-			return new TypefaceGlyphs
-			{
-				Typeface = typeface,
-				GlyphInfos = glyphLayouts
-			};
-		}
-
-		private GlyphDetailInfo HandleSingleChar(int codePrint, GlyphTypeface typeface)
-		{
-			var key = typeface.CharacterToGlyphMap[codePrint];
-
-			return new GlyphDetailInfo
-			{
-				Key = key,
-				CodePrint = codePrint,
-				TopSideBearing = typeface.TopSideBearings[key],
-				BottomSideBearing = typeface.BottomSideBearings[key],
-				LeftSideBearing = typeface.LeftSideBearings[key],
-				RightSideBearing = typeface.RightSideBearings[key],
-				AdvanceWidth = typeface.AdvanceWidths[key],
-				AdvanceHeight = typeface.AdvanceHeights[key]
-			};
-		}
-	}
-
-	/// <summary>
-	/// Internal context information used when generating the font atlas.
-	/// </summary>
-	internal class AtlasGenerateContext
-	{
-		/// <summary>
-		/// The total width of the canvas.
-		/// </summary>
-		public double TotalWidth { get; }
-
-		/// <summary>
-		/// The total height of the canvas.
-		/// </summary>
-		public double TotalHeight { get; }
-
-		/// <summary>
-		/// The index of the current atlas, also indicates total atlases used.
-		/// </summary>
-
-		public int CurrentAtlasIndex { get; set; }
-
-		/// <summary>
-		/// The layout start X-location for the next glyph.
-		/// </summary>
-		public double CurrentXStart { get; set; }
-		/// <summary>
-		/// The layout start Y-Location for the next glyph.
-		/// </summary>
-		public double CurrentYStart { get; set; }
-
-		/// <summary>
-		/// The height of the current line. Used when needs to advance to next line.
-		/// </summary>
-		public double LineHeight { get; set; }
-
-		/// <summary>
-		/// Initialize a new instance of <see cref="AtlasGenerateContext"/> with specified canvas size.
-		/// </summary>
-		/// <param name="totalWidth">The total width of the canvas.</param>
-		/// <param name="totalHeight">The total height of the canvas.</param>
-		public AtlasGenerateContext(double totalWidth, double totalHeight)
-		{
-			TotalWidth = totalWidth;
-			TotalHeight = totalHeight;
-		}
-	}
-
-	public class GlyphBoxInfo
-	{
-		public double TotalWidth { get; set; }
-		public double TotalHeight { get; set; }
-
-		public double XOffset { get; set; }
-
-		public double YOffset { get; set; }
-
-		public double AdvanceWdith { get; set; }
-		public double AdvanceHeight { get; set; }
-	}
-
-	/// <summary>
-	/// Record the necessary information for drawing an atlas.
-	/// </summary>
-	public class GlyphDrawInfo
-	{
-		/// <summary>
-		/// The index of the atlas.
-		/// </summary>
-		public int AtlasIndex { get; set; }
-
-		/// <summary>
-		/// The location of the glyph in the atlas.
-		/// </summary>
-		public Point Location { get; set; }
 	}
 }

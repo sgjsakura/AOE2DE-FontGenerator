@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
@@ -13,6 +14,11 @@ namespace Sakura.Tools.Aoe2FontGenerator
 	{
 		private FontSource _font;
 		private CharSetSource _charSet;
+
+		/// <summary>
+		/// The mapping setting.
+		/// </summary>
+		public MappingSetting Setting { get; } = new MappingSetting();
 
 		/// <summary>
 		/// The charset to be drawn.
@@ -61,5 +67,23 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		}
 
 		#endregion
+	}
+
+	/// <summary>
+	/// Represents as the additional setting for a <see cref="CharSetFontMapping"/>.
+	/// </summary>
+	public class MappingSetting
+	{
+		/// <summary>
+		/// Value used to change the actual glyph size compared with the excepted glyph size.
+		/// </summary>
+		[Range(0, double.MaxValue)]
+		public double GlyphSizeRatio { get; set; } = 1;
+
+		/// <summary>
+		/// Value used to adjust the baseline offset compared with the typeface height.
+		/// </summary>
+		[Range(-1.0, 1.0)]
+		public double BaselineOffsetRatio { get; set; } = 0;
 	}
 }

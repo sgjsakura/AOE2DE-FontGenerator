@@ -7,10 +7,11 @@
         xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
         mc:Ignorable="d"
         Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800">
-	<Grid>
+	<Grid Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
+			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<ListBox Grid.Row="1" Margin="3" Name="MainListBox" ItemsSource="{Binding ElementName=Me, Path=CharSetFontMappings}" HorizontalContentAlignment="Stretch">
@@ -21,7 +22,14 @@
 			</ListBox.ItemTemplate>
 		</ListBox>
 
-		<Grid Grid.Row="2" Name="ActionGrid">
+		<Grid Grid.Row="2" Name="SettingGrid">
+			<GroupBox Margin="3" Header="General Setting">
+				
+			</GroupBox>
+
+		</Grid>
+
+		<Grid Grid.Row="3" Name="ActionGrid">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition Width="Auto" />

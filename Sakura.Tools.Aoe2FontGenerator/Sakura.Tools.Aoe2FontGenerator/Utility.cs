@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using System.Windows.Media;
 using JetBrains.Annotations;
 
 namespace Sakura.Tools.Aoe2FontGenerator
@@ -28,6 +30,21 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			}
 
 			return XmlLanguage.GetLanguage(cultureInfo.IetfLanguageTag);
+		}
+
+		public static DoubleCollection ToDoubleCollection(StringCollection strings)
+		{
+			var items = new List<double>();
+			
+			foreach (var str in strings)
+			{
+				if (double.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out var d))
+				{
+					items.Add(d);
+				}
+			}
+
+			return new DoubleCollection(items);
 		}
 	}
 }
