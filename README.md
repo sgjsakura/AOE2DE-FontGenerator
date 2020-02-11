@@ -37,3 +37,7 @@ This is caused by your selected typeface has an incorrect baseline value. Please
 #### Some glyphs lookes chaotic
 
 This is caused by the glyph size too large (may not obvious when displaying) and the Video RAM is damaged when reading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
+
+#### Some glyphs become a question mark
+
+This is caused by a glyph is missing. Your generated font file does not contain this char and thus the game replace the glyph with a question mark. Please consider to change the font of add a secondary font to supply missing chareactors.
