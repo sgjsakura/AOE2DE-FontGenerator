@@ -1,5 +1,7 @@
 # Age of Empires 2 Definitive Edition Custom Font Generator
 
+*[简体中文](README-CN.md)*
+
 This project provides tools to genearte game font atlas files for Age of Empires 2 Definitive Edition, in order to solve the charset imcompolete problem and imrpvoe display effect.
 
 **Important: Please read the frequently QnA before asking for help.**
@@ -34,4 +36,4 @@ This is caused by your selected typeface has an incorrect baseline value. Please
 
 ### Some glyphs lookes chaotic
 
-This is caused by the glyph size too large (maybe ) and the Video RAM is damaged when reading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
+This is caused by the glyph size too large (may not obvious when displaying) and the Video RAM is damaged when reading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
