@@ -14,6 +14,11 @@
 			<RowDefinition x:Uid="RowDefinition_2" />
 			<RowDefinition x:Uid="RowDefinition_3" Height="Auto" />
 		</Grid.RowDefinitions>
+
+		<Grid x:Uid="Grid_4" Grid.Row="0">
+			<TextBlock x:Uid="TextBlock_1" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">This page lists all charset mappings used to generating fonts. You define one typeface and one char source, and then the application will pick glyphs in the typeface to generate the atlas file. Since one typeface may not contains all characters, your may define multiple mappings, they will be executed in sequence. If one char is already generated, it will be ignored for later mappings.</TextBlock>
+		</Grid>
+
 		<Grid x:Uid="Grid_2" Grid.Row="1">
 			<GroupBox x:Uid="GroupBox_1" Margin="3" Header="Charset Mappings">
 				<Grid x:Uid="Grid_3">

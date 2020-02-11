@@ -16,7 +16,7 @@
 	<sys:String x:Uid="sys:String_6" x:Key="BeginExtractChars">Trying to extract all glyph information...</sys:String>
 	<sys:String x:Uid="sys:String_7" x:Key="ExtractCharsFinished">Successfully generated glyph information of {0} char(s).</sys:String>
 	<sys:String x:Uid="sys:String_8" x:Key="BeginDrawingGlyphs">Trying to draw all glyphs to atlases...</sys:String>
-	<sys:String x:Uid="sys:String_9" x:Key="DrawingGlyphsFinished">Successfully generated {0} atlas(es) for and {1} char(s)' information.</sys:String>
+	<sys:String x:Uid="sys:String_9" x:Key="DrawingGlyphsFinished">Successfully generated {0} atlas(es) and {1} char(s)' information.</sys:String>
 	<sys:String x:Uid="sys:String_10" x:Key="BeginSaveImages">Trying to save {0} images to disk...</sys:String>
 	<sys:String x:Uid="sys:String_11" x:Key="SaveImagesFinished">Successfully saved {0} images to disk.</sys:String>
 	<sys:String x:Uid="sys:String_12" x:Key="BeginSaveMetadataFile">Trying to save the metadata file to disk...</sys:String>
@@ -31,6 +31,8 @@
 
 	<sys:String x:Uid="sys:String_19" x:Key="CharCodePrintOutOfRangeWarning">The code prints of {0} char(s) are out of range and will be ignored.</sys:String>
 	<sys:String x:Uid="sys:String_20" x:Key="GlyphSizeTooLargeErrorMessage">Glyph "{0}" in typeface "{1}" is larger than the atlas size. Please try reduce the glyph size.</sys:String>
+
+	<sys:String x:Uid="sys:String_52" x:Key="TexToolErrorMessage">Cannot execute TexConv.exe to generate textures successfully. Please make sure this tool exists in the "Libs" directory and is not corrupted.</sys:String>
 
 	<sys:String x:Uid="sys:String_21" x:Key="TextureSizeLineFormat">Texture Size = {0}</sys:String>
 	<sys:String x:Uid="sys:String_22" x:Key="GlyphSizeLineFormat">Glyph Size = {0}</sys:String>

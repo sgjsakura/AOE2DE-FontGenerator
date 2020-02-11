@@ -6,7 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using Sakura.Tools.Aoe2FontGenerator.Properties;
+using Sakura.Tools.Aoe2FontGenerator.Utilities;
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
@@ -39,10 +41,15 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 			if (process == null)
 			{
-				throw new InvalidOperationException();
+				throw new InvalidOperationException(App.Current.FormatResString("TexToolErrorMessage"));
 			}
 
 			process.WaitForExit();
+
+			if (process.ExitCode != 0)
+			{
+				throw new InvalidOperationException(App.Current.FormatResString("TexToolErrorMessage"));
+			}
 		}
 
 		private static string HandleCommandArgument(string value) => $"\"{value}\"";

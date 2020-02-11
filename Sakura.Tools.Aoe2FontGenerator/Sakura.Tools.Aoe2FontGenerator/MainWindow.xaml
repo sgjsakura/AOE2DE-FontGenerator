@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
         xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
         mc:Ignorable="d"
-        Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800" UseLayoutRounding="True" Initialized="MainWindow_OnInitialized">
+        Title="{StaticResource AppName}" Height="600" Width="800" UseLayoutRounding="True" Initialized="MainWindow_OnInitialized">
 	<Grid x:Uid="LayoutRoot" Margin="10" x:Name="LayoutRoot">
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Uid="ActionStates" x:Name="ActionStates">
