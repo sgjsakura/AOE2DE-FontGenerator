@@ -26,14 +26,14 @@ Please read the error message and operate follow the instuction. If you still ha
 
 Please submit a new issue with detailed reproduce step to help the author improve this tool.
 
-### The glyphs are too large/small in the game
+#### The glyphs are too large/small in the game
 
 This is caused by your selected typeface not correctly response with glyphing size requests. Please enter the detailed mapping setting panel, and try to adjust the "glyph scaling ratio" value to resize the generated glyphs. Note change the global glyph size will not work for this problem.
 
-### The glyphs are not vertical algined with the game UI
+#### The glyphs are not vertical algined with the game UI
 
 This is caused by your selected typeface has an incorrect baseline value. Please enter the detailed mapping setting panel, and try to adjust the "baseline offset ratio" to adjust the vertical location of glyphs.
 
-### Some glyphs lookes chaotic
+#### Some glyphs lookes chaotic
 
 This is caused by the glyph size too large (may not obvious when displaying) and the Video RAM is damaged when reading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
