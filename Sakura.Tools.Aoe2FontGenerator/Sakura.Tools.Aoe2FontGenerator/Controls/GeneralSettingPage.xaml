@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.GeneralSettingPage"
+			 x:Name="Me"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+	<Grid IsSharedSizeScope="True" DataContext="{Binding ElementName=Me, Path=Data}">
+		<StackPanel Orientation="Vertical">
+			<GroupBox Margin="3">
+
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/CanvasElement_16x.png" Text="_Texture Size" />
+				</GroupBox.Header>
+
+				<StackPanel Orientation="Vertical">
+					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the output texture size (in pixels). Larger size can contains more glyphs in a single texture file, thus the total texture files count will be reduced, while each texture requires more Video RAM to be loaded.</TextBlock>
+
+					<TextBlock Margin="3"  Style="{StaticResource DescriptionTextBlockStyle}"><Bold>Note:</Bold> The texture size should be an integer power of 2, otherwise your video card may not support to load it. The maximum allow value depends on your video card hardware compatibility.</TextBlock>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<Label Margin="3" Grid.Column="0">_Texture Size (in Pixels):</Label>
+						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=TextureSize}" />
+					</Grid>
+
+				</StackPanel>
+
+			</GroupBox>
+
+			<GroupBox Margin="3">
+
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/Label_16x.png" Text="_Glyph Size" />
+				</GroupBox.Header>
+
+				<StackPanel Orientation="Vertical">
+					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the excepted glyph size (in pixels). It will be used to generate glyphs as well as compute the line-height when displaying them in the game. Larger size may have better display effect on high resolution screen, while it requires more space in the texture image and increase the Video RAM usage.</TextBlock>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<Label Margin="3" Grid.Column="0">_Glyph Size (in Pixels):</Label>
+						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSize}" />
+					</Grid>
+
+				</StackPanel>
+
+			</GroupBox>
+
+			<GroupBox Margin="3">
+
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/RemoveHorizontalSpace_16x.png" Text="Glyph _Spacing" />
+				</GroupBox.Header>
+
+				<StackPanel Orientation="Vertical">
+					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the glyph spacing (in pixels). It will be used to separate glyphs when drawing the texture images. If you found glyphs are overlapping when displaying, please consider to increase the spacing.</TextBlock>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<Label Margin="3" Grid.Column="0">Glyph _Spacing (in Pixels):</Label>
+						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSpace}" />
+
+					</Grid>
+
+				</StackPanel>
+
+			</GroupBox>
+
+		</StackPanel>
+	</Grid>
+</UserControl>

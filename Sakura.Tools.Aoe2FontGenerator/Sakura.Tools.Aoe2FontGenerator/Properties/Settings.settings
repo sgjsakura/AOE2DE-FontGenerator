@@ -33,5 +33,29 @@
   &lt;string&gt;1&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="DefaultMetaFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined.box</Value>
+    </Setting>
+    <Setting Name="DefaultSurfaceFileFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_{0:D4}.dds</Value>
+    </Setting>
+    <Setting Name="DefaultSansSerifMetaFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_sansserif.box</Value>
+    </Setting>
+    <Setting Name="DefaultSansSerifSurfaceFileFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_sansserif_{0:D4}.dds</Value>
+    </Setting>
+    <Setting Name="DefaultTextureSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4096</Value>
+    </Setting>
+    <Setting Name="DefaultGlyphSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="DefaultGlyphSpace" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="DefaultDebugDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Debug</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

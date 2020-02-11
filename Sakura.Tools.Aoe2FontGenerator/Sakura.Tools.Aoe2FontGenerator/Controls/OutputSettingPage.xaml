@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.OutputSettingPage"
+			 x:Name="Me"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+	<Grid DataContext="{Binding ElementName=Me, Path=Data}">
+		<StackPanel Orientation="Vertical">
+			<GroupBox Margin="3">
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/Save_16x.png" Text="_Output Location" />
+				</GroupBox.Header>
+				<StackPanel Orientation="Vertical">
+
+					<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Set the final output target directory. All generated output files will be put there. You may use the "Browse" button to pick a folder in your file system.</TextBlock>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<Label Margin="3" Grid.Column="0">_Output Directory:</Label>
+						<TextBox Margin="3" Grid.Column="1" Name="OutputDirectoryTextBox" Text="{Binding Path=OutputDirectory}" />
+						<Button Margin="3" Grid.Column="2" Name="BrowseOutputDirButton" Click="BrowseOutputDirButton_OnClick">_Browse...</Button>
+
+					</Grid>
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Margin="3">
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/Rename_16x.png" Text="_File Naming" />
+				</GroupBox.Header>
+
+				<StackPanel Orientation="Vertical">
+
+					<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Set the name for output files. There's two different names: a packed metadata file which includes all glyph information, and a series of DirectDraw Surface files consists of huge number of different glyphs. The latter uses a format description to generate all file names. For detailed information about string formatting, please visit the <Hyperlink NavigateUri="https://docs.microsoft.com/dotnet/standard/base-types/formatting-types#composite-formatting">.NET Composite Formatting Introduction</Hyperlink>.</TextBlock>
+
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<Label Margin="3" Grid.Row="0" Grid.Column="0">_Metadata File Name:</Label>
+						<TextBox Margin="3" Grid.Row="0" Grid.Column="1" Name="MetaDataFileNameTextBox" Text="{Binding Path=MetadataFileName}" />
+
+						<Label Margin="3" Grid.Row="1" Grid.Column="0">_Surface File Name Format:</Label>
+						<TextBox Margin="3" Grid.Row="1" Grid.Column="1" Name="SurfaceFileFormatTextBox" Text="{Binding Path=SurfaceFileNameFormat}" />
+
+					</Grid>
+
+					<Separator Margin="3" />
+
+					<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">You may use the following button to quickly set both names as the default ones used in the game.</TextBlock>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+						</Grid.ColumnDefinitions>
+
+						<Button Margin="3" Grid.Column="0" Name="SetAsDefaultButton" Click="SetAsDefaultButton_OnClick">Set Names as Default Font File Name</Button>
+						<Button Margin="3" Grid.Column="1" Name="SetAsDefaultSansSerifButton" Click="SetAsDefaultSansSerifButton_OnClick">Set Name as Default Sans-serif Font File Name</Button>
+
+					</Grid>
+				</StackPanel>
+
+			</GroupBox>
+
+			<GroupBox Margin="3">
+				<GroupBox.Header>
+					<local:ImageItem Image="/Images/Report_16x.png" Text="Debug Output" />
+				</GroupBox.Header>
+
+				<StackPanel Orientation="Vertical">
+
+					<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Check the following checkbox to output debug files, which includes one text format atlas data summary and a series of PNG images associated with final output DDS files.</TextBlock>
+
+					<CheckBox Margin="3" IsChecked="{Binding Path=OutputDebugFile}">_Enable Debug Output</CheckBox>
+
+					<Separator Margin="3" />
+
+					<StackPanel Orientation="Vertical">
+
+						<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Set the debug output file directory. You may pick a full directory path; or just type a simple directory name, if you do so, a sub-directory with the specified name will be created inside the main output directory. Leaving the text box blank will cause all debug files be put as the same location of output files.</TextBlock>
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<Label Margin="3" Grid.Column="0">Debug _File Directory:</Label>
+							<TextBox Margin="3" Grid.Column="1" />
+							<Button Margin="3" Grid.Column="2">B_rowse...</Button>
+
+						</Grid>
+
+					</StackPanel>
+
+				</StackPanel>
+
+			</GroupBox>
+
+		</StackPanel>
+	</Grid>
+</UserControl>

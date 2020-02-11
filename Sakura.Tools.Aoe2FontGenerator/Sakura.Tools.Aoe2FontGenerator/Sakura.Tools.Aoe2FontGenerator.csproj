@@ -62,37 +62,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CharSetFontMapping.cs" />
-    <Compile Include="CharSetMappingSettingPanel.xaml.cs">
+    <Compile Include="AppCommands.cs" />
+    <Compile Include="CharSetMappingWindow.xaml.cs">
+      <DependentUpon>CharSetMappingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CharSetMappingPage.xaml.cs">
+      <DependentUpon>CharSetMappingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GeneralSettingPage.xaml.cs">
+      <DependentUpon>GeneralSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageItem.cs" />
+    <Compile Include="Controls\LogPage.xaml.cs">
+      <DependentUpon>LogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OutputSettingPage.xaml.cs">
+      <DependentUpon>OutputSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DoubleIsNaNConverter.cs" />
+    <Compile Include="Loggers\LevelInfo.cs" />
+    <Compile Include="Loggers\LogLevel.cs" />
+    <Compile Include="Loggers\LogOutputtedEventArgs.cs" />
+    <Compile Include="Loggers\ProgressInitializedEventArgs.cs" />
+    <Compile Include="Models\CharSetFontMapping.cs" />
+    <Compile Include="Controls\CharSetMappingSettingPanel.xaml.cs">
       <DependentUpon>CharSetMappingSettingPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CharSetSource.cs" />
-    <Compile Include="CharSetSourceSelector.xaml.cs">
+    <Compile Include="Converters\TypeDataTemplatePair.cs" />
+    <Compile Include="Data\CharSetSource.cs" />
+    <Compile Include="Controls\CharSetSourceSelector.xaml.cs">
       <DependentUpon>CharSetSourceSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DirectCharSetSource.cs" />
-    <Compile Include="FileCharSetSource.cs" />
-    <Compile Include="FileFontSource.cs" />
+    <Compile Include="Data\DirectCharSetSource.cs" />
+    <Compile Include="Data\FileCharSetSource.cs" />
+    <Compile Include="Data\FileFontSource.cs" />
     <Compile Include="FontGenerator.cs" />
-    <Compile Include="FontInfoConverter.cs" />
-    <Compile Include="FontSourceConverter.cs" />
-    <Compile Include="FontSourceSelector.xaml.cs">
+    <Compile Include="Converters\FontInfoConverter.cs" />
+    <Compile Include="Controls\FontSourceSelector.xaml.cs">
       <DependentUpon>FontSourceSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FullCharSetSource.cs" />
-    <Compile Include="GlyphDetailInfo.cs" />
-    <Compile Include="MappingSettingPanel.xaml.cs">
+    <Compile Include="Data\FullCharSetSource.cs" />
+    <Compile Include="Models\MappingSetting.cs" />
+    <Compile Include="Controls\MappingSettingPanel.xaml.cs">
       <DependentUpon>MappingSettingPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RangeCharSetSource.cs" />
-    <Compile Include="ResourceUtility.cs" />
-    <Compile Include="SettingPanel.xaml.cs">
-      <DependentUpon>SettingPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SystemFontSource.cs" />
-    <Compile Include="TaskDialogUtility.cs" />
-    <Compile Include="TypefaceGlyphs.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Data\RangeCharSetSource.cs" />
+    <Compile Include="Models\GenerationSetting.cs" />
+    <Compile Include="Loggers\ProgressLogger.cs" />
+    <Compile Include="Utilities\ResourceUtility.cs" />
+    <Compile Include="Data\SystemFontSource.cs" />
+    <Compile Include="Utilities\RichTextBoxUtility.cs" />
+    <Compile Include="Utilities\TaskDialogUtility.cs" />
+    <Compile Include="Converters\TypeBasedDataTemplateSelector.cs" />
+    <Compile Include="Utilities\Utility.cs" />
+    <Compile Include="Utilities\VisualStateUtility.cs" />
     <Page Include="Assets\Objects.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,15 +128,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CharSetMappingSettingPanel.xaml">
+    <Page Include="CharSetMappingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CharSetSourceSelector.xaml">
+    <Page Include="Controls\CharSetMappingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FontSourceSelector.xaml">
+    <Page Include="Controls\CharSetMappingSettingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CharSetSourceSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FontSourceSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GeneralSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OutputSettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,17 +168,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CharInfo.cs" />
-    <Compile Include="FontSource.cs" />
+    <Compile Include="Models\GlyphInfo.cs" />
+    <Compile Include="Data\FontSource.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MappingSettingPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingPanel.xaml">
+    <Page Include="Controls\MappingSettingPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +216,9 @@
     <PackageReference Include="Microsoft.WindowsAPICodePack-Core">
       <Version>1.1.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell">
+      <Version>1.1.0</Version>
+    </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -187,5 +229,63 @@
       <Version>1.0.7</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Remove_color_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Close_red_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CollapseChevronDown_lg_blueNoHalo_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CollapseChevronUp_lg_blueNoHalo_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Report_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Rename_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CanvasElement_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Label_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RemoveHorizontalSpace_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AutosizeOptimize_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TextLineHeight_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Settings_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Font_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OpenFile_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AutoSum_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Filter_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\String_16x.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

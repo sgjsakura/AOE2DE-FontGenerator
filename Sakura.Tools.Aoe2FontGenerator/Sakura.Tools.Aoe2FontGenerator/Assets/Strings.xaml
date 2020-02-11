@@ -1,9 +1,87 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    
-    <sys:String x:Key="AppName">Age of Empires 2 Definitive Edition Font Generator</sys:String>
+
 
 	<sys:String x:Key="MappingSettingHeaderStringFormat">Additional Setting - Font ratio: {0}, Baseline Offset: {1}</sys:String>
-    
+
+	<!-- #region Font Generator Message -->
+
+	<sys:String x:Key="WorkerIsBusyError">The worker is working.</sys:String>
+
+	<sys:String x:Key="GenerationStarted">Generation started. Initializing...</sys:String>
+	<sys:String x:Key="GenerationEnded">All files are now successfully generated.</sys:String>
+	<sys:String x:Key="DoWorkFatalErrorMessage">Error occured and the generation process has been terminated. Error: {0}</sys:String>
+
+	<sys:String x:Key="BeginExtractChars">Trying to extract all glyph information...</sys:String>
+	<sys:String x:Key="ExtractCharsFinished">Successfully generated glyph information of {0} char(s).</sys:String>
+	<sys:String x:Key="BeginDrawingGlyphs">Trying to draw all glyphs to atlases...</sys:String>
+	<sys:String x:Key="DrawingGlyphsFinished">Successfully generated {0} atlas(es) for and {1} char(s)' information.</sys:String>
+	<sys:String x:Key="BeginSaveImages">Trying to save {0} images to disk...</sys:String>
+	<sys:String x:Key="SaveImagesFinished">Successfully saved {0} images to disk.</sys:String>
+	<sys:String x:Key="BeginSaveMetadataFile">Trying to save the metadata file to disk...</sys:String>
+	<sys:String x:Key="SaveMetadataFileFinished">Successfully saved the metadata file to disk.</sys:String>
+
+	<sys:String x:Key="TotalProgressTitle">The total progress</sys:String>
+
+	<sys:String x:Key="BeginExtractCharsTitle">Extracting chars from sources</sys:String>
+	<sys:String x:Key="BeginDrawingGlyphsTitle">Drawing glyphs to atlas</sys:String>
+	<sys:String x:Key="BeginSaveImagesTitle">Saving images to disk</sys:String>
+	<sys:String x:Key="BeginSaveMetadataFileTitle">Saving the metadata file to disk</sys:String>
+
+	<sys:String x:Key="CharCodePrintOutOfRangeWarning">The code prints of {0} char(s) are out of range and will be ignored.</sys:String>
+	<sys:String x:Key="GlyphSizeTooLargeErrorMessage">Glyph "{0}" in typeface "{1}" is larger than the atlas size. Please try reduce the glyph size.</sys:String>
+
+	<sys:String x:Key="TextureSizeLineFormat">Texture Size = {0}</sys:String>
+	<sys:String x:Key="GlyphSizeLineFormat">Glyph Size = {0}</sys:String>
+	<sys:String x:Key="GlyphSpaceLineFormat">Glyph Space = {0}</sys:String>
+	<sys:String x:Key="CharCountLineFormat">Char Count = {0}</sys:String>
+	<sys:String x:Key="AtlasCountLineFormat">Atlas Count = {0}</sys:String>
+
+	<sys:String x:Key="CharInfoLineFormat">{0} - W({1}), H({2}), U({3}), V({4}), S({5}), T({6}), Atlas({7}), X0({8}), Y0({9}), HA({10})</sys:String>
+
+
+	<!-- #endregion -->
+
+	<sys:String x:Key="OpenOutputDirectoryErrorTitle">Cannot open output directory</sys:String>
+	<sys:String x:Key="OpenOutputDirectoryErrorDetail">Maybe you set an invalid output directory in the output setting panel, or you do not has permission to open it.</sys:String>
+
+
+	<sys:String x:Key="FileFontErrorMessage">Cannot open font file. Please make sure you provided the correct file path and you have permission to read it.</sys:String>
+	<sys:String x:Key="FileCharSetErrorMessage">Cannot open charset file. Please make sure you provided the correct file path and you have permission to read it.</sys:String>
+	<sys:String x:Key="RangeCharSetErrorMessage">The range string "{0}" is invalid.</sys:String>
+	<sys:String x:Key="SystemFontErrorMessage">Cannot get typeface from the picked font information. Composite fonts and pseudo font names are not supported.</sys:String>
+	<sys:String x:Key="SystemFontNullErrorMessage">You did not picked a valid font from the font picker dialog.</sys:String>
+
+	<sys:String x:Key="NoMappingIsSetErrorTitle">No charset mapping is defined</sys:String>
+	<sys:String x:Key="NoMappingIsSetErrorDetail">You must define at least one charset mapping in order to generate the font atlas file.</sys:String>
+
+	<sys:String x:Key="MappingInvalidErrorTitle">Charset mapping setting is invalid</sys:String>
+	<sys:String x:Key="MappingInvalidErrorDetail">Please set both the font source and the charset source for all mappings before starting the font generation.</sys:String>
+
+	<!-- #region General Messages -->
+
+	<sys:String x:Key="AppName">Age of Empires 2 Definitive Edition Font Generator</sys:String>
+
+	<sys:String x:Key="DeleteWarningTitle">Delete warning</sys:String>
+	<sys:String x:Key="DeleteWarningDetail">Your selected items will be removed. This action cannot be undone. Are you sure to continue?</sys:String>
+
+	<sys:String x:Key="ClearWarningTitle">Clear Warning</sys:String>
+	<sys:String x:Key="ClearWarningDetail">All items in the list will be removed. This action cannot be undone. Are you sure to continue?</sys:String>
+
+	<sys:String x:Key="ErrorDetailExpandedLabelText">Hide detailed error information</sys:String>
+	<sys:String x:Key="ErrorDetailCollapsedLabelText">Show detailed error information</sys:String>
+
+	<sys:String x:Key="TextFilesFilter">Text Files</sys:String>
+	<sys:String x:Key="FontFilesFilter">Font Files</sys:String>
+	<sys:String x:Key="AllFilesFilter">All Files</sys:String>
+
+	<!-- #endregion -->
+
+	<sys:String x:Key="FontInfoConverterFormat">{0} {1} {2} {3}</sys:String>
+
+	<sys:String x:Key="LoggerInitializeNotCalledException">You must call "{0}" before call this method.</sys:String>
+	<sys:String x:Key="LoggerLevelOutOfRangeException">The level value is out of range.</sys:String>
+	<sys:String x:Key="LoggerLevelCountOutOfRangeException">Level count must be positive.</sys:String>
+
 </ResourceDictionary>
