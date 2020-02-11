@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
         xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
         mc:Ignorable="d"
-        Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800" UseLayoutRounding="True" Loaded="MainWindow_OnLoaded" Unloaded="MainWindow_OnUnloaded">
-	<Grid Margin="10">
+        Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800" UseLayoutRounding="True" Initialized="MainWindow_OnInitialized">
+	<Grid Margin="10" x:Name="LayoutRoot">
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Name="ActionStates">
 				<VisualState x:Name="NormalState"/>
@@ -23,9 +23,9 @@
 						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="OutputSettingTab">
 							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
 						</BooleanAnimationUsingKeyFrames>
-						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MainProgressBar">
-							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-						</ObjectAnimationUsingKeyFrames>
+						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled" Storyboard.TargetName="StartButton">
+							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+						</BooleanAnimationUsingKeyFrames>
 					</Storyboard>
 				</VisualState>
 			</VisualStateGroup>

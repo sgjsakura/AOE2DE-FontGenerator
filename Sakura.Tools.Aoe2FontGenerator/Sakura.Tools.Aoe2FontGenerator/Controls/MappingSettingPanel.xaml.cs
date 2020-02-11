@@ -23,11 +23,5 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 			get => (MappingSetting)GetValue(DataProperty);
 			set => SetValue(DataProperty, value);
 		}
-
-		private void MappingSettingPanel_OnLoaded(object sender, RoutedEventArgs e)
-		{
-			GlyphSizeRatioSlider.Ticks = Utility.ToDoubleCollection(Settings.Default.DefaultGlyphRatioTicks);
-			GlyphBaselineOffsetRadioSlider.Ticks = Utility.ToDoubleCollection(Settings.Default.DefaultBaselineOffsetTicks);
-		}
 	}
 }

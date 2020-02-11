@@ -16,7 +16,18 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// <summary>
 		/// Service instance used to monitor the generation progress.
 		/// </summary>
-		public ProgressLogger ProgressLogger { get; } = new ProgressLogger();
+		public ProgressLogger ProgressLogger { get; private set; }
+		
+		/// <summary>
+		/// Service instance used to generate fonts.
+		/// </summary>
+		public FontGenerator FontGenerator { get; private set; }
+
+		private void App_OnStartup(object sender, StartupEventArgs e)
+		{
+			ProgressLogger = new ProgressLogger();
+			FontGenerator = new FontGenerator(ProgressLogger);
+		}
 	}
 
 }

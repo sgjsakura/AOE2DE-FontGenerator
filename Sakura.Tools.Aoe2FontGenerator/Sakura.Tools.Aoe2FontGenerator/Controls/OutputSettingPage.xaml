@@ -77,42 +77,6 @@
 
 			</GroupBox>
 
-			<GroupBox Margin="3">
-				<GroupBox.Header>
-					<local:ImageItem Image="/Images/Report_16x.png" Text="Debug Output" />
-				</GroupBox.Header>
-
-				<StackPanel Orientation="Vertical">
-
-					<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Check the following checkbox to output debug files, which includes one text format atlas data summary and a series of PNG images associated with final output DDS files.</TextBlock>
-
-					<CheckBox Margin="3" IsChecked="{Binding Path=OutputDebugFile}">_Enable Debug Output</CheckBox>
-
-					<Separator Margin="3" />
-
-					<StackPanel Orientation="Vertical">
-
-						<TextBlock Margin="3" TextWrapping="Wrap" Foreground="Gray">Set the debug output file directory. You may pick a full directory path; or just type a simple directory name, if you do so, a sub-directory with the specified name will be created inside the main output directory. Leaving the text box blank will cause all debug files be put as the same location of output files.</TextBlock>
-
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-
-							<Label Margin="3" Grid.Column="0">Debug _File Directory:</Label>
-							<TextBox Margin="3" Grid.Column="1" />
-							<Button Margin="3" Grid.Column="2">B_rowse...</Button>
-
-						</Grid>
-
-					</StackPanel>
-
-				</StackPanel>
-
-			</GroupBox>
-
 		</StackPanel>
 	</Grid>
 </UserControl>

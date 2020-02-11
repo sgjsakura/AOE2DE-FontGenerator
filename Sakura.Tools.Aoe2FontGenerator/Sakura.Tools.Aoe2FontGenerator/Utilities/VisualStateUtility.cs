@@ -45,6 +45,6 @@ namespace Sakura.Tools.Aoe2FontGenerator.Utilities
 		/// <param name="useTransitions">If true, the state transition should be used.</param>
 		/// <returns>A value that indicates if the <paramref name="stateGroupsRoot"/> has been changed to the target state.</returns>
 		public static void GoToElementState(this FrameworkElement stateGroupsRoot, VisualState state, bool useTransitions) =>
-			VisualStateManager.GoToState(stateGroupsRoot, state.Name, useTransitions);
+			VisualStateManager.GoToElementState(stateGroupsRoot, state.Name, useTransitions);
 	}
 }

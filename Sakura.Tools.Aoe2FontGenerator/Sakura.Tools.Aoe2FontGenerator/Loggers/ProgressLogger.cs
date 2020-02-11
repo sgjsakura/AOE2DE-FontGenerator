@@ -103,7 +103,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 		/// <summary>
 		/// The internal array used for recording all levels.
 		/// </summary>
-		private ObservableCollection<LevelInfo> LevelInfos { get; } = new ObservableCollection<LevelInfo>();
+		private ObservableCollection<LevelInfo> LevelInfos { get; set; } = new ObservableCollection<LevelInfo>();
 
 		/// <summary>
 		/// Internal method used to call the <see cref="BackgroundWorker.ReportProgress(int, object)"/> in order to transport message to the main thread.
@@ -207,10 +207,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 				throw new ArgumentOutOfRangeException(nameof(levelCount), levelCount, App.Current.FormatResString("LoggerLevelCountOutOfRangeException"));
 			}
 
-			LevelInfos.Clear();
-
-			// Add level info
-			LevelInfos.AddRange(Utility.Repeat(() => new LevelInfo(), levelCount));
+			LevelInfos = new ObservableCollection<LevelInfo>(Utility.Repeat(() => new LevelInfo(), levelCount));
 
 			// Raise events.
 			ReportProgressOrLog(new ProgressInitializedEventArgs(LevelInfos));

@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
              xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
              mc:Ignorable="d" 
-            d:DesignWidth="800" Loaded="MappingSettingPanel_OnLoaded">
+            d:DesignWidth="800">
 	<Grid DataContext="{Binding ElementName=Me, Path=Data}" IsSharedSizeScope="True">
 
 		<StackPanel Orientation="Vertical">
@@ -32,7 +32,7 @@
 						</Grid.ColumnDefinitions>
 
 						<Label Margin="3" Grid.Column="0">Glyph size scaling ratio:</Label>
-						<Slider Name="GlyphSizeRatioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="2" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+						<Slider Name="GlyphSizeRatioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="2" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
 						<TextBox Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=GlyphSizeRatio,Mode=TwoWay}" />
 
 					</Grid>
@@ -57,7 +57,7 @@
 						</Grid.ColumnDefinitions>
 
 						<Label Margin="3" Grid.Column="0">Glyph baseline offset ratio:</Label>
-						<Slider Name="GlyphBaselineOffsetRadioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="-1" Maximum="1" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+						<Slider Name="GlyphBaselineOffsetRadioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="-1" Maximum="1" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
 						<TextBox Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
 
 					</Grid>
@@ -68,48 +68,6 @@
 			</GroupBox>
 
 		</StackPanel>
-
-		<!--<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="1*" />
-		</Grid.ColumnDefinitions>-->
-
-		<!--<Label Margin="3" Grid.Row="0" Grid.Column="0" ToolTip="This application will use the global excepted glyph size to generate glyphs in default, while for lots of fonts, the actual glyph size may not adapt with the required size (usually be larger). This may cause display problems. Particularly, glyphs larger than the max excepted size may cause Video RAM buffer overflow and you will see chaotic texts.">_Glyph size ratio:</Label>-->
-
-		<!--<GroupBox Grid.Column="0" Margin="3" Header="Glyph size ratio">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-
-				<Slider Margin="3" Grid.Column="0" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" Minimum="0" Name="GlyphSizeRatioSlider" TickPlacement="BottomRight" AutoToolTipPrecision="2" IsSnapToTickEnabled="True" Maximum="2" />
-				<TextBox Margin="3" Grid.Column="1" Width="100" Text="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" />
-
-			</Grid>
-		</GroupBox>
-
-
-		-->
-		<!--<Label Margin="3" Grid.Row="0" Grid.Column="1" ToolTip="Some fonts does not provide correct baseline location, under such circumstance glyphs may not vertically be aligned. Use this setting to adjust the baseline location (ratio with typeface glyph unit full-height).">_Glyph baseline offset:</Label>-->
-		<!--
-
-		<GroupBox Margin="3" Grid.Column="1" Header="Glyph baseline offset ratio">
-			
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-
-				<Slider Margin="3" Grid.Column="0" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" Name="GlyphBaselineOffsetSlider" Minimum="-1" Maximum="1" TickPlacement="BottomRight" AutoToolTipPrecision="2" IsSnapToTickEnabled="True" />
-				<TextBox Margin="3" Grid.Column="1" Width="100" Text="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
-
-			</Grid>
-		</GroupBox>-->
-
-
-
 
 	</Grid>
 </UserControl>

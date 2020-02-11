@@ -54,5 +54,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 			MetaDataFileNameTextBox.Text = Settings.Default.DefaultSansSerifMetaFileName;
 			SurfaceFileFormatTextBox.Text = Settings.Default.DefaultSansSerifSurfaceFileFormat;
 		}
+
+
 	}
 }

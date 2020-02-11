@@ -10,11 +10,9 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		private string _metadataFileName;
 		private string _outputDirectory;
 		private string _surfaceFileNameFormat;
-		private bool _outputDebugFile;
 		private int _textureSize;
 		private int _glyphSize;
 		private int _glyphSpace;
-		private string _debugFileDirectory;
 
 		/// <summary>
 		/// Get or set the target output directory.
@@ -30,6 +28,9 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
+		/// <summary>
+		/// Get or set the metadata file name.
+		/// </summary>
 		public string MetadataFileName
 		{
 			get => _metadataFileName;
@@ -41,6 +42,9 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
+		/// <summary>
+		/// Get or set the surface file name format.
+		/// </summary>
 		public string SurfaceFileNameFormat
 		{
 			get => _surfaceFileNameFormat;
@@ -53,33 +57,8 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set a value that indicates whether some debug purpose files should also be generated during the generation process.
+		/// Get or set the texture size.
 		/// </summary>
-		public bool OutputDebugFile
-		{
-			get => _outputDebugFile;
-			set
-			{
-				if (value == _outputDebugFile) return;
-				_outputDebugFile = value;
-				OnPropertyChanged();
-			}
-		}
-
-		/// <summary>
-		/// Get or set the directory path should be used to save the debug file.
-		/// </summary>
-		public string DebugFileDirectory
-		{
-			get => _debugFileDirectory;
-			set
-			{
-				if (value == _debugFileDirectory) return;
-				_debugFileDirectory = value;
-				OnPropertyChanged();
-			}
-		}
-
 		public int TextureSize
 		{
 			get => _textureSize;
@@ -91,6 +70,9 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
+		/// <summary>
+		/// Get or set the glyph size.
+		/// </summary>
 		public int GlyphSize
 		{
 			get => _glyphSize;
@@ -102,6 +84,9 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
+		/// <summary>
+		/// Get or set the glyph space.
+		/// </summary>
 		public int GlyphSpace
 		{
 			get => _glyphSpace;

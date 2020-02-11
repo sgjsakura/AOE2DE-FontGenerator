@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using CSharpImageLibrary;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Sakura.Tools.Aoe2FontGenerator.Data;
 using Sakura.Tools.Aoe2FontGenerator.Models;
@@ -43,19 +44,15 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				SurfaceFileNameFormat = Settings.Default.DefaultSurfaceFileFormat,
 				MetadataFileName = Settings.Default.DefaultMetaFileName,
 				OutputDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-				DebugFileDirectory = Settings.Default.DefaultDebugDirectory,
 			};
 		}
 
 		#region Initialization Related Event Handler
 
-		private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+
+		private void MainWindow_OnInitialized(object sender, EventArgs e)
 		{
 			App.Current.ProgressLogger.Completed += ProgressLogger_Completed;
-		}
-		private void MainWindow_OnUnloaded(object sender, RoutedEventArgs e)
-		{
-			App.Current.ProgressLogger.Completed -= ProgressLogger_Completed;
 		}
 
 		#endregion
@@ -113,20 +110,18 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				return;
 			}
 
-			this.GoToElementState(WorkingState, true);
+			LayoutRoot.GoToElementState(WorkingState, true);
 			LogTab.IsSelected = true;
 
-			var generator = new FontGenerator(App.Current.ProgressLogger);
-			generator.GenerateAsync(CharSetFontMappings, GenerationSetting);
+			// Start generation
+			App.Current.FontGenerator.Generate(CharSetFontMappings, GenerationSetting);
 		}
 
 		private void ProgressLogger_Completed(object sender, EventArgs e)
 		{
-			this.GoToElementState(NormalState, true);
+			LayoutRoot.GoToElementState(NormalState, true);
 		}
 
 		#endregion
-
-
 	}
 }

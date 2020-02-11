@@ -5,13 +5,14 @@ using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CSharpImageLibrary;
 using JetBrains.Annotations;
 using Sakura.Tools.Aoe2FontGenerator.Loggers;
 using Sakura.Tools.Aoe2FontGenerator.Models;
 using Sakura.Tools.Aoe2FontGenerator.Utilities;
-using TeximpNet;
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
@@ -95,7 +96,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// </summary>
 		/// <param name="mappings">A collection which contains all mapping settings.</param>
 		/// <param name="setting">The setting for generation.</param>
-		public void GenerateAsync(IEnumerable<CharSetFontMapping> mappings, GenerationSetting setting)
+		public void Generate(IEnumerable<CharSetFontMapping> mappings, GenerationSetting setting)
 		{
 			if (Logger.IsWorking)
 			{
@@ -351,37 +352,25 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// </summary>
 		/// <param name="visual">The visual to be saved.</param>
 		/// <param name="index">The index of the current visual.</param>
-		/// <param name="savePng">If true, a debug PNG file should also be saved.</param>
-		private void SaveSurfaceImage(Visual visual, int index, bool savePng)
+		private void SaveSurfaceImage(Visual visual, int index)
 		{
 			// Draw visual to BMP file and load as image source from memory
 			var bitmap = new RenderTargetBitmap(Setting.TextureSize, Setting.TextureSize, 96, 96, PixelFormats.Pbgra32);
 			bitmap.Render(visual);
 
-			var encoder = new BmpBitmapEncoder();
+			var encoder = new PngBitmapEncoder();
 			encoder.Frames.Add(BitmapFrame.Create(bitmap));
 
-			using (var memoryStream = new MemoryStream())
+			var fileName = string.Format(CultureInfo.InvariantCulture, Setting.SurfaceFileNameFormat, index);
+			var saveFilePath = Path.Combine(Setting.OutputDirectory, Path.ChangeExtension(fileName, ".png"));
+
+			using (var fileStream = File.Create(saveFilePath))
 			{
-				// Save image and set to start
-				encoder.Save(memoryStream);
-				memoryStream.Seek(0, SeekOrigin.Begin);
-
-				using (var surface = Surface.LoadFromStream(memoryStream))
-				{
-					// generated dds file
-					var fileName = string.Format(CultureInfo.InvariantCulture, Setting.SurfaceFileNameFormat, index);
-
-					// save dds file
-					surface.SaveToFile(ImageFormat.DDS, Path.Combine(Setting.OutputDirectory, fileName));
-
-					// Save png if requested
-					if (savePng)
-					{
-						surface.SaveToFile(ImageFormat.PNG, Path.Combine(Setting.OutputDirectory, Setting.DebugFileDirectory ?? string.Empty, $"{fileName}.png"));
-					}
-				}
+				encoder.Save(fileStream);
+				fileStream.Close();
 			}
+
+			TexConvUtility.ConvertTexture(saveFilePath, Setting.OutputDirectory);
 		}
 
 		/// <summary>
@@ -408,7 +397,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				// Page count
 				binaryWriter.Write(pageCount, Endianness.LittleEndian);
 				// Source font size
-				binaryWriter.Write(Setting.TextureSize);
+				binaryWriter.Write((float)Setting.GlyphSize);
 
 				foreach (var c in boxInfo)
 				{
@@ -431,11 +420,8 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				}
 			}
 
-			// Save debug file if requested
-			if (Setting.OutputDebugFile)
-			{
-				SaveDebugBoxTextFile(boxInfo, pageCount);
-			}
+			// Save debug file
+			SaveDebugBoxTextFile(boxInfo, pageCount);
 
 			Logger.Log(LogLevel.Debug, App.Current.FormatResString("SaveMetadataFileFinished"));
 		}
@@ -448,7 +434,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		private void SaveDebugBoxTextFile(IReadOnlyCollection<GlyphInfo> boxInfo, int pageCount)
 		{
 			using (var writer =
-				File.CreateText(Path.Combine(Setting.OutputDirectory, Setting.DebugFileDirectory ?? string.Empty, $"{Setting.MetadataFileName}.txt")))
+				File.CreateText(Path.Combine(Setting.OutputDirectory, string.Empty, $"{Setting.MetadataFileName}.txt")))
 			{
 				writer.WriteLine(App.Current.FormatResString("TextureSizeLineFormat", Setting.TextureSize));
 				writer.WriteLine(App.Current.FormatResString("GlyphSizeLineFormat", Setting.GlyphSize));
@@ -493,7 +479,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			for (var i = 0; i < visuals.Count; i++)
 			{
 				var v = visuals[i];
-				SaveSurfaceImage(v, i, Setting.OutputDebugFile);
+				SaveSurfaceImage(v, i);
 
 				// Advance Stage
 				Logger.AdvanceCurrentStageProgress(1);
