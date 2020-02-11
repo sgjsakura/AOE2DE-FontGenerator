@@ -2,7 +2,7 @@
 
 This project provides tools to genearte game font atlas files for Age of Empires 2 Definitive Edition, in order to solve the charset imcompolete problem and imrpvoe display effect.
 
-** Important: Please read the frequently QnA before asking for help. **
+**Important: Please read the frequently QnA before asking for help.**
 
 ## How to Use
 
