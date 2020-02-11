@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.CharSetSourceSelector"
+﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.CharSetSourceSelector"
 			 x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,88 +8,88 @@
              xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Grid>
-		<StackPanel Orientation="Vertical">
-			<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">This page is used to set the char set related with the current font. Please check one of the following radio buttons to select the char set source. Note that some source may need additional configuration.</TextBlock>
-			<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">
-				<Bold>Note:</Bold> Due to the game limitation, only characters in Unicode Basic Multilingual Plane (code print from 0 to 65535) are supported to be loaded in the game. Other characters will be always ignored regardless of their sources.
+	<Grid x:Uid="Grid_1">
+		<StackPanel x:Uid="StackPanel_1" Orientation="Vertical">
+			<TextBlock x:Uid="TextBlock_1" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">This page is used to set the char set related with the current font. Please check one of the following radio buttons to select the char set source. Note that some source may need additional configuration.</TextBlock>
+			<TextBlock x:Uid="TextBlock_2" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">
+				<Bold x:Uid="Bold_1">Note:</Bold> Due to the game limitation, only characters in Unicode Basic Multilingual Plane (code print from 0 to 65535) are supported to be loaded in the game. Other characters will be always ignored regardless of their sources.
 			</TextBlock>
 
-			<GroupBox Margin="3" DataContext="{Binding ElementName=Me, Path=FullCharSetSource}">
+			<GroupBox x:Uid="GroupBox_1" Margin="3" DataContext="{Binding ElementName=Me, Path=FullCharSetSource}">
 				<GroupBox.Header>
-					<RadioButton Name="FullCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
-						<controls:ImageItem Image="/Images/AutoSum_16x.png" Text="_Full Char Set" />
+					<RadioButton x:Uid="FullCharSetRadioButton" Name="FullCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
+						<controls:ImageItem x:Uid="controls:ImageItem_1" Image="/Images/AutoSum_16x.png" Text="_Full Char Set" />
 					</RadioButton>
 				</GroupBox.Header>
-				<StackPanel Orientation="Vertical" IsEnabled="{Binding ElementName=FullCharSetRadioButton, Path=IsChecked}">
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Generates all glyphs included in the source font.</TextBlock>
+				<StackPanel x:Uid="StackPanel_2" Orientation="Vertical" IsEnabled="{Binding ElementName=FullCharSetRadioButton, Path=IsChecked}">
+					<TextBlock x:Uid="TextBlock_3" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Generates all glyphs included in the source font.</TextBlock>
 				</StackPanel>
 			</GroupBox>
 
-			<GroupBox Margin="3" DataContext="{Binding ElementName=Me, Path=RangeCharSetSource}">
+			<GroupBox x:Uid="GroupBox_2" Margin="3" DataContext="{Binding ElementName=Me, Path=RangeCharSetSource}">
 				<GroupBox.Header>
-					<RadioButton Name="RangeCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
-						<controls:ImageItem Image="/Images/Filter_16x.png" Text="_Specified Code Print Range" />
+					<RadioButton x:Uid="RangeCharSetRadioButton" Name="RangeCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
+						<controls:ImageItem x:Uid="controls:ImageItem_2" Image="/Images/Filter_16x.png" Text="_Specified Code Print Range" />
 					</RadioButton>
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical" IsEnabled="{Binding ElementName=RangeCharSetRadioButton, Path=IsChecked}">
+				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical" IsEnabled="{Binding ElementName=RangeCharSetRadioButton, Path=IsChecked}">
 
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Specifies the characters by providing their Unicode code print range. Uses hyphen to specify a range and uses comma (,) to separate ranges. <Italic>i.e.</Italic> "1-2, 4, 6-8" will result to a charset with their Unicode code prints in (1,2,4,6,7,8).</TextBlock>
+					<TextBlock x:Uid="TextBlock_4" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Specifies the characters by providing their Unicode code print range. Uses hyphen to specify a range and uses comma (,) to separate ranges. <Italic x:Uid="Italic_1">i.e.</Italic> "1-2, 4, 6-8" will result to a charset with their Unicode code prints in (1,2,4,6,7,8).</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_2">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition />
+							<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" />
+							<ColumnDefinition x:Uid="ColumnDefinition_2" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">Charset _Ranges:</Label>
-						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=Range}" />
+						<Label x:Uid="Label_1" Margin="3" Grid.Column="0">Charset _Ranges:</Label>
+						<TextBox x:Uid="TextBox_1" Margin="3" Grid.Column="1" Text="{Binding Path=Range}" />
 
 					</Grid>
 
 				</StackPanel>
 			</GroupBox>
 
-			<GroupBox Margin="3" DataContext="{Binding ElementName=Me, Path=DirectCharSetSource}">
+			<GroupBox x:Uid="GroupBox_3" Margin="3" DataContext="{Binding ElementName=Me, Path=DirectCharSetSource}">
 				<GroupBox.Header>
-					<RadioButton Name="DirectCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
-						<controls:ImageItem Image="/Images/String_16x.png" Text="_Characters in a String" />
+					<RadioButton x:Uid="DirectCharSetRadioButton" Name="DirectCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
+						<controls:ImageItem x:Uid="controls:ImageItem_3" Image="/Images/String_16x.png" Text="_Characters in a String" />
 					</RadioButton>
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical" IsEnabled="{Binding ElementName=DirectCharSetRadioButton, Path=IsChecked}">
+				<StackPanel x:Uid="StackPanel_4" Orientation="Vertical" IsEnabled="{Binding ElementName=DirectCharSetRadioButton, Path=IsChecked}">
 
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Provides a string to indicate characters should be included. Duplicated characters are automatically ignored.</TextBlock>
+					<TextBlock x:Uid="TextBlock_5" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Provides a string to indicate characters should be included. Duplicated characters are automatically ignored.</TextBlock>
 
-					<Label Margin="3" HorizontalAlignment="Left">_Source String:</Label>
-					<TextBox Margin="3" MinLines="3" AcceptsReturn="True" AcceptsTab="True" VerticalContentAlignment="Top" Text="{Binding Path=Chars}" />
+					<Label x:Uid="Label_2" Margin="3" HorizontalAlignment="Left">_Source String:</Label>
+					<TextBox x:Uid="TextBox_2" Margin="3" MinLines="3" AcceptsReturn="True" AcceptsTab="True" VerticalContentAlignment="Top" Text="{Binding Path=Chars}" />
 				</StackPanel>
 
 			</GroupBox>
 
-			<GroupBox Margin="3" DataContext="{Binding ElementName=Me, Path=FileCharSetSource}">
+			<GroupBox x:Uid="GroupBox_4" Margin="3" DataContext="{Binding ElementName=Me, Path=FileCharSetSource}">
 				<GroupBox.Header>
-					<RadioButton Name="FileCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
-						<controls:ImageItem Image="/Images/OpenFile_16x.png" Text="_Characters in a Text File" />
+					<RadioButton x:Uid="FileCharSetRadioButton" Name="FileCharSetRadioButton" GroupName="CharSetSource" Tag="{Binding}" Checked="CharSetSourceRadioButton_OnChecked">
+						<controls:ImageItem x:Uid="controls:ImageItem_4" Image="/Images/OpenFile_16x.png" Text="_Characters in a Text File" />
 					</RadioButton>
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical" IsEnabled="{Binding ElementName=FileCharSetRadioButton, Path=IsChecked}">
+				<StackPanel x:Uid="StackPanel_5" Orientation="Vertical" IsEnabled="{Binding ElementName=FileCharSetRadioButton, Path=IsChecked}">
 
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Provides a text file to indicate characters should be included. <Bold>The file should be UTF8-encoded.</Bold>  may use the "Save As" feature of the Windows Notepad to set the text encoding if necessary.</TextBlock>
+					<TextBlock x:Uid="TextBlock_6" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Provides a text file to indicate characters should be included. <Bold x:Uid="Bold_2">The file should be UTF8-encoded.</Bold>  may use the "Save As" feature of the Windows Notepad to set the text encoding if necessary.</TextBlock>
 
 
-					<Grid>
+					<Grid x:Uid="Grid_3">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition />
-							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" />
+							<ColumnDefinition x:Uid="ColumnDefinition_4" />
+							<ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">Text _File Path:</Label>
-						<TextBox Margin="3" Grid.Column="1" Name="TextFilePathTextBox" Text="{Binding Path=FilePath}" />
-						<Button Margin="3" Grid.Column="2" Name="BrowseTextFileButton" Click="BrowseTextFileButton_OnClick">Browse...</Button>
+						<Label x:Uid="Label_3" Margin="3" Grid.Column="0">Text _File Path:</Label>
+						<TextBox x:Uid="TextFilePathTextBox" Margin="3" Grid.Column="1" Name="TextFilePathTextBox" Text="{Binding Path=FilePath}" />
+						<Button x:Uid="BrowseTextFileButton" Margin="3" Grid.Column="2" Name="BrowseTextFileButton" Click="BrowseTextFileButton_OnClick">Browse...</Button>
 
 					</Grid>
 				</StackPanel>

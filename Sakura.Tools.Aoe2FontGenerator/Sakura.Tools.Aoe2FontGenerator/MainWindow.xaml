@@ -1,4 +1,4 @@
-﻿<Window x:Class="Sakura.Tools.Aoe2FontGenerator.MainWindow"
+﻿<Window x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.MainWindow"
 		x:Name="Me"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,56 +8,56 @@
         xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
         mc:Ignorable="d"
         Title="Age of Empires 2 Definitive Edition Font Generator" Height="600" Width="800" UseLayoutRounding="True" Initialized="MainWindow_OnInitialized">
-	<Grid Margin="10" x:Name="LayoutRoot">
+	<Grid x:Uid="LayoutRoot" Margin="10" x:Name="LayoutRoot">
 		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup x:Name="ActionStates">
-				<VisualState x:Name="NormalState"/>
-				<VisualState x:Name="WorkingState">
-					<Storyboard>
-						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="CharsetMappingTab">
-							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+			<VisualStateGroup x:Uid="ActionStates" x:Name="ActionStates">
+				<VisualState x:Uid="NormalState" x:Name="NormalState"/>
+				<VisualState x:Uid="WorkingState" x:Name="WorkingState">
+					<Storyboard x:Uid="Storyboard_1">
+						<BooleanAnimationUsingKeyFrames x:Uid="BooleanAnimationUsingKeyFrames_1" Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="CharsetMappingTab">
+							<DiscreteBooleanKeyFrame x:Uid="DiscreteBooleanKeyFrame_1" KeyTime="0" Value="False"/>
 						</BooleanAnimationUsingKeyFrames>
-						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="GenerationSettingTab">
-							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+						<BooleanAnimationUsingKeyFrames x:Uid="BooleanAnimationUsingKeyFrames_2" Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="GenerationSettingTab">
+							<DiscreteBooleanKeyFrame x:Uid="DiscreteBooleanKeyFrame_2" KeyTime="0" Value="False"/>
 						</BooleanAnimationUsingKeyFrames>
-						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="OutputSettingTab">
-							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+						<BooleanAnimationUsingKeyFrames x:Uid="BooleanAnimationUsingKeyFrames_3" Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="OutputSettingTab">
+							<DiscreteBooleanKeyFrame x:Uid="DiscreteBooleanKeyFrame_3" KeyTime="0" Value="False"/>
 						</BooleanAnimationUsingKeyFrames>
-						<BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled" Storyboard.TargetName="StartButton">
-							<DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+						<BooleanAnimationUsingKeyFrames x:Uid="BooleanAnimationUsingKeyFrames_4" Storyboard.TargetProperty="IsEnabled" Storyboard.TargetName="StartButton">
+							<DiscreteBooleanKeyFrame x:Uid="DiscreteBooleanKeyFrame_4" KeyTime="0" Value="False"/>
 						</BooleanAnimationUsingKeyFrames>
 					</Storyboard>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 		<Grid.RowDefinitions>
-			<RowDefinition />
-			<RowDefinition Height="Auto" />
+			<RowDefinition x:Uid="RowDefinition_1" />
+			<RowDefinition x:Uid="RowDefinition_2" Height="Auto" />
 		</Grid.RowDefinitions>
-		<TabControl Margin="3" Grid.Row="0" Name="MainTabControl">
-			<TabItem Header="Charset Mappings" Name="CharsetMappingTab">
-				<controls:CharSetMappingPage Data="{Binding ElementName=Me, Path=CharSetFontMappings}" />
+		<TabControl x:Uid="MainTabControl" Margin="3" Grid.Row="0" Name="MainTabControl">
+			<TabItem x:Uid="CharsetMappingTab" Header="Charset Mappings" Name="CharsetMappingTab">
+				<controls:CharSetMappingPage x:Uid="controls:CharSetMappingPage_1" Data="{Binding ElementName=Me, Path=CharSetFontMappings}" />
 			</TabItem>
-			<TabItem Header="Generation Setting" Name="GenerationSettingTab">
-				<controls:GeneralSettingPage Data="{Binding ElementName=Me, Path=GenerationSetting}" />
+			<TabItem x:Uid="GenerationSettingTab" Header="Generation Setting" Name="GenerationSettingTab">
+				<controls:GeneralSettingPage x:Uid="controls:GeneralSettingPage_1" Data="{Binding ElementName=Me, Path=GenerationSetting}" />
 			</TabItem>
-			<TabItem Header="Output Setting" Name="OutputSettingTab">
-				<controls:OutputSettingPage Data="{Binding ElementName=Me, Path=GenerationSetting}" />
+			<TabItem x:Uid="OutputSettingTab" Header="Output Setting" Name="OutputSettingTab">
+				<controls:OutputSettingPage x:Uid="controls:OutputSettingPage_1" Data="{Binding ElementName=Me, Path=GenerationSetting}" />
 			</TabItem>
-			<TabItem Header="Running Log" Name="LogTab">
-				<controls:LogPage />
+			<TabItem x:Uid="LogTab" Header="Running Log" Name="LogTab">
+				<controls:LogPage x:Uid="controls:LogPage_1" />
 			</TabItem>
 		</TabControl>
 
-		<Grid Name="ActionGrid" Grid.Row="1">
+		<Grid x:Uid="ActionGrid" Name="ActionGrid" Grid.Row="1">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition />
-				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" />
+				<ColumnDefinition x:Uid="ColumnDefinition_2" />
+				<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Button Margin="3" Grid.Column="0" Name="StartButton" Click="StartButton_OnClick">_Start Generation</Button>
-			<Button Margin="3" Grid.Column="2" Name="OpenOutputDirButton" Click="OpenOutputDirButton_OnClick">_Open Output Directory</Button>
+			<Button x:Uid="StartButton" Margin="3" Grid.Column="0" Name="StartButton" Click="StartButton_OnClick">_Start Generation</Button>
+			<Button x:Uid="OpenOutputDirButton" Margin="3" Grid.Column="2" Name="OpenOutputDirButton" Click="OpenOutputDirButton_OnClick">_Open Output Directory</Button>
 
 		</Grid>
 

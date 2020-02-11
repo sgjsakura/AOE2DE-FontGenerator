@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.GeneralSettingPage"
+﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.GeneralSettingPage"
 			 x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,73 +7,73 @@
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Grid IsSharedSizeScope="True" DataContext="{Binding ElementName=Me, Path=Data}">
-		<StackPanel Orientation="Vertical">
-			<GroupBox Margin="3">
+	<Grid x:Uid="Grid_1" IsSharedSizeScope="True" DataContext="{Binding ElementName=Me, Path=Data}">
+		<StackPanel x:Uid="StackPanel_1" Orientation="Vertical">
+			<GroupBox x:Uid="GroupBox_1" Margin="3">
 
 				<GroupBox.Header>
-					<local:ImageItem Image="/Images/CanvasElement_16x.png" Text="_Texture Size" />
+					<local:ImageItem x:Uid="local:ImageItem_1" Image="/Images/CanvasElement_16x.png" Text="_Texture Size" />
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical">
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the output texture size (in pixels). Larger size can contains more glyphs in a single texture file, thus the total texture files count will be reduced, while each texture requires more Video RAM to be loaded.</TextBlock>
+				<StackPanel x:Uid="StackPanel_2" Orientation="Vertical">
+					<TextBlock x:Uid="TextBlock_1" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the output texture size (in pixels). Larger size can contains more glyphs in a single texture file, thus the total texture files count will be reduced, while each texture requires more Video RAM to be loaded.</TextBlock>
 
-					<TextBlock Margin="3"  Style="{StaticResource DescriptionTextBlockStyle}"><Bold>Note:</Bold> The texture size should be an integer power of 2, otherwise your video card may not support to load it. The maximum allow value depends on your video card hardware compatibility.</TextBlock>
+					<TextBlock x:Uid="TextBlock_2" Margin="3"  Style="{StaticResource DescriptionTextBlockStyle}"><Bold x:Uid="Bold_1">Note:</Bold> The texture size should be an integer power of 2, otherwise your video card may not support to load it. The maximum allow value depends on your video card hardware compatibility.</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_2">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
-							<ColumnDefinition />
+							<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_2" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">_Texture Size (in Pixels):</Label>
-						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=TextureSize}" />
+						<Label x:Uid="Label_1" Margin="3" Grid.Column="0">_Texture Size (in Pixels):</Label>
+						<TextBox x:Uid="TextBox_1" Margin="3" Grid.Column="1" Text="{Binding Path=TextureSize}" />
 					</Grid>
 
 				</StackPanel>
 
 			</GroupBox>
 
-			<GroupBox Margin="3">
+			<GroupBox x:Uid="GroupBox_2" Margin="3">
 
 				<GroupBox.Header>
-					<local:ImageItem Image="/Images/Label_16x.png" Text="_Glyph Size" />
+					<local:ImageItem x:Uid="local:ImageItem_2" Image="/Images/Label_16x.png" Text="_Glyph Size" />
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical">
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the excepted glyph size (in pixels). It will be used to generate glyphs as well as compute the line-height when displaying them in the game. Larger size may have better display effect on high resolution screen, while it requires more space in the texture image and increase the Video RAM usage.</TextBlock>
+				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical">
+					<TextBlock x:Uid="TextBlock_3" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the excepted glyph size (in pixels). It will be used to generate glyphs as well as compute the line-height when displaying them in the game. Larger size may have better display effect on high resolution screen, while it requires more space in the texture image and increase the Video RAM usage.</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_3">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
-							<ColumnDefinition />
+							<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_4" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">_Glyph Size (in Pixels):</Label>
-						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSize}" />
+						<Label x:Uid="Label_2" Margin="3" Grid.Column="0">_Glyph Size (in Pixels):</Label>
+						<TextBox x:Uid="TextBox_2" Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSize}" />
 					</Grid>
 
 				</StackPanel>
 
 			</GroupBox>
 
-			<GroupBox Margin="3">
+			<GroupBox x:Uid="GroupBox_3" Margin="3">
 
 				<GroupBox.Header>
-					<local:ImageItem Image="/Images/RemoveHorizontalSpace_16x.png" Text="Glyph _Spacing" />
+					<local:ImageItem x:Uid="local:ImageItem_3" Image="/Images/RemoveHorizontalSpace_16x.png" Text="Glyph _Spacing" />
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical">
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the glyph spacing (in pixels). It will be used to separate glyphs when drawing the texture images. If you found glyphs are overlapping when displaying, please consider to increase the spacing.</TextBlock>
+				<StackPanel x:Uid="StackPanel_4" Orientation="Vertical">
+					<TextBlock x:Uid="TextBlock_4" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Set the glyph spacing (in pixels). It will be used to separate glyphs when drawing the texture images. If you found glyphs are overlapping when displaying, please consider to increase the spacing.</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_4">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
-							<ColumnDefinition />
+							<ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_6" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">Glyph _Spacing (in Pixels):</Label>
-						<TextBox Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSpace}" />
+						<Label x:Uid="Label_3" Margin="3" Grid.Column="0">Glyph _Spacing (in Pixels):</Label>
+						<TextBox x:Uid="TextBox_3" Margin="3" Grid.Column="1" Text="{Binding Path=GlyphSpace}" />
 
 					</Grid>
 

@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
                     xmlns:converters="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Converters">
 
-	<converters:FontInfoConverter x:Key="FontInfoConverter" />
-	<converters:DoubleIsNaNConverter x:Key="DoubleIsNaNConverter" />
+	<converters:FontInfoConverter x:Uid="converters:FontInfoConverter_1" x:Key="FontInfoConverter" />
+	<converters:DoubleIsNaNConverter x:Uid="converters:DoubleIsNaNConverter_1" x:Key="DoubleIsNaNConverter" />
 
 </ResourceDictionary>

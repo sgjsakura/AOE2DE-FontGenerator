@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.MappingSettingPanel"
+﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.MappingSettingPanel"
 			 x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,56 +9,56 @@
              xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
              mc:Ignorable="d" 
             d:DesignWidth="800">
-	<Grid DataContext="{Binding ElementName=Me, Path=Data}" IsSharedSizeScope="True">
+	<Grid x:Uid="Grid_1" DataContext="{Binding ElementName=Me, Path=Data}" IsSharedSizeScope="True">
 
-		<StackPanel Orientation="Vertical">
-			<GroupBox Margin="3">
+		<StackPanel x:Uid="StackPanel_1" Orientation="Vertical">
+			<GroupBox x:Uid="GroupBox_1" Margin="3">
 				<GroupBox.Header>
-					<controls:ImageItem Image="/Images/AutosizeOptimize_16x.png" Text="Glyph Size Scaling" />
+					<controls:ImageItem x:Uid="controls:ImageItem_1" Image="/Images/AutosizeOptimize_16x.png" Text="Glyph Size Scaling" />
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical">
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">This application will use the global glyph size to generate glyphs. However, the actual glyph size may not work as excepted for many typefaces. You may use the following text box or slider to scaling the generated glyph to get better display effect.</TextBlock>
+				<StackPanel x:Uid="StackPanel_2" Orientation="Vertical">
+					<TextBlock x:Uid="TextBlock_1" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">This application will use the global glyph size to generate glyphs. However, the actual glyph size may not work as excepted for many typefaces. You may use the following text box or slider to scaling the generated glyph to get better display effect.</TextBlock>
 
-					<TextBlock Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">
-						<Bold>Note:</Bold> If you see broken characters in the game UI, it is mostly caused by the actual glyph size is larger than the excepted global glyph size so the video RAM data may be corrupted. Under such circumstance, you must scale in the glyph size.
+					<TextBlock x:Uid="TextBlock_2" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">
+						<Bold x:Uid="Bold_1">Note:</Bold> If you see broken characters in the game UI, it is mostly caused by the actual glyph size is larger than the excepted global glyph size so the video RAM data may be corrupted. Under such circumstance, you must scale in the glyph size.
 					</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_2">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
-							<ColumnDefinition />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_2" />
+							<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" SharedSizeGroup="Buttons" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">Glyph size scaling ratio:</Label>
-						<Slider Name="GlyphSizeRatioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="2" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
-						<TextBox Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=GlyphSizeRatio,Mode=TwoWay}" />
+						<Label x:Uid="Label_1" Margin="3" Grid.Column="0">Glyph size scaling ratio:</Label>
+						<Slider x:Uid="GlyphSizeRatioSlider" Name="GlyphSizeRatioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="2" Value="{Binding Path=GlyphSizeRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
+						<TextBox x:Uid="TextBox_1" Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=GlyphSizeRatio,Mode=TwoWay}" />
 
 					</Grid>
 
 				</StackPanel>
 			</GroupBox>
 
-			<GroupBox Margin="3">
+			<GroupBox x:Uid="GroupBox_2" Margin="3">
 				<GroupBox.Header>
-					<controls:ImageItem Image="/Images/TextLineHeight_16x.png" Text="Glyph Baseline Offset" />
+					<controls:ImageItem x:Uid="controls:ImageItem_2" Image="/Images/TextLineHeight_16x.png" Text="Glyph Baseline Offset" />
 				</GroupBox.Header>
 
-				<StackPanel Orientation="Vertical">
+				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical">
 
-					<TextBlock Style="{StaticResource DescriptionTextBlockStyle}">Some typefaces may not provide an proper baseline value for displaying. If you see text is incorrectly vertical aligned with the game UI, you may adjust the following value (ratio based on the excepted standard glyph height of this typeface) to change the vertical location.</TextBlock>
+					<TextBlock x:Uid="TextBlock_3" Style="{StaticResource DescriptionTextBlockStyle}">Some typefaces may not provide an proper baseline value for displaying. If you see text is incorrectly vertical aligned with the game UI, you may adjust the following value (ratio based on the excepted standard glyph height of this typeface) to change the vertical location.</TextBlock>
 
-					<Grid>
+					<Grid x:Uid="Grid_3">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Labels" />
-							<ColumnDefinition />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_5" />
+							<ColumnDefinition x:Uid="ColumnDefinition_6" Width="Auto" SharedSizeGroup="Buttons" />
 						</Grid.ColumnDefinitions>
 
-						<Label Margin="3" Grid.Column="0">Glyph baseline offset ratio:</Label>
-						<Slider Name="GlyphBaselineOffsetRadioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="-1" Maximum="1" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
-						<TextBox Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
+						<Label x:Uid="Label_2" Margin="3" Grid.Column="0">Glyph baseline offset ratio:</Label>
+						<Slider x:Uid="GlyphBaselineOffsetRadioSlider" Name="GlyphBaselineOffsetRadioSlider" Margin="3" Grid.Column="1" VerticalAlignment="Center" Minimum="-1" Maximum="1" Value="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" AutoToolTipPrecision="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
+						<TextBox x:Uid="TextBox_2" Margin="3" Grid.Column="2" Width="100" Text="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
 
 					</Grid>
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.CharSetMappingPage"
+﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.CharSetMappingPage"
 			 x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,61 +8,61 @@
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Grid>
+	<Grid x:Uid="Grid_1">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition />
-			<RowDefinition Height="Auto" />
+			<RowDefinition x:Uid="RowDefinition_1" Height="Auto" />
+			<RowDefinition x:Uid="RowDefinition_2" />
+			<RowDefinition x:Uid="RowDefinition_3" Height="Auto" />
 		</Grid.RowDefinitions>
-		<Grid Grid.Row="1">
-			<GroupBox Margin="3" Header="Charset Mappings">
-				<Grid>
+		<Grid x:Uid="Grid_2" Grid.Row="1">
+			<GroupBox x:Uid="GroupBox_1" Margin="3" Header="Charset Mappings">
+				<Grid x:Uid="Grid_3">
 					<Grid.RowDefinitions>
-						<RowDefinition />
-						<RowDefinition Height="Auto" />
+						<RowDefinition x:Uid="RowDefinition_4" />
+						<RowDefinition x:Uid="RowDefinition_5" Height="Auto" />
 					</Grid.RowDefinitions>
 
-					<Grid Grid.Row="1" Name="ListActionGrid">
+					<Grid x:Uid="ListActionGrid" Grid.Row="1" Name="ListActionGrid">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="Buttons" />
-							<ColumnDefinition />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="MoveButtons" />
-							<ColumnDefinition Width="Auto" SharedSizeGroup="MoveButtons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_2" Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" SharedSizeGroup="Buttons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_4" />
+							<ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto" SharedSizeGroup="MoveButtons" />
+							<ColumnDefinition x:Uid="ColumnDefinition_6" Width="Auto" SharedSizeGroup="MoveButtons" />
 						</Grid.ColumnDefinitions>
 
-						<Button Grid.Column="0" Margin="3" Command="New">
-							<controls:ImageItem Image="/Images/Add_16x.png" Text="_Add" />
+						<Button x:Uid="Button_1" Grid.Column="0" Margin="3" Command="New">
+							<controls:ImageItem x:Uid="controls:ImageItem_1" Image="/Images/Add_16x.png" Text="_Add" />
 						</Button>
 
-						<Button Grid.Column="1" Margin="3" Command="Delete">
-							<controls:ImageItem Image="/Images/Remove_color_16x.png" Text="_Remove" />
+						<Button x:Uid="Button_2" Grid.Column="1" Margin="3" Command="Delete">
+							<controls:ImageItem x:Uid="controls:ImageItem_2" Image="/Images/Remove_color_16x.png" Text="_Remove" />
 						</Button>
 
-						<Button Grid.Column="2" Margin="3" Command="local:AppCommands.DeleteAll">
-							<controls:ImageItem Image="/Images/Close_red_16x.png" Text="_Clear" />
+						<Button x:Uid="Button_3" Grid.Column="2" Margin="3" Command="local:AppCommands.DeleteAll">
+							<controls:ImageItem x:Uid="controls:ImageItem_3" Image="/Images/Close_red_16x.png" Text="_Clear" />
 						</Button>
 
-						<Button Grid.Column="4" Margin="3" Command="MoveUp">
-							<controls:ImageItem Image="/Images/CollapseChevronUp_lg_blueNoHalo_16x.png" Text="Move _Up" />
+						<Button x:Uid="Button_4" Grid.Column="4" Margin="3" Command="MoveUp">
+							<controls:ImageItem x:Uid="controls:ImageItem_4" Image="/Images/CollapseChevronUp_lg_blueNoHalo_16x.png" Text="Move _Up" />
 						</Button>
 
-						<Button Grid.Column="5" Margin="3" Command="MoveDown">
-							<controls:ImageItem Image="/Images/CollapseChevronDown_lg_blueNoHalo_16x.png" Text="Move _Down" />
+						<Button x:Uid="Button_5" Grid.Column="5" Margin="3" Command="MoveDown">
+							<controls:ImageItem x:Uid="controls:ImageItem_5" Image="/Images/CollapseChevronDown_lg_blueNoHalo_16x.png" Text="Move _Down" />
 						</Button>
 
 					</Grid>
 
-					<ListBox Grid.Row="0" Margin="3" Name="MainListBox" ItemsSource="{Binding ElementName=Me, Path=Data}" HorizontalContentAlignment="Stretch" AlternationCount="2" ScrollViewer.CanContentScroll="False" MouseDoubleClick="MainListBox_OnMouseDoubleClick">
+					<ListBox x:Uid="MainListBox" Grid.Row="0" Margin="3" Name="MainListBox" ItemsSource="{Binding ElementName=Me, Path=Data}" HorizontalContentAlignment="Stretch" AlternationCount="2" ScrollViewer.CanContentScroll="False" MouseDoubleClick="MainListBox_OnMouseDoubleClick">
 						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid Name="LayoutGrid">
-									<controls:CharSetMappingSettingPanel CharSetFontMapping="{Binding}" />
+							<DataTemplate x:Uid="DataTemplate_1">
+								<Grid x:Uid="LayoutGrid" Name="LayoutGrid">
+									<controls:CharSetMappingSettingPanel x:Uid="controls:CharSetMappingSettingPanel_1" CharSetFontMapping="{Binding}" />
 								</Grid>
 								<DataTemplate.Triggers>
-									<Trigger Property="ListBox.AlternationIndex" Value="1">
-										<Setter TargetName="LayoutGrid" Property="Background" Value="LightGoldenrodYellow" />
+									<Trigger x:Uid="Trigger_1" Property="ListBox.AlternationIndex" Value="1">
+										<Setter x:Uid="Setter_1" TargetName="LayoutGrid" Property="Background" Value="LightGoldenrodYellow" />
 									</Trigger>
 								</DataTemplate.Triggers>
 							</DataTemplate>
@@ -76,11 +76,11 @@
 	</Grid>
 
 	<UserControl.CommandBindings>
-		<CommandBinding Command="New" x:Name="AddCommand" CanExecute="AddCommand_OnCanExecute" Executed="AddCommand_OnExecuted" />
-		<CommandBinding Command="Delete" x:Name="DeleteCommand" CanExecute="DeleteCommand_OnCanExecute" Executed="DeleteCommand_OnExecuted" />
-		<CommandBinding Command="local:AppCommands.DeleteAll" x:Name="DeleteAllCommand" CanExecute="DeleteAllCommand_OnCanExecute" Executed="DeleteAllCommand_OnExecuted" />
-		<CommandBinding Command="MoveUp" x:Name="MoveUpCommand" CanExecute="MoveUpCommand_OnCanExecute" Executed="MoveUpCommand_OnExecuted" />
-		<CommandBinding Command="MoveDown" x:Name="MoveDownCommand" CanExecute="MoveDownCommand_OnCanExecute" Executed="MoveDownCommand_OnExecuted" />
+		<CommandBinding x:Uid="AddCommand" Command="New" x:Name="AddCommand" CanExecute="AddCommand_OnCanExecute" Executed="AddCommand_OnExecuted" />
+		<CommandBinding x:Uid="DeleteCommand" Command="Delete" x:Name="DeleteCommand" CanExecute="DeleteCommand_OnCanExecute" Executed="DeleteCommand_OnExecuted" />
+		<CommandBinding x:Uid="DeleteAllCommand" Command="local:AppCommands.DeleteAll" x:Name="DeleteAllCommand" CanExecute="DeleteAllCommand_OnCanExecute" Executed="DeleteAllCommand_OnExecuted" />
+		<CommandBinding x:Uid="MoveUpCommand" Command="MoveUp" x:Name="MoveUpCommand" CanExecute="MoveUpCommand_OnCanExecute" Executed="MoveUpCommand_OnExecuted" />
+		<CommandBinding x:Uid="MoveDownCommand" Command="MoveDown" x:Name="MoveDownCommand" CanExecute="MoveDownCommand_OnCanExecute" Executed="MoveDownCommand_OnExecuted" />
 	</UserControl.CommandBindings>
 
 </UserControl>
