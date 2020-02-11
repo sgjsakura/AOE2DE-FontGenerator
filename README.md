@@ -12,7 +12,7 @@ To use this tools to replace the in-game font, please follow these steps:
 
 1. Open this tool, set one or more typeface and charset mappings.
 2. Click "Start Generation" Button to generate game font files.
-3. Copy all generated files and replace the original files in "resources/_common/fonts" folder. Note it may generate more files than the game original contains. 
+3. Copy generated files (all files with extension ".dds" and ".box", other files can be ignored) and replace the original files in "resources/_common/fonts" folder. Note it may generate more files than the game original contains. 
 4. Start game and you will see the effect in the game lobby, tech-tree and game-playing UI. Note the start screen is not affected.
 5. If you'd like to adjust the display effect or change fonts, repeat the above steps again.
 
