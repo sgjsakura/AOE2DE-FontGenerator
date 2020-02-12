@@ -8,21 +8,22 @@ using JetBrains.Annotations;
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// Define an UI element contains both image and text.
+	///     Define an UI element contains both image and text.
 	/// </summary>
 	public class ImageItem : INotifyPropertyChanged
 	{
 		/// <summary>
-		/// Backend field for the <see cref="Image"/> property.
+		///     Backend field for the <see cref="Image" /> property.
 		/// </summary>
 		private ImageSource _image;
+
 		/// <summary>
-		/// Backend field for the <see cref="Text"/> property.
+		///     Backend field for the <see cref="Text" /> property.
 		/// </summary>
 		private string _text;
 
 		/// <summary>
-		/// The image.
+		///     The image.
 		/// </summary>
 		public ImageSource Image
 		{
@@ -36,9 +37,10 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 		}
 
 		/// <summary>
-		/// The text.
+		///     The text.
 		/// </summary>
-		[Localizability(LocalizationCategory.Title, Readability = Readability.Readable, Modifiability = Modifiability.Modifiable)]
+		[Localizability(LocalizationCategory.Title, Readability = Readability.Readable,
+			Modifiability = Modifiability.Modifiable)]
 		[Localizable(true)]
 		public string Text
 		{
@@ -51,16 +53,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 			}
 		}
 
-		#region  NPC Support
+		#region NPC Support
 
 		/// <summary>
-		/// Raises when property is changed.
+		///     Raises when property is changed.
 		/// </summary>
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Raises the <see cref="PropertyChanged"/> event.
+		///     Raises the <see cref="PropertyChanged" /> event.
 		/// </summary>
 		/// <param name="propertyName">The changed property name. Default value is the caller member name.</param>
 		[NotifyPropertyChangedInvocator]

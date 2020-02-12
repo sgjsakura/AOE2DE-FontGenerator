@@ -7,25 +7,27 @@ using Sakura.Tools.Aoe2FontGenerator.Data;
 namespace Sakura.Tools.Aoe2FontGenerator.Models
 {
 	/// <summary>
-	/// Defines a charset and a specified rendering font.
+	///     Defines a charset and a specified rendering font.
 	/// </summary>
 	public class CharSetFontMapping : INotifyPropertyChanged
 	{
 		/// <summary>
-		/// Backend field for the <see cref="Font"/> property.
-		/// </summary>
-		private FontSource _font;
-		/// <summary>
-		/// Backend field for the <see cref="CharSet"/> property.
+		///     Backend field for the <see cref="CharSet" /> property.
 		/// </summary>
 		private CharSetSource _charSet;
+
 		/// <summary>
-		/// Backend field for the <see cref="Setting"/> property.
+		///     Backend field for the <see cref="Font" /> property.
+		/// </summary>
+		private FontSource _font;
+
+		/// <summary>
+		///     Backend field for the <see cref="Setting" /> property.
 		/// </summary>
 		private MappingSetting _setting = new MappingSetting();
 
 		/// <summary>
-		/// The mapping setting.
+		///     The mapping setting.
 		/// </summary>
 		public MappingSetting Setting
 		{
@@ -39,7 +41,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// The charset to be drawn.
+		///     The charset to be drawn.
 		/// </summary>
 		public CharSetSource CharSet
 		{
@@ -53,7 +55,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// The font used to draw all the chars.
+		///     The font used to draw all the chars.
 		/// </summary>
 		public FontSource Font
 		{
@@ -66,16 +68,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
-		#region  NPC Support
+		#region NPC Support
 
 		/// <summary>
-		/// Raises when property is changed.
+		///     Raises when property is changed.
 		/// </summary>
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Raises the <see cref="PropertyChanged"/> event.
+		///     Raises the <see cref="PropertyChanged" /> event.
 		/// </summary>
 		/// <param name="propertyName">The changed property name. Default value is the caller member name.</param>
 		[NotifyPropertyChangedInvocator]

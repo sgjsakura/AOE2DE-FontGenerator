@@ -1,26 +1,25 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Sakura.Tools.Aoe2FontGenerator.Models;
-using Sakura.Tools.Aoe2FontGenerator.Properties;
-using Sakura.Tools.Aoe2FontGenerator.Utilities;
 
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// MappingSettingPanel.xaml 的交互逻辑
+	///     MappingSettingPanel.xaml 的交互逻辑
 	/// </summary>
 	public partial class MappingSettingPanel : UserControl
 	{
+		public static readonly DependencyProperty DataProperty = DependencyProperty.Register(nameof(Data),
+			typeof(MappingSetting), typeof(MappingSettingPanel), new FrameworkPropertyMetadata(null));
+
 		public MappingSettingPanel()
 		{
 			InitializeComponent();
 		}
 
-		public static readonly DependencyProperty DataProperty = DependencyProperty.Register(nameof(Data), typeof(MappingSetting), typeof(MappingSettingPanel), new FrameworkPropertyMetadata(null));
-
 		public MappingSetting Data
 		{
-			get => (MappingSetting)GetValue(DataProperty);
+			get => (MappingSetting) GetValue(DataProperty);
 			set => SetValue(DataProperty, value);
 		}
 	}

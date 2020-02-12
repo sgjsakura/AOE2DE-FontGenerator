@@ -1,12 +1,12 @@
 ﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.FontSourceSelector"
-			 x:Name="Me"
+             x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator"
              xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 	<Grid x:Uid="Grid_1">
 
@@ -15,11 +15,13 @@
 
 			<GroupBox x:Uid="GroupBox_1" Margin="3">
 				<GroupBox.Header>
-					<RadioButton x:Uid="SystemFontRadioButton" Name="SystemFontRadioButton" GroupName="FontSource" Checked="SystemFontRadioButton_OnChecked">
+					<RadioButton x:Uid="SystemFontRadioButton" Name="SystemFontRadioButton" GroupName="FontSource"
+					             Checked="SystemFontRadioButton_OnChecked">
 						<controls:ImageItem x:Uid="controls:ImageItem_1" Image="/Images/Font_16x.png" Text="_System Font" />
 					</RadioButton>
 				</GroupBox.Header>
-				<StackPanel x:Uid="StackPanel_2" Orientation="Vertical" IsEnabled="{Binding ElementName=SystemFontRadioButton, Path=IsChecked}">
+				<StackPanel x:Uid="StackPanel_2" Orientation="Vertical"
+				            IsEnabled="{Binding ElementName=SystemFontRadioButton, Path=IsChecked}">
 
 					<TextBlock x:Uid="TextBlock_2" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Using the following browse button to pick an existing system font. Note that the selected font size will be ignored and replaced with excepted glyph size when generating glyphs.</TextBlock>
 
@@ -31,11 +33,13 @@
 						</Grid.ColumnDefinitions>
 
 						<Label x:Uid="Label_1" Margin="3" Grid.Column="0">_Selected System Font:</Label>
-						<ContentControl x:Uid="ContentControl_1" Margin="3" Grid.Column="1" Content="{Binding ElementName=Me, Path=SystemFontSource.FontInfo}" VerticalAlignment="Center">
+						<ContentControl x:Uid="ContentControl_1" Margin="3" Grid.Column="1"
+						                Content="{Binding ElementName=Me, Path=SystemFontSource.FontInfo}" VerticalAlignment="Center">
 							<ContentControl.ContentTemplate>
 								<DataTemplate x:Uid="DataTemplate_1">
 									<Grid x:Uid="Grid_3">
-										<ContentPresenter x:Uid="Container" Name="Container" Content="{Binding Converter={StaticResource FontInfoConverter}}" VerticalAlignment="Center" />
+										<ContentPresenter x:Uid="Container" Name="Container"
+										                  Content="{Binding Converter={StaticResource FontInfoConverter}}" VerticalAlignment="Center" />
 										<TextBlock x:Uid="NotSelectedText" Name="NotSelectedText" Foreground="Gray" Visibility="Collapsed">Not Selected</TextBlock>
 									</Grid>
 									<DataTemplate.Triggers>
@@ -56,11 +60,13 @@
 
 			<GroupBox x:Uid="GroupBox_2" Margin="3">
 				<GroupBox.Header>
-					<RadioButton x:Uid="FileFontRadioButton" Name="FileFontRadioButton" GroupName="FontSource" Checked="FileFontRadioButton_OnChecked">
+					<RadioButton x:Uid="FileFontRadioButton" Name="FileFontRadioButton" GroupName="FontSource"
+					             Checked="FileFontRadioButton_OnChecked">
 						<controls:ImageItem x:Uid="controls:ImageItem_2" Image="/Images/OpenFile_16x.png" Text="_Font File" />
 					</RadioButton>
 				</GroupBox.Header>
-				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical" IsEnabled="{Binding ElementName=FileFontRadioButton, Path=IsChecked}">
+				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical"
+				            IsEnabled="{Binding ElementName=FileFontRadioButton, Path=IsChecked}">
 
 					<TextBlock x:Uid="TextBlock_3" Margin="3" Style="{StaticResource DescriptionTextBlockStyle}">Using a font comes from font file. Currently TrueType (*.ttf) and OpenType (*.otf) files are supported. Note that composite font files (one file contains more than one fonts) cannot be used and will cause errors during the generation.</TextBlock>
 
@@ -72,7 +78,8 @@
 						</Grid.ColumnDefinitions>
 
 						<Label x:Uid="Label_2" Margin="3" Grid.Column="0">_Font File Path:</Label>
-						<TextBox x:Uid="TextBox_1" Margin="3" Grid.Column="1" Text="{Binding ElementName=Me, Path=FileFontSource.FontFilePath, Mode=TwoWay}" />
+						<TextBox x:Uid="TextBox_1" Margin="3" Grid.Column="1"
+						         Text="{Binding ElementName=Me, Path=FileFontSource.FontFilePath, Mode=TwoWay}" />
 						<Button x:Uid="Button_2" Margin="3" Grid.Column="2" Click="BrowseFontFileButton_OnClick">_Browse...</Button>
 
 					</Grid>

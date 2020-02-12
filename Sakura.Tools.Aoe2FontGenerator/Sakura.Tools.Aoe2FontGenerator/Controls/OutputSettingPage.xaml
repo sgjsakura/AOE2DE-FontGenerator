@@ -1,11 +1,11 @@
 ﻿<UserControl x:Uid="Me" x:Class="Sakura.Tools.Aoe2FontGenerator.Controls.OutputSettingPage"
-			 x:Name="Me"
+             x:Name="Me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 	<Grid x:Uid="Grid_1" DataContext="{Binding ElementName=Me, Path=Data}">
 		<StackPanel x:Uid="StackPanel_1" Orientation="Vertical">
@@ -25,8 +25,12 @@
 						</Grid.ColumnDefinitions>
 
 						<Label x:Uid="Label_1" Margin="3" Grid.Column="0">_Output Directory:</Label>
-						<TextBox x:Uid="OutputDirectoryTextBox" Margin="3" Grid.Column="1" Name="OutputDirectoryTextBox" Text="{Binding Path=OutputDirectory}" />
-						<Button x:Uid="BrowseOutputDirButton" Margin="3" Grid.Column="2" Name="BrowseOutputDirButton" Click="BrowseOutputDirButton_OnClick">_Browse...</Button>
+						<TextBox x:Uid="OutputDirectoryTextBox" Margin="3" Grid.Column="1" Name="OutputDirectoryTextBox"
+						         Text="{Binding Path=OutputDirectory}" />
+						<Button x:Uid="BrowseOutputDirButton" Margin="3" Grid.Column="2" Name="BrowseOutputDirButton"
+						        Click="BrowseOutputDirButton_OnClick">
+							_Browse...
+						</Button>
 
 					</Grid>
 				</StackPanel>
@@ -39,7 +43,14 @@
 
 				<StackPanel x:Uid="StackPanel_3" Orientation="Vertical">
 
-					<TextBlock x:Uid="TextBlock_2" Margin="3" TextWrapping="Wrap" Foreground="Gray">Set the name for output files. There's two different names: a packed metadata file which includes all glyph information, and a series of DirectDraw Surface files consists of huge number of different glyphs. The latter uses a format description to generate all file names. For detailed information about string formatting, please visit the <Hyperlink x:Uid="Hyperlink_1" NavigateUri="https://docs.microsoft.com/dotnet/standard/base-types/formatting-types#composite-formatting">.NET Composite Formatting Introduction</Hyperlink>.</TextBlock>
+					<TextBlock x:Uid="TextBlock_2" Margin="3" TextWrapping="Wrap" Foreground="Gray">
+						Set the name for output files. There's two different names: a packed metadata file which includes all glyph information, and a series of DirectDraw Surface files consists of huge number of different glyphs. The latter uses a format description to generate all file names. For detailed information about string formatting, please visit the
+						<Hyperlink x:Uid="Hyperlink_1"
+						           NavigateUri="https://docs.microsoft.com/dotnet/standard/base-types/formatting-types#composite-formatting">
+							.NET Composite Formatting Introduction
+						</Hyperlink>
+						.
+					</TextBlock>
 
 					<Grid x:Uid="Grid_3">
 						<Grid.RowDefinitions>
@@ -52,10 +63,12 @@
 						</Grid.ColumnDefinitions>
 
 						<Label x:Uid="Label_2" Margin="3" Grid.Row="0" Grid.Column="0">_Metadata File Name:</Label>
-						<TextBox x:Uid="MetaDataFileNameTextBox" Margin="3" Grid.Row="0" Grid.Column="1" Name="MetaDataFileNameTextBox" Text="{Binding Path=MetadataFileName}" />
+						<TextBox x:Uid="MetaDataFileNameTextBox" Margin="3" Grid.Row="0" Grid.Column="1" Name="MetaDataFileNameTextBox"
+						         Text="{Binding Path=MetadataFileName}" />
 
 						<Label x:Uid="Label_3" Margin="3" Grid.Row="1" Grid.Column="0">_Surface File Name Format:</Label>
-						<TextBox x:Uid="SurfaceFileFormatTextBox" Margin="3" Grid.Row="1" Grid.Column="1" Name="SurfaceFileFormatTextBox" Text="{Binding Path=SurfaceFileNameFormat}" />
+						<TextBox x:Uid="SurfaceFileFormatTextBox" Margin="3" Grid.Row="1" Grid.Column="1" Name="SurfaceFileFormatTextBox"
+						         Text="{Binding Path=SurfaceFileNameFormat}" />
 
 					</Grid>
 
@@ -69,8 +82,14 @@
 							<ColumnDefinition x:Uid="ColumnDefinition_7" Width="Auto" SharedSizeGroup="Buttons" />
 						</Grid.ColumnDefinitions>
 
-						<Button x:Uid="SetAsDefaultButton" Margin="3" Grid.Column="0" Name="SetAsDefaultButton" Click="SetAsDefaultButton_OnClick">Set Names as Default Font File Name</Button>
-						<Button x:Uid="SetAsDefaultSansSerifButton" Margin="3" Grid.Column="1" Name="SetAsDefaultSansSerifButton" Click="SetAsDefaultSansSerifButton_OnClick">Set Name as Default Sans-serif Font File Name</Button>
+						<Button x:Uid="SetAsDefaultButton" Margin="3" Grid.Column="0" Name="SetAsDefaultButton"
+						        Click="SetAsDefaultButton_OnClick">
+							Set Names as Default Font File Name
+						</Button>
+						<Button x:Uid="SetAsDefaultSansSerifButton" Margin="3" Grid.Column="1" Name="SetAsDefaultSansSerifButton"
+						        Click="SetAsDefaultSansSerifButton_OnClick">
+							Set Name as Default Sans-serif Font File Name
+						</Button>
 
 					</Grid>
 				</StackPanel>

@@ -5,7 +5,7 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 namespace Sakura.Tools.Aoe2FontGenerator.Data
 {
 	/// <summary>
-	/// Using a font provided by a physical file.
+	///     Using a font provided by a physical file.
 	/// </summary>
 	public class FileFontSource : FontSource
 	{

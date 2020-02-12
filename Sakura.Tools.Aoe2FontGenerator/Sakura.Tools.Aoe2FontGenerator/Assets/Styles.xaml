@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:data="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Data"
                     xmlns:controls="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Controls"
-					xmlns:converters="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Converters"
-					xmlns:models="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Models"
-					mc:Ignorable="d">
+                    xmlns:converters="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Converters"
+                    xmlns:models="clr-namespace:Sakura.Tools.Aoe2FontGenerator.Models"
+                    mc:Ignorable="d">
 
 	<Style x:Uid="Style_1" x:Key="DefaultButtonStyle" TargetType="Button">
 		<Setter x:Uid="Setter_1" Property="Padding" Value="3" />
@@ -20,14 +20,14 @@
 		<Setter x:Uid="Setter_6" Property="MinHeight" Value="0" />
 	</Style>
 
-	<Style x:Uid="Style_3" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}"></Style>
+	<Style x:Uid="Style_3" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}" />
 
 	<Style x:Uid="Style_4" x:Key="DefaultSingleLineTextBoxStyle" TargetType="TextBox">
 		<Setter x:Uid="Setter_7" Property="Padding" Value="3" />
 		<Setter x:Uid="Setter_8" Property="VerticalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style x:Uid="Style_5" TargetType="TextBox" BasedOn="{StaticResource DefaultSingleLineTextBoxStyle}"></Style>
+	<Style x:Uid="Style_5" TargetType="TextBox" BasedOn="{StaticResource DefaultSingleLineTextBoxStyle}" />
 
 	<Style x:Uid="Style_6" x:Key="DefaultLabelStyle" TargetType="Label">
 		<Setter x:Uid="Setter_9" Property="VerticalAlignment" Value="Center" />
@@ -35,7 +35,7 @@
 		<Setter x:Uid="Setter_11" Property="Padding" Value="0" />
 	</Style>
 
-	<Style x:Uid="Style_7" TargetType="Label" BasedOn="{StaticResource DefaultLabelStyle}"></Style>
+	<Style x:Uid="Style_7" TargetType="Label" BasedOn="{StaticResource DefaultLabelStyle}" />
 
 	<Style x:Uid="Style_8" TargetType="TextBlock" x:Key="DescriptionTextBlockStyle">
 		<Setter x:Uid="Setter_12" Property="Foreground" Value="Gray" />
@@ -54,7 +54,7 @@
 		</Setter>
 	</Style>
 
-	<Style x:Uid="Style_11" TargetType="TabControl" BasedOn="{StaticResource DefaultTabControlStyle}"></Style>
+	<Style x:Uid="Style_11" TargetType="TabControl" BasedOn="{StaticResource DefaultTabControlStyle}" />
 
 	<!-- Cancel default margin of paragraph -->
 	<Style x:Uid="Style_12" TargetType="Paragraph">
@@ -71,7 +71,8 @@
 			</Grid.ColumnDefinitions>
 
 			<Image x:Uid="Image_1" Grid.Column="0" Source="{Binding Path=Image}" VerticalAlignment="Center" />
-			<AccessText x:Uid="AccessText_1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,0,0,0" Text="{Binding Path=Text}" />
+			<AccessText x:Uid="AccessText_1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+			            Margin="3,0,0,0" Text="{Binding Path=Text}" />
 
 		</Grid>
 	</DataTemplate>
@@ -84,7 +85,8 @@
 			</Grid.ColumnDefinitions>
 
 			<Image x:Uid="Image_2" Grid.Column="0" Source="{Binding Path=Image}" VerticalAlignment="Center" />
-			<AccessText x:Uid="AccessText_2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,0,0,0" Text="{Binding Path=Text}" />
+			<AccessText x:Uid="AccessText_2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+			            Margin="3,0,0,0" Text="{Binding Path=Text}" />
 
 		</Grid>
 	</DataTemplate>
@@ -92,7 +94,8 @@
 	<DataTemplate x:Uid="DataTemplate_3" x:Key="SystemFontSourceDataTemplate">
 		<TextBlock x:Uid="TextBlock_1" d:DataContext="{d:DesignInstance data:SystemFontSource}">
 			<TextBlock x:Uid="TextBlock_2">System font</TextBlock>
-			<TextBlock x:Uid="TextBlock_3" Margin="3,0,0,0" Text="{Binding Path=FontInfo, Converter={StaticResource FontInfoConverter}}" Foreground="Gray" />
+			<TextBlock x:Uid="TextBlock_3" Margin="3,0,0,0"
+			           Text="{Binding Path=FontInfo, Converter={StaticResource FontInfoConverter}}" Foreground="Gray" />
 		</TextBlock>
 	</DataTemplate>
 
@@ -128,22 +131,33 @@
 	<DataTemplate x:Uid="DataTemplate_9" DataType="{x:Type models:MappingSetting}">
 		<StackPanel x:Uid="StackPanel_1" Orientation="Horizontal">
 			<TextBlock x:Uid="TextBlock_15" VerticalAlignment="Center">Glyph Size Ratio</TextBlock>
-			<TextBlock x:Uid="TextBlock_16" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray" Text="{Binding Path=GlyphSizeRatio}" />
+			<TextBlock x:Uid="TextBlock_16" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray"
+			           Text="{Binding Path=GlyphSizeRatio}" />
 			<TextBlock x:Uid="TextBlock_17" VerticalAlignment="Center" Margin="3,0,0,0">Baseline Offset Ratio</TextBlock>
-			<TextBlock x:Uid="TextBlock_18" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray" Text="{Binding Path=BaselineOffsetRatio}" />
+			<TextBlock x:Uid="TextBlock_18" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray"
+			           Text="{Binding Path=BaselineOffsetRatio}" />
 		</StackPanel>
 	</DataTemplate>
 
 	<!-- DataTemplateSelector -->
-	<converters:TypeBasedDataTemplateSelector x:Uid="converters:TypeBasedDataTemplateSelector_1" x:Key="FontSourceDataTemplateSelector" DefaultDataTemplate="{StaticResource NoSelectionDataTemplate}">
-		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_1" Type="data:SystemFontSource" DataTemplate="{StaticResource SystemFontSourceDataTemplate}" />
-		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_2" Type="data:FileFontSource" DataTemplate="{StaticResource FileFontSourceDataTemplate}" />
+	<converters:TypeBasedDataTemplateSelector x:Uid="converters:TypeBasedDataTemplateSelector_1"
+	                                          x:Key="FontSourceDataTemplateSelector"
+	                                          DefaultDataTemplate="{StaticResource NoSelectionDataTemplate}">
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_1" Type="data:SystemFontSource"
+		                                 DataTemplate="{StaticResource SystemFontSourceDataTemplate}" />
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_2" Type="data:FileFontSource"
+		                                 DataTemplate="{StaticResource FileFontSourceDataTemplate}" />
 	</converters:TypeBasedDataTemplateSelector>
 
-	<converters:TypeBasedDataTemplateSelector x:Uid="converters:TypeBasedDataTemplateSelector_2" x:Key="CharSetSourceDataTemplateSelector" DefaultDataTemplate="{StaticResource NoSelectionDataTemplate}">
-		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_3" Type="data:FullCharSetSource" DataTemplate="{StaticResource FullCharSetSourceDataTemplate}" />
-		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_4" Type="data:RangeCharSetSource" DataTemplate="{StaticResource RangeCharSetSourceDataTemplate}" />
-		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_5" Type="data:DirectCharSetSource" DataTemplate="{StaticResource DirectCharSetSourceDataTemplate}" />
+	<converters:TypeBasedDataTemplateSelector x:Uid="converters:TypeBasedDataTemplateSelector_2"
+	                                          x:Key="CharSetSourceDataTemplateSelector"
+	                                          DefaultDataTemplate="{StaticResource NoSelectionDataTemplate}">
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_3" Type="data:FullCharSetSource"
+		                                 DataTemplate="{StaticResource FullCharSetSourceDataTemplate}" />
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_4" Type="data:RangeCharSetSource"
+		                                 DataTemplate="{StaticResource RangeCharSetSourceDataTemplate}" />
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_5" Type="data:DirectCharSetSource"
+		                                 DataTemplate="{StaticResource DirectCharSetSourceDataTemplate}" />
 	</converters:TypeBasedDataTemplateSelector>
 
 

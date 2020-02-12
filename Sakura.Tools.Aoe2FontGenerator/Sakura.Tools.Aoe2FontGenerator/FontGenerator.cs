@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using CSharpImageLibrary;
 using JetBrains.Annotations;
 using Sakura.Tools.Aoe2FontGenerator.Loggers;
 using Sakura.Tools.Aoe2FontGenerator.Models;
@@ -17,44 +13,28 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 namespace Sakura.Tools.Aoe2FontGenerator
 {
 	/// <summary>
-	/// Core class used to calculate and generate font glyph atlas.
+	///     Core class used to calculate and generate font glyph atlas.
 	/// </summary>
 	public class FontGenerator
 	{
-		#region Internal Classes
-
 		/// <summary>
-		/// Represents as a single mapping item. This class is used for data exchanging between <see cref="ExtractChars"/> and <see cref="DrawingGlyphs"/>.
+		///     Initialize a new instance of <see cref="FontGenerator" />.
 		/// </summary>
-		private class GlyphMappingInfo
-		{
-			/// <summary>
-			/// The typeface of the glyph.
-			/// </summary>
-			public GlyphTypeface Typeface { get; set; }
-
-			/// <summary>
-			/// The mapping setting.
-			/// </summary>
-			public MappingSetting Setting { get; set; }
-
-			/// <summary>
-			/// The code print of the glyph.
-			/// </summary>
-			public int CodePrint { get; set; }
-		}
-
-		#endregion
-
-		/// <summary>
-		/// Initialize a new instance of <see cref="FontGenerator"/>.
-		/// </summary>
-		/// <param name="logger">The <see cref="ProgressLogger"/> instance used to generate logs.</param>
+		/// <param name="logger">The <see cref="ProgressLogger" /> instance used to generate logs.</param>
 		public FontGenerator([NotNull] ProgressLogger logger)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			Logger.DoWork += Logger_DoWork;
 		}
+
+		#region Internal Service Instance
+
+		/// <summary>
+		///     The <see cref="ProgressLogger" /> instance used to generate logs and report progresses.
+		/// </summary>
+		private ProgressLogger Logger { get; }
+
+		#endregion
 
 		#region Worker Event Handler
 
@@ -66,24 +46,41 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 		#endregion
 
-		#region Internal Service Instance
+		#region Internal Classes
 
 		/// <summary>
-		/// The <see cref="ProgressLogger"/> instance used to generate logs and report progresses.
+		///     Represents as a single mapping item. This class is used for data exchanging between <see cref="ExtractChars" /> and
+		///     <see cref="DrawingGlyphs" />.
 		/// </summary>
-		private ProgressLogger Logger { get; }
+		private class GlyphMappingInfo
+		{
+			/// <summary>
+			///     The typeface of the glyph.
+			/// </summary>
+			public GlyphTypeface Typeface { get; set; }
+
+			/// <summary>
+			///     The mapping setting.
+			/// </summary>
+			public MappingSetting Setting { get; set; }
+
+			/// <summary>
+			///     The code print of the glyph.
+			/// </summary>
+			public int CodePrint { get; set; }
+		}
 
 		#endregion
 
 		#region Data Properties
 
 		/// <summary>
-		/// The mapping data.
+		///     The mapping data.
 		/// </summary>
 		private CharSetFontMapping[] Mappings { get; set; }
 
 		/// <summary>
-		/// The setting.
+		///     The setting.
 		/// </summary>
 		private GenerationSetting Setting { get; set; }
 
@@ -92,16 +89,13 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		#region Entry Point Methods
 
 		/// <summary>
-		/// Core method used to generate glyph atlas.
+		///     Core method used to generate glyph atlas.
 		/// </summary>
 		/// <param name="mappings">A collection which contains all mapping settings.</param>
 		/// <param name="setting">The setting for generation.</param>
 		public void Generate(IEnumerable<CharSetFontMapping> mappings, GenerationSetting setting)
 		{
-			if (Logger.IsWorking)
-			{
-				throw new InvalidOperationException(App.Current.FormatResString("WorkerIsBusyError"));
-			}
+			if (Logger.IsWorking) throw new InvalidOperationException(App.Current.FormatResString("WorkerIsBusyError"));
 
 			Mappings = mappings.ToArray();
 			Setting = setting;
@@ -110,7 +104,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		}
 
 		/// <summary>
-		/// Core method for atlas generation.
+		///     Core method for atlas generation.
 		/// </summary>
 		private void GenerateCore()
 		{
@@ -141,7 +135,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		#region Core Methods
 
 		/// <summary>
-		/// Extract all chars from the <see cref="Mappings"/>.
+		///     Extract all chars from the <see cref="Mappings" />.
 		/// </summary>
 		/// <returns>A collection which contains all glyph information.</returns>
 		private IReadOnlyList<GlyphMappingInfo> ExtractChars()
@@ -165,23 +159,19 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 				// Warning if invalid chars exist.
 				if (validChars.Length != chars.Length)
-				{
-					Logger.Log(LogLevel.Warning, App.Current.FormatResString("CharCodePrintOutOfRangeWarning", chars.Length - validChars.Length));
-				}
+					Logger.Log(LogLevel.Warning,
+						App.Current.FormatResString("CharCodePrintOutOfRangeWarning",
+							chars.Length - validChars.Length));
 
 				// Add all chars
 				foreach (var c in validChars)
-				{
 					if (!result.ContainsKey(c))
-					{
 						result.Add(c, new GlyphMappingInfo
 						{
 							CodePrint = c,
 							Typeface = typeface,
 							Setting = mapping.Setting
 						});
-					}
-				}
 
 				Logger.AdvanceCurrentStageProgress(1);
 			}
@@ -191,11 +181,12 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		}
 
 		/// <summary>
-		/// Drawing all glyphs and return the drawn visual and char information.
+		///     Drawing all glyphs and return the drawn visual and char information.
 		/// </summary>
 		/// <param name="glyphs">The collection of all glyphs.</param>
 		/// <returns>The drawn visual list and box information.</returns>
-		private (IReadOnlyList<Visual> Visuals, IReadOnlyList<GlyphInfo> BoxInfo) DrawingGlyphs(IReadOnlyCollection<GlyphMappingInfo> glyphs)
+		private (IReadOnlyList<Visual> Visuals, IReadOnlyList<GlyphInfo> BoxInfo) DrawingGlyphs(
+			IReadOnlyCollection<GlyphMappingInfo> glyphs)
 		{
 			DrawingVisual currentVisual;
 			DrawingContext drawingContext;
@@ -262,9 +253,8 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				}
 
 				if (totalWidth > atlasWidth || totalHeight > atlasHeight)
-				{
-					throw new InvalidOperationException(App.Current.FormatResString("GlyphSizeTooLargeErrorMessage", (char)g.CodePrint, g.Typeface.FamilyNames[CultureInfo.CurrentUICulture]));
-				}
+					throw new InvalidOperationException(App.Current.FormatResString("GlyphSizeTooLargeErrorMessage",
+						(char) g.CodePrint, g.Typeface.FamilyNames[CultureInfo.CurrentUICulture]));
 
 				if (currentX + space + totalWidth <= atlasWidth && currentY + space + totalHeight <= atlasHeight)
 				{
@@ -294,21 +284,21 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				{
 					Atlas = visualList.Count,
 
-					W = (float)totalWidth,
-					H = (float)totalHeight,
+					W = (float) totalWidth,
+					H = (float) totalHeight,
 
-					U = (float)(currentX / atlasWidth),
-					V = (float)(currentY / atlasHeight),
+					U = (float) (currentX / atlasWidth),
+					V = (float) (currentY / atlasHeight),
 
-					S = (float)((currentX + totalWidth) / atlasWidth),
-					T = (float)((currentY + totalHeight) / atlasHeight),
+					S = (float) ((currentX + totalWidth) / atlasWidth),
+					T = (float) ((currentY + totalHeight) / atlasHeight),
 
-					X0 = (float)(leftSideBearing * emSize),
-					Y0 = (float)(geometry.Bounds.Top + baseline * emSize),
+					X0 = (float) (leftSideBearing * emSize),
+					Y0 = (float) (geometry.Bounds.Top + baseline * emSize),
 
-					HAdvance = (float)(advancedWidth * emSize),
+					HAdvance = (float) (advancedWidth * emSize),
 
-					CodePrint = (ushort)g.CodePrint
+					CodePrint = (ushort) g.CodePrint
 				};
 
 				charInfoList.Add(charInfo);
@@ -331,10 +321,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				currentX += totalWidth + space;
 
 				// Update line height if necessary
-				if (totalHeight > lineHeight)
-				{
-					lineHeight = totalHeight;
-				}
+				if (totalHeight > lineHeight) lineHeight = totalHeight;
 
 				// Advance progress
 				Logger.AdvanceCurrentStageProgress(1);
@@ -343,12 +330,13 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			// Close the final visual
 			CloseCurrentVisual();
 
-			Logger.Log(LogLevel.Success, App.Current.FormatResString("DrawingGlyphsFinished", visualList.Count, charInfoList.Count));
+			Logger.Log(LogLevel.Success,
+				App.Current.FormatResString("DrawingGlyphsFinished", visualList.Count, charInfoList.Count));
 			return (visualList, charInfoList);
 		}
 
 		/// <summary>
-		/// Try to save a drawn visual to the disk location.
+		///     Try to save a drawn visual to the disk location.
 		/// </summary>
 		/// <param name="visual">The visual to be saved.</param>
 		/// <param name="index">The index of the current visual.</param>
@@ -374,7 +362,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		}
 
 		/// <summary>
-		/// Save the box file to the disk location.
+		///     Save the box file to the disk location.
 		/// </summary>
 		/// <param name="boxInfo">The box data.</param>
 		/// <param name="pageCount">Total atlas count.</param>
@@ -397,7 +385,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				// Page count
 				binaryWriter.Write(pageCount, Endianness.LittleEndian);
 				// Source font size
-				binaryWriter.Write((float)Setting.GlyphSize);
+				binaryWriter.Write((float) Setting.GlyphSize);
 
 				foreach (var c in boxInfo)
 				{
@@ -416,7 +404,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				for (var i = 0; i < boxInfo.Count; i++)
 				{
 					binaryWriter.Write(boxInfo[i].CodePrint, Endianness.LittleEndian);
-					binaryWriter.Write((ushort)i, Endianness.LittleEndian);
+					binaryWriter.Write((ushort) i, Endianness.LittleEndian);
 				}
 			}
 
@@ -427,7 +415,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		}
 
 		/// <summary>
-		/// Save the debug text file for box metadata.
+		///     Save the debug text file for box metadata.
 		/// </summary>
 		/// <param name="boxInfo">The box data.</param>
 		/// <param name="pageCount">Total atlas count.</param>
@@ -448,17 +436,15 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				writer.WriteLine();
 
 				foreach (var c in boxInfo)
-				{
 					writer.WriteLine(App.Current.FormatResString("CharInfoLineFormat",
-						(char)c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
-				}
+						(char) c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
 
 				writer.Close();
 			}
 		}
 
 		/// <summary>
-		/// Save all files.
+		///     Save all files.
 		/// </summary>
 		/// <param name="visuals">The visuals represent as DDS image.</param>
 		/// <param name="boxInfo">The box data which contains all glyph information.</param>

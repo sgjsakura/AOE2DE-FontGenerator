@@ -8,12 +8,16 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// Provides the UI for charset selection.
+	///     Provides the UI for charset selection.
 	/// </summary>
 	public partial class CharSetSourceSelector : UserControl
 	{
+		public static readonly DependencyProperty ActiveCharSetSourceProperty =
+			DependencyProperty.Register(nameof(ActiveCharSetSource), typeof(CharSetSource),
+				typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null, OnActiveCharSetSourceChanged));
+
 		/// <summary>
-		/// Initialize a new instance of <see cref="CharSetSourceSelector"/>.
+		///     Initialize a new instance of <see cref="CharSetSourceSelector" />.
 		/// </summary>
 		public CharSetSourceSelector()
 		{
@@ -25,81 +29,28 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 			FileCharSetSource = new FileCharSetSource();
 		}
 
-		public static readonly DependencyProperty ActiveCharSetSourceProperty = DependencyProperty.Register(nameof(ActiveCharSetSource), typeof(CharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null, OnActiveCharSetSourceChanged));
+		/// <summary>
+		///     Get the active <see cref="CharSetSource" />.
+		/// </summary>
+		public CharSetSource ActiveCharSetSource
+		{
+			get => (CharSetSource) GetValue(ActiveCharSetSourceProperty);
+			set => SetValue(ActiveCharSetSourceProperty, value);
+		}
 
 		private static void OnActiveCharSetSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			var oldValue = (CharSetSource)e.OldValue;
-			var newValue = (CharSetSource)e.NewValue;
+			var oldValue = (CharSetSource) e.OldValue;
+			var newValue = (CharSetSource) e.NewValue;
 
-			if (Equals(oldValue, newValue))
-			{
-				return;
-			}
+			if (Equals(oldValue, newValue)) return;
 
-			var target = (CharSetSourceSelector)d;
+			var target = (CharSetSourceSelector) d;
 			target.SyncActiveCharSetSource();
 		}
 
 		/// <summary>
-		/// Get the active <see cref="CharSetSource"/>.
-		/// </summary>
-		public CharSetSource ActiveCharSetSource
-		{
-			get => (CharSetSource)GetValue(ActiveCharSetSourceProperty);
-			set => SetValue(ActiveCharSetSourceProperty, value);
-		}
-
-		#region Selection Related Data
-
-		private static readonly DependencyPropertyKey FullCharSetSourcePropertyKey = DependencyProperty.RegisterReadOnly(nameof(FullCharSetSource), typeof(FullCharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null));
-
-		public static readonly DependencyProperty FullCharSetSourceProperty =
-			FullCharSetSourcePropertyKey.DependencyProperty;
-
-		public FullCharSetSource FullCharSetSource
-		{
-			get => (FullCharSetSource)GetValue(FullCharSetSourceProperty);
-			private set => SetValue(FullCharSetSourcePropertyKey, value);
-		}
-
-		private static readonly DependencyPropertyKey RangeCharSetSourcePropertyKey =
-			DependencyProperty.RegisterReadOnly(nameof(RangeCharSetSource), typeof(RangeCharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(RangeCharSetSource)));
-
-		public static readonly DependencyProperty RangeCharSetSourceProperty = RangeCharSetSourcePropertyKey.DependencyProperty;
-
-		public RangeCharSetSource RangeCharSetSource
-		{
-			get => (RangeCharSetSource)GetValue(RangeCharSetSourceProperty);
-			private set => SetValue(RangeCharSetSourcePropertyKey, value);
-		}
-
-		private static readonly DependencyPropertyKey DirectCharSetSourcePropertyKey =
-			DependencyProperty.RegisterReadOnly(nameof(DirectCharSetSource), typeof(DirectCharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(DirectCharSetSource)));
-
-		public static readonly DependencyProperty DirectCharSetSourceProperty = DirectCharSetSourcePropertyKey.DependencyProperty;
-
-		public DirectCharSetSource DirectCharSetSource
-		{
-			get => (DirectCharSetSource)GetValue(DirectCharSetSourceProperty);
-			private set => SetValue(DirectCharSetSourcePropertyKey, value);
-		}
-
-		private static readonly DependencyPropertyKey FileCharSetSourcePropertyKey =
-			DependencyProperty.RegisterReadOnly(nameof(FileCharSetSource), typeof(FileCharSetSource), typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(FileCharSetSource)));
-
-		public static readonly DependencyProperty FileCharSetSourceProperty = FileCharSetSourcePropertyKey.DependencyProperty;
-
-		public FileCharSetSource FileCharSetSource
-		{
-			get => (FileCharSetSource)GetValue(FileCharSetSourceProperty);
-			private set => SetValue(FileCharSetSourcePropertyKey, value);
-		}
-
-		#endregion
-
-		/// <summary>
-		/// Update related Control state with the <see cref="ActiveCharSetSource"/>.
+		///     Update related Control state with the <see cref="ActiveCharSetSource" />.
 		/// </summary>
 		private void SyncActiveCharSetSource()
 		{
@@ -137,17 +88,70 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 
 			using (dialog)
 			{
-				if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-				{
-					TextFilePathTextBox.Text = dialog.FileName;
-				}
+				if (dialog.ShowDialog() == CommonFileDialogResult.Ok) TextFilePathTextBox.Text = dialog.FileName;
 			}
 		}
 
 		private void CharSetSourceRadioButton_OnChecked(object sender, RoutedEventArgs e)
 		{
-			var relatedCharSetSource = (CharSetSource)((RadioButton)sender).Tag;
+			var relatedCharSetSource = (CharSetSource) ((RadioButton) sender).Tag;
 			ActiveCharSetSource = relatedCharSetSource;
 		}
+
+		#region Selection Related Data
+
+		private static readonly DependencyPropertyKey FullCharSetSourcePropertyKey =
+			DependencyProperty.RegisterReadOnly(nameof(FullCharSetSource), typeof(FullCharSetSource),
+				typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(null));
+
+		public static readonly DependencyProperty FullCharSetSourceProperty =
+			FullCharSetSourcePropertyKey.DependencyProperty;
+
+		public FullCharSetSource FullCharSetSource
+		{
+			get => (FullCharSetSource) GetValue(FullCharSetSourceProperty);
+			private set => SetValue(FullCharSetSourcePropertyKey, value);
+		}
+
+		private static readonly DependencyPropertyKey RangeCharSetSourcePropertyKey =
+			DependencyProperty.RegisterReadOnly(nameof(RangeCharSetSource), typeof(RangeCharSetSource),
+				typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(RangeCharSetSource)));
+
+		public static readonly DependencyProperty RangeCharSetSourceProperty =
+			RangeCharSetSourcePropertyKey.DependencyProperty;
+
+		public RangeCharSetSource RangeCharSetSource
+		{
+			get => (RangeCharSetSource) GetValue(RangeCharSetSourceProperty);
+			private set => SetValue(RangeCharSetSourcePropertyKey, value);
+		}
+
+		private static readonly DependencyPropertyKey DirectCharSetSourcePropertyKey =
+			DependencyProperty.RegisterReadOnly(nameof(DirectCharSetSource), typeof(DirectCharSetSource),
+				typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(DirectCharSetSource)));
+
+		public static readonly DependencyProperty DirectCharSetSourceProperty =
+			DirectCharSetSourcePropertyKey.DependencyProperty;
+
+		public DirectCharSetSource DirectCharSetSource
+		{
+			get => (DirectCharSetSource) GetValue(DirectCharSetSourceProperty);
+			private set => SetValue(DirectCharSetSourcePropertyKey, value);
+		}
+
+		private static readonly DependencyPropertyKey FileCharSetSourcePropertyKey =
+			DependencyProperty.RegisterReadOnly(nameof(FileCharSetSource), typeof(FileCharSetSource),
+				typeof(CharSetSourceSelector), new FrameworkPropertyMetadata(default(FileCharSetSource)));
+
+		public static readonly DependencyProperty FileCharSetSourceProperty =
+			FileCharSetSourcePropertyKey.DependencyProperty;
+
+		public FileCharSetSource FileCharSetSource
+		{
+			get => (FileCharSetSource) GetValue(FileCharSetSourceProperty);
+			private set => SetValue(FileCharSetSourcePropertyKey, value);
+		}
+
+		#endregion
 	}
 }

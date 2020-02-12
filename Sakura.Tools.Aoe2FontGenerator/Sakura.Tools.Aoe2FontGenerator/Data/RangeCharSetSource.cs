@@ -10,12 +10,12 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	public class RangeCharSetSource : CharSetSource
 	{
 		/// <summary>
-		/// backend field for the <see cref="Range"/> property.
+		///     backend field for the <see cref="Range" /> property.
 		/// </summary>
 		private string _range;
 
 		/// <summary>
-		/// Get or set the range setting string.
+		///     Get or set the range setting string.
 		/// </summary>
 		public string Range
 		{
@@ -29,19 +29,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 		}
 
 		/// <summary>
-		/// Get the actual range value from the <paramref name="range"/> setting string.
+		///     Get the actual range value from the <paramref name="range" /> setting string.
 		/// </summary>
 		/// <param name="range">The range string.</param>
 		/// <returns>A collection contains all valid range segments.</returns>
-		/// <exception cref="FormatException">The <see cref="Range"/> string is invalid.</exception>
+		/// <exception cref="FormatException">The <see cref="Range" /> string is invalid.</exception>
 		private static IEnumerable<(int Min, int Max)> GetRangeValue(string range)
 		{
-			if (string.IsNullOrEmpty(range))
-			{
-				yield break;
-			}
+			if (string.IsNullOrEmpty(range)) yield break;
 
-			var items = range.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+			var items = range.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
 
 			foreach (var item in items)
 			{
@@ -65,20 +62,19 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 		}
 
 		/// <summary>
-		/// Determine if a value is in the specified range.
+		///     Determine if a value is in the specified range.
 		/// </summary>
 		/// <param name="ranges">A collection contains all valid range segments.</param>
 		/// <param name="value">The value to be determining.</param>
-		/// <returns>If the <paramref name="value"/> is in the <paramref name="ranges"/>, returns <c>true</c>; otherwise, returns <c>false</c>.</returns>
+		/// <returns>
+		///     If the <paramref name="value" /> is in the <paramref name="ranges" />, returns <c>true</c>; otherwise, returns
+		///     <c>false</c>.
+		/// </returns>
 		private static bool IsInRange(IEnumerable<(int Min, int Max)> ranges, int value)
 		{
 			foreach (var (min, max) in ranges)
-			{
 				if (value >= min && value <= max)
-				{
 					return true;
-				}
-			}
 
 			return false;
 		}

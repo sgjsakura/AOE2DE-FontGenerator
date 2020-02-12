@@ -9,7 +9,7 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// CharSetMappingPage.xaml 的交互逻辑
+	///     CharSetMappingPage.xaml 的交互逻辑
 	/// </summary>
 	public partial class CharSetMappingPage : UserControl
 	{
@@ -34,14 +34,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 
 		#region Data Properties
 
-		public static readonly DependencyProperty DataProperty = DependencyProperty.Register(nameof(Data), typeof(ObservableCollection<CharSetFontMapping>), typeof(CharSetMappingPage), new FrameworkPropertyMetadata(null));
+		public static readonly DependencyProperty DataProperty = DependencyProperty.Register(nameof(Data),
+			typeof(ObservableCollection<CharSetFontMapping>), typeof(CharSetMappingPage),
+			new FrameworkPropertyMetadata(null));
 
 		/// <summary>
-		/// The related data of this control.
+		///     The related data of this control.
 		/// </summary>
 		public ObservableCollection<CharSetFontMapping> Data
 		{
-			get => (ObservableCollection<CharSetFontMapping>)GetValue(DataProperty);
+			get => (ObservableCollection<CharSetFontMapping>) GetValue(DataProperty);
 			set => SetValue(DataProperty, value);
 		}
 
@@ -67,12 +69,10 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 		private void DeleteCommand_OnExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
 			if (this.ShowMessage(this.FindResString("AppName"), this.FormatResString("DeleteWarningTitle"),
-					this.FormatResString("DeleteWarningDetail"), TaskDialogStandardIcon.Warning,
-					TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No) !=
-				TaskDialogResult.Yes)
-			{
+				    this.FormatResString("DeleteWarningDetail"), TaskDialogStandardIcon.Warning,
+				    TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No) !=
+			    TaskDialogResult.Yes)
 				return;
-			}
 
 			Data?.RemoveAt(MainListBox.SelectedIndex);
 		}
@@ -85,12 +85,11 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 
 		private void DeleteAllCommand_OnExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			if (this.ShowMessage(this.FindResString("AppName"), this.FormatResString("ClearWarningTitle"), this.FormatResString("ClearWarningDetail"),
-					TaskDialogStandardIcon.Warning, TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No) !=
-				TaskDialogResult.Yes)
-			{
+			if (this.ShowMessage(this.FindResString("AppName"), this.FormatResString("ClearWarningTitle"),
+				    this.FormatResString("ClearWarningDetail"),
+				    TaskDialogStandardIcon.Warning, TaskDialogStandardButtons.Yes | TaskDialogStandardButtons.No) !=
+			    TaskDialogResult.Yes)
 				return;
-			}
 
 			Data?.Clear();
 		}

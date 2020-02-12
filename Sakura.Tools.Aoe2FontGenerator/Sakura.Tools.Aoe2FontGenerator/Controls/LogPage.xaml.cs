@@ -8,7 +8,7 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// LogPage.xaml 的交互逻辑
+	///     LogPage.xaml 的交互逻辑
 	/// </summary>
 	public partial class LogPage : UserControl
 	{
@@ -67,7 +67,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 		}
 
 		/// <summary>
-		/// Append a text line with specified color.
+		///     Append a text line with specified color.
 		/// </summary>
 		/// <param name="text"></param>
 		/// <param name="color"></param>

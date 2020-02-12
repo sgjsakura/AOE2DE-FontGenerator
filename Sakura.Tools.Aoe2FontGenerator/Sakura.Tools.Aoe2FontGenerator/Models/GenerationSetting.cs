@@ -7,15 +7,15 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 {
 	public class GenerationSetting : INotifyPropertyChanged
 	{
+		private int _glyphSize;
+		private int _glyphSpace;
 		private string _metadataFileName;
 		private string _outputDirectory;
 		private string _surfaceFileNameFormat;
 		private int _textureSize;
-		private int _glyphSize;
-		private int _glyphSpace;
 
 		/// <summary>
-		/// Get or set the target output directory.
+		///     Get or set the target output directory.
 		/// </summary>
 		public string OutputDirectory
 		{
@@ -29,7 +29,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set the metadata file name.
+		///     Get or set the metadata file name.
 		/// </summary>
 		public string MetadataFileName
 		{
@@ -43,7 +43,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set the surface file name format.
+		///     Get or set the surface file name format.
 		/// </summary>
 		public string SurfaceFileNameFormat
 		{
@@ -57,7 +57,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set the texture size.
+		///     Get or set the texture size.
 		/// </summary>
 		public int TextureSize
 		{
@@ -71,7 +71,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set the glyph size.
+		///     Get or set the glyph size.
 		/// </summary>
 		public int GlyphSize
 		{
@@ -85,7 +85,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		}
 
 		/// <summary>
-		/// Get or set the glyph space.
+		///     Get or set the glyph space.
 		/// </summary>
 		public int GlyphSpace
 		{
@@ -98,16 +98,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 			}
 		}
 
-		#region  NPC Support
+		#region NPC Support
 
 		/// <summary>
-		/// Raises when property is changed.
+		///     Raises when property is changed.
 		/// </summary>
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Raises the <see cref="PropertyChanged"/> event.
+		///     Raises the <see cref="PropertyChanged" /> event.
 		/// </summary>
 		/// <param name="propertyName">The changed property name. Default value is the caller member name.</param>
 		[NotifyPropertyChangedInvocator]

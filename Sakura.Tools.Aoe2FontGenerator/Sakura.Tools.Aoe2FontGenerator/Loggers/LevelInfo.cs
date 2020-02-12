@@ -6,35 +6,55 @@ using JetBrains.Annotations;
 namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 {
 	/// <summary>
-	/// Used to recording all information of a single progress level for the <see cref="ProgressLogger"/>.
+	///     Used to recording all information of a single progress level for the <see cref="ProgressLogger" />.
 	/// </summary>
 	public class LevelInfo : INotifyPropertyChanged
 	{
+		#region Helper Methods
+
+		/// <summary>
+		///     Reset this instance to the empty state.
+		/// </summary>
+		public void Reset()
+		{
+			CurrentValue = 0;
+			MaxValue = 0;
+			CurrentStageStart = 0;
+			CurrentStageLength = 0;
+			Message = null;
+		}
+
+		#endregion
+
 		#region Properties
 
 		/// <summary>
-		/// Backend field for the <see cref="MaxValue"/> property.
+		///     Backend field for the <see cref="MaxValue" /> property.
 		/// </summary>
 		private double _maxValue;
+
 		/// <summary>
-		/// Backend field for the <see cref="CurrentValue"/> property.
+		///     Backend field for the <see cref="CurrentValue" /> property.
 		/// </summary>
 		private double _currentValue;
+
 		/// <summary>
-		/// Backend field for the <see cref="CurrentStageStart"/> property.
+		///     Backend field for the <see cref="CurrentStageStart" /> property.
 		/// </summary>
 		private double _currentStageStart;
+
 		/// <summary>
-		/// Backend field for the <see cref="CurrentStageLength"/> property.
+		///     Backend field for the <see cref="CurrentStageLength" /> property.
 		/// </summary>
 		private double _currentStageLength;
+
 		/// <summary>
-		/// Backend field for the <see cref="Message"/> property.
+		///     Backend field for the <see cref="Message" /> property.
 		/// </summary>
 		private string _message;
 
 		/// <summary>
-		/// The max value of this level. 
+		///     The max value of this level.
 		/// </summary>
 		public double MaxValue
 		{
@@ -48,7 +68,8 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 		}
 
 		/// <summary>
-		/// The current value of this level. If the value is <see cref="double.NaN"/>, it means the current progress cannot be determinable.
+		///     The current value of this level. If the value is <see cref="double.NaN" />, it means the current progress cannot be
+		///     determinable.
 		/// </summary>
 		public double CurrentValue
 		{
@@ -62,7 +83,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 		}
 
 		/// <summary>
-		/// The start value of the current stage.
+		///     The start value of the current stage.
 		/// </summary>
 		public double CurrentStageStart
 		{
@@ -76,7 +97,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 		}
 
 		/// <summary>
-		/// The max length of the current stage. It is used when  to calculated the the <see cref="CurrentValue"/>.
+		///     The max length of the current stage. It is used when  to calculated the the <see cref="CurrentValue" />.
 		/// </summary>
 		public double CurrentStageLength
 		{
@@ -90,7 +111,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 		}
 
 		/// <summary>
-		/// The message which describe the current level.
+		///     The message which describe the current level.
 		/// </summary>
 		public string Message
 		{
@@ -105,32 +126,16 @@ namespace Sakura.Tools.Aoe2FontGenerator.Loggers
 
 		#endregion
 
-		#region Helper Methods
+		#region NPC Support
 
 		/// <summary>
-		/// Reset this instance to the empty state.
-		/// </summary>
-		public void Reset()
-		{
-			CurrentValue = 0;
-			MaxValue = 0;
-			CurrentStageStart = 0;
-			CurrentStageLength = 0;
-			Message = null;
-		}
-
-		#endregion
-
-		#region  NPC Support
-
-		/// <summary>
-		/// Raises when property is changed.
+		///     Raises when property is changed.
 		/// </summary>
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Raises the <see cref="PropertyChanged"/> event.
+		///     Raises the <see cref="PropertyChanged" /> event.
 		/// </summary>
 		/// <param name="propertyName">The changed property name. Default value is the caller member name.</param>
 		[NotifyPropertyChangedInvocator]

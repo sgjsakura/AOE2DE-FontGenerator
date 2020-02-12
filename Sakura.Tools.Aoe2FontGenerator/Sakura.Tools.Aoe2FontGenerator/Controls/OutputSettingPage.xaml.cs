@@ -8,17 +8,18 @@ using Sakura.Tools.Aoe2FontGenerator.Properties;
 namespace Sakura.Tools.Aoe2FontGenerator.Controls
 {
 	/// <summary>
-	/// OutputSettingPage.xaml 的交互逻辑
+	///     OutputSettingPage.xaml 的交互逻辑
 	/// </summary>
 	public partial class OutputSettingPage : UserControl
 	{
+		public static readonly DependencyProperty DataProperty =
+			DependencyProperty.Register(nameof(Data), typeof(GenerationSetting), typeof(OutputSettingPage),
+				new FrameworkPropertyMetadata(default(GenerationSetting)));
+
 		public OutputSettingPage()
 		{
 			InitializeComponent();
 		}
-
-		public static readonly DependencyProperty DataProperty =
-			DependencyProperty.Register(nameof(Data), typeof(GenerationSetting), typeof(OutputSettingPage), new FrameworkPropertyMetadata(default(GenerationSetting)));
 
 		public GenerationSetting Data
 		{
@@ -37,9 +38,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 			using (dialog)
 			{
 				if (dialog.ShowDialog(Window.GetWindow(this)) == CommonFileDialogResult.Ok)
-				{
 					OutputDirectoryTextBox.Text = dialog.FileName;
-				}
 			}
 		}
 

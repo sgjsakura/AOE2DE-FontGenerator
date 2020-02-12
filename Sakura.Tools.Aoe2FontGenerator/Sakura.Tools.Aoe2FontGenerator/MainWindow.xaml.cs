@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using CSharpImageLibrary;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Sakura.Tools.Aoe2FontGenerator.Data;
 using Sakura.Tools.Aoe2FontGenerator.Models;
@@ -14,12 +13,12 @@ using WpfColorFontDialog;
 namespace Sakura.Tools.Aoe2FontGenerator
 {
 	/// <summary>
-	/// The main window of this application.
+	///     The main window of this application.
 	/// </summary>
 	public partial class MainWindow : Window
 	{
 		/// <summary>
-		/// Initialize a new instance of <see cref="MainWindow"/>.
+		///     Initialize a new instance of <see cref="MainWindow" />.
 		/// </summary>
 		public MainWindow()
 		{
@@ -43,12 +42,11 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				GlyphSpace = Settings.Default.DefaultGlyphSpace,
 				SurfaceFileNameFormat = Settings.Default.DefaultSurfaceFileFormat,
 				MetadataFileName = Settings.Default.DefaultMetaFileName,
-				OutputDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+				OutputDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 			};
 		}
 
 		#region Initialization Related Event Handler
-
 
 		private void MainWindow_OnInitialized(object sender, EventArgs e)
 		{
@@ -59,19 +57,23 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 		#region Data Properties
 
-		public static readonly DependencyProperty CharSetFontMappingsProperty = DependencyProperty.Register(nameof(CharSetFontMappings), typeof(ObservableCollection<CharSetFontMapping>), typeof(MainWindow), new FrameworkPropertyMetadata(null));
+		public static readonly DependencyProperty CharSetFontMappingsProperty =
+			DependencyProperty.Register(nameof(CharSetFontMappings), typeof(ObservableCollection<CharSetFontMapping>),
+				typeof(MainWindow), new FrameworkPropertyMetadata(null));
 
 		public ObservableCollection<CharSetFontMapping> CharSetFontMappings
 		{
-			get => (ObservableCollection<CharSetFontMapping>)GetValue(CharSetFontMappingsProperty);
+			get => (ObservableCollection<CharSetFontMapping>) GetValue(CharSetFontMappingsProperty);
 			set => SetValue(CharSetFontMappingsProperty, value);
 		}
 
-		public static readonly DependencyProperty GenerationSettingProperty = DependencyProperty.Register(nameof(GenerationSetting), typeof(GenerationSetting), typeof(MainWindow), new FrameworkPropertyMetadata(default(GenerationSetting)));
+		public static readonly DependencyProperty GenerationSettingProperty =
+			DependencyProperty.Register(nameof(GenerationSetting), typeof(GenerationSetting), typeof(MainWindow),
+				new FrameworkPropertyMetadata(default(GenerationSetting)));
 
 		public GenerationSetting GenerationSetting
 		{
-			get => (GenerationSetting)GetValue(GenerationSettingProperty);
+			get => (GenerationSetting) GetValue(GenerationSettingProperty);
 			set => SetValue(GenerationSettingProperty, value);
 		}
 
@@ -98,14 +100,16 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			if (CharSetFontMappings.Count == 0)
 			{
 				this.ShowMessage(this.FindResString("AppName"), this.FormatResString("NoMappingIsSetErrorTitle"),
-					this.FormatResString("NoMappingIsSetErrorDetail"), TaskDialogStandardIcon.Error, TaskDialogStandardButtons.Ok);
+					this.FormatResString("NoMappingIsSetErrorDetail"), TaskDialogStandardIcon.Error,
+					TaskDialogStandardButtons.Ok);
 				return;
 			}
 
 			if (CharSetFontMappings.Any(item => item.Font == null || item.CharSet == null))
 			{
 				this.ShowMessage(this.FindResString("AppName"), this.FormatResString("MappingInvalidErrorTitle"),
-					this.FormatResString("MappingInvalidErrorDetail"), TaskDialogStandardIcon.Error, TaskDialogStandardButtons.Ok);
+					this.FormatResString("MappingInvalidErrorDetail"), TaskDialogStandardIcon.Error,
+					TaskDialogStandardButtons.Ok);
 
 				return;
 			}
