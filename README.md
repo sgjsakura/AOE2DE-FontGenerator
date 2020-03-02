@@ -16,19 +16,19 @@ To use this tools to replace the in-game font, please follow these steps:
 4. Start game and you will see the effect in the game lobby, tech-tree and game-playing UI. Note the start screen is not affected.
 5. If you'd like to adjust the display effect or change fonts, repeat the above steps again.
 
-## Frequently QnA
+## Frequently Q&A
 
-#### The generation is aborted with error displayed
+#### The generation is aborted with an error displayed
 
-Please read the error message and operate follow the instuction. If you still have problems, you may submit new issues in this project.
+Please read the error message and operate following the instruction. If you still have any problem, you may submit a new issue in this project.
 
-#### The applicaion carshed
+#### The applicaion carshs
 
-Please submit a new issue with detailed reproduce step to help the author improve this tool.
+Please submit a new issue with detailed reproducing steps to help the author improve this tool.
 
 #### The glyphs are too large/small in the game
 
-This is caused by your selected typeface not correctly response with glyphing size requests. Please enter the detailed mapping setting panel, and try to adjust the "glyph scaling ratio" value to resize the generated glyphs. Note change the global glyph size will not work for this problem.
+This is caused by your selected typeface does not correctly response with glyphing size requests. Please enter the detailed mapping setting panel, and try to adjust the "glyph scaling ratio" value to resize the generated glyphs. Note that changing the global glyph size will not work for this problem.
 
 #### The glyphs are not vertical algined with the game UI
 
@@ -36,8 +36,8 @@ This is caused by your selected typeface has an incorrect baseline value. Please
 
 #### Some glyphs lookes chaotic
 
-This is caused by the glyph size too large (may not obvious when displaying) and the Video RAM is damaged when reading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
+This is caused by the glyph size is too large (although may not obvious when displaying) and the Video RAM is damaged when loading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
 
 #### Some glyphs become a question mark
 
-This is caused by a glyph is missing. Your generated font file does not contain this char and thus the game replace the glyph with a question mark. Please consider to change the font of add a secondary font to supply missing chareactors.
+This is caused by a glyph is missing. Your generated font file does not contain this character and thus the game replace this glyph with a question mark. Please consider to change the font source or add a secondary font source to supply missing chareacters.
