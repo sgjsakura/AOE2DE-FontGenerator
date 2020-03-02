@@ -206,6 +206,9 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			{
 				currentVisual = new DrawingVisual();
 				drawingContext = currentVisual.RenderOpen();
+
+				//  Background overlay
+				drawingContext.DrawRectangle(Brushes.Black, null, new System.Windows.Rect(0, 0, Setting.TextureSize, Setting.TextureSize));
 			}
 
 			#endregion
@@ -254,7 +257,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 				if (totalWidth > atlasWidth || totalHeight > atlasHeight)
 					throw new InvalidOperationException(App.Current.FormatResString("GlyphSizeTooLargeErrorMessage",
-						(char) g.CodePrint, g.Typeface.FamilyNames[CultureInfo.CurrentUICulture]));
+						(char)g.CodePrint, g.Typeface.FamilyNames[CultureInfo.CurrentUICulture]));
 
 				if (currentX + space + totalWidth <= atlasWidth && currentY + space + totalHeight <= atlasHeight)
 				{
@@ -284,21 +287,21 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				{
 					Atlas = visualList.Count,
 
-					W = (float) totalWidth,
-					H = (float) totalHeight,
+					W = (float)totalWidth,
+					H = (float)totalHeight,
 
-					U = (float) (currentX / atlasWidth),
-					V = (float) (currentY / atlasHeight),
+					U = (float)(currentX / atlasWidth),
+					V = (float)(currentY / atlasHeight),
 
-					S = (float) ((currentX + totalWidth) / atlasWidth),
-					T = (float) ((currentY + totalHeight) / atlasHeight),
+					S = (float)((currentX + totalWidth) / atlasWidth),
+					T = (float)((currentY + totalHeight) / atlasHeight),
 
-					X0 = (float) (leftSideBearing * emSize),
-					Y0 = (float) (geometry.Bounds.Top + baseline * emSize),
+					X0 = (float)(leftSideBearing * emSize),
+					Y0 = (float)(geometry.Bounds.Top + baseline * emSize),
 
-					HAdvance = (float) (advancedWidth * emSize),
+					HAdvance = (float)(advancedWidth * emSize),
 
-					CodePrint = (ushort) g.CodePrint
+					CodePrint = (ushort)g.CodePrint
 				};
 
 				charInfoList.Add(charInfo);
@@ -315,7 +318,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				geometry.Transform = transform;
 
 				// Draw
-				drawingContext.DrawGeometry(Brushes.White, new Pen(Brushes.Black, 1), geometry);
+				drawingContext.DrawGeometry(Brushes.White, null, geometry);
 
 				// Advance the start location
 				currentX += totalWidth + space;
@@ -385,7 +388,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				// Page count
 				binaryWriter.Write(pageCount, Endianness.LittleEndian);
 				// Source font size
-				binaryWriter.Write((float) Setting.GlyphSize);
+				binaryWriter.Write((float)Setting.GlyphSize);
 
 				foreach (var c in boxInfo)
 				{
@@ -404,7 +407,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				for (var i = 0; i < boxInfo.Count; i++)
 				{
 					binaryWriter.Write(boxInfo[i].CodePrint, Endianness.LittleEndian);
-					binaryWriter.Write((ushort) i, Endianness.LittleEndian);
+					binaryWriter.Write((ushort)i, Endianness.LittleEndian);
 				}
 			}
 
@@ -437,7 +440,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 				foreach (var c in boxInfo)
 					writer.WriteLine(App.Current.FormatResString("CharInfoLineFormat",
-						(char) c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
+						(char)c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
 
 				writer.Close();
 			}
