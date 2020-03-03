@@ -9,6 +9,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 	/// <summary>
 	///     Defines a charset and a specified rendering font.
 	/// </summary>
+	[Serializable]
 	public class CharSetFontMapping : INotifyPropertyChanged
 	{
 		/// <summary>

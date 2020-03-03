@@ -63,14 +63,27 @@
 		<Grid x:Uid="ActionGrid" Name="ActionGrid" Grid.Row="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Uid="ColumnDefinition_1" Width="Auto" />
+				<ColumnDefinition x:Uid="ColumnDefinition_4" Width="Auto" SharedSizeGroup="SaveLoadButtons" />
+				<ColumnDefinition x:Uid="ColumnDefinition_5" Width="Auto" SharedSizeGroup="SaveLoadButtons"  />
 				<ColumnDefinition x:Uid="ColumnDefinition_2" />
 				<ColumnDefinition x:Uid="ColumnDefinition_3" Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Button x:Uid="StartButton" Margin="3" Grid.Column="0" Name="StartButton" Click="StartButton_OnClick">_Start Generation</Button>
-			<Button x:Uid="OpenOutputDirButton" Margin="3" Grid.Column="2" Name="OpenOutputDirButton"
+			<Button x:Uid="StartButton" Margin="3" Grid.Column="0" Name="StartButton" Click="StartButton_OnClick">
+				<controls:ImageItem x:Uid="controls:ImageItem_1" Image="/Images/Run_16x.png"  Text="_Start Generation" />
+			</Button>
+
+			<Button x:Uid="SaveButton" Margin="3" Grid.Column="1" Name="SaveButton" Click="SaveButton_OnClick">
+				<controls:ImageItem x:Uid="controls:ImageItem_2" Image="/Images/Save_16x.png" Text="Save Project to File" />
+			</Button>
+			<Button x:Uid="LoadButton" Margin="3" Grid.Column="2" Name="LoadButton" Click="LoadButton_OnClick">
+				<controls:ImageItem x:Uid="controls:ImageItem_3" Image="/Images/Open_16x.png" Text="Load Project from File" />
+			</Button>
+
+
+			<Button x:Uid="OpenOutputDirButton" Margin="3" Grid.Column="4" Name="OpenOutputDirButton"
 			        Click="OpenOutputDirButton_OnClick">
-				_Open Output Directory
+				<controls:ImageItem x:Uid="controls:ImageItem_4" Image="/Images/OpenFolder_16x.png"  Text="_Open Output Directory" /> 
 			</Button>
 
 		</Grid>

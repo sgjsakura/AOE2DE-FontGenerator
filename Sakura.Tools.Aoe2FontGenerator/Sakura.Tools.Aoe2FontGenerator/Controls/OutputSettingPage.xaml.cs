@@ -23,7 +23,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 
 		public GenerationSetting Data
 		{
-			get => (GenerationSetting) GetValue(DataProperty);
+			get => (GenerationSetting)GetValue(DataProperty);
 			set => SetValue(DataProperty, value);
 		}
 
@@ -44,14 +44,24 @@ namespace Sakura.Tools.Aoe2FontGenerator.Controls
 
 		private void SetAsDefaultButton_OnClick(object sender, RoutedEventArgs e)
 		{
-			MetaDataFileNameTextBox.Text = Settings.Default.DefaultMetaFileName;
-			SurfaceFileFormatTextBox.Text = Settings.Default.DefaultSurfaceFileFormat;
+			if (Data == null)
+			{
+				return;
+			}
+
+			Data.MetadataFileName = Settings.Default.DefaultMetaFileName;
+			Data.SurfaceFileNameFormat = Settings.Default.DefaultSurfaceFileFormat;
 		}
 
 		private void SetAsDefaultSansSerifButton_OnClick(object sender, RoutedEventArgs e)
 		{
-			MetaDataFileNameTextBox.Text = Settings.Default.DefaultSansSerifMetaFileName;
-			SurfaceFileFormatTextBox.Text = Settings.Default.DefaultSansSerifSurfaceFileFormat;
+			if (Data == null)
+			{
+				return;
+			}
+
+			Data.MetadataFileName = Settings.Default.DefaultSansSerifMetaFileName;
+			Data.SurfaceFileNameFormat = Settings.Default.DefaultSansSerifSurfaceFileFormat;
 		}
 	}
 }

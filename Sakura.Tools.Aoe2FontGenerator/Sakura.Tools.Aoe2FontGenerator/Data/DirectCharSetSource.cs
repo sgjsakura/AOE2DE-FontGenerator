@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sakura.Tools.Aoe2FontGenerator.Data
@@ -6,6 +7,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	/// <summary>
 	///     Defines the charset source from a string directly.
 	/// </summary>
+	[Serializable]
 	public class DirectCharSetSource : CharSetSource
 	{
 		/// <summary>

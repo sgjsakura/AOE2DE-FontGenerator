@@ -7,6 +7,10 @@ using Sakura.Tools.Aoe2FontGenerator.Utilities;
 
 namespace Sakura.Tools.Aoe2FontGenerator.Data
 {
+	/// <summary>
+	/// Represents as a char set source with is specified by the Unicode code print range.
+	/// </summary>
+	[Serializable]
 	public class RangeCharSetSource : CharSetSource
 	{
 		/// <summary>

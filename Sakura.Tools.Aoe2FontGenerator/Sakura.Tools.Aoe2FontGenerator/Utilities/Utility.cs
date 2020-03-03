@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Globalization;
+using System.Runtime.Serialization;
 using System.Windows.Markup;
 using System.Windows.Media;
 using JetBrains.Annotations;
@@ -74,6 +76,40 @@ namespace Sakura.Tools.Aoe2FontGenerator.Utilities
 		public static string GetBaseMessage(this Exception exception)
 		{
 			return exception.GetBaseException().Message;
+		}
+
+
+		/// <summary>
+		/// Deserialize a value from a serialization stream and convert it to the actual value.
+		/// </summary>
+		/// <typeparam name="TConverter">The type of the converter with is used to help convert source value to store values.</typeparam>
+		/// <typeparam name="TStore">The store type with can be used to store data in the serialization stream.</typeparam>
+		/// <typeparam name="TResult">The actual value type.</typeparam>
+		/// <param name="info">The <see cref="SerializationInfo"/> instance.</param>
+		/// <param name="name">The name of the value.</param>
+		/// <returns>The converted actual value.</returns>
+		public static TResult GetValueWithConverter<TConverter, TStore, TResult>(this SerializationInfo info, string name)
+			where TConverter : TypeConverter, new()
+		{
+			var value = info.GetValue(name, typeof(TStore));
+			var converter = new TConverter();
+			return (TResult)converter.ConvertFrom(value);
+		}
+
+		/// <summary>
+		/// Serialize a value into the serialization stream with the specified type converter.
+		/// </summary>
+		/// <typeparam name="TConverter">The type of the converter with is used to help convert source value to store values.</typeparam>
+		/// <typeparam name="TStore">The store type with can be used to store data in the serialization stream.</typeparam>
+		/// <param name="info">The <see cref="SerializationInfo"/> instance.</param>
+		/// <param name="name">The name of the value.</param>
+		/// <param name="value">The actual value.</param>
+		public static void AddValueWithConverter<TConverter, TStore>(this SerializationInfo info, string name, object value)
+		where TConverter : TypeConverter, new()
+		{
+			var converter = new TConverter();
+			var realValue = converter.ConvertTo(value, typeof(TStore));
+			info.AddValue(name, realValue);
 		}
 	}
 }

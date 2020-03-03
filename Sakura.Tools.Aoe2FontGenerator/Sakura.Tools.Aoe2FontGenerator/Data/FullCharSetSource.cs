@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sakura.Tools.Aoe2FontGenerator.Data
 {
 	/// <summary>
 	///     Represent as a full charset source, which covers all supported unicode code print range (0-65535).
 	/// </summary>
+	[Serializable]
 	public class FullCharSetSource : CharSetSource
 	{
 		/// <inheritdoc />

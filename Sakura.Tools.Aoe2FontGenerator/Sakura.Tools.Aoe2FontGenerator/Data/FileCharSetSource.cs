@@ -10,6 +10,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	/// <summary>
 	///     Defines the charset source from a text file.
 	/// </summary>
+	[Serializable]
 	public class FileCharSetSource : CharSetSource
 	{
 		/// <summary>

@@ -239,11 +239,11 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				var leftSideBearing = g.Typeface.LeftSideBearings[index];
 
 				// Calculate real size and baseline
-				var emSize = Setting.GlyphSize * g.Setting.GlyphSizeRatio;
-				var baseline = g.Typeface.Baseline + g.Setting.BaselineOffsetRatio * g.Typeface.Height;
+				var emSize = (Setting.GlyphSize * g.Setting.GlyphSizeRatio);
+				var baseline = (emSize * (g.Typeface.Baseline + g.Setting.BaselineOffsetRatio * g.Typeface.Height));
 
 				// Extract geometry and get outline size
-				var geometry = g.Typeface.GetGlyphOutline(index, emSize, 0);
+				var geometry = g.Typeface.GetGlyphOutline(index, emSize, emSize);
 
 				var totalWidth = geometry.Bounds.Width;
 				var totalHeight = geometry.Bounds.Height;
@@ -297,7 +297,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 					T = (float)((currentY + totalHeight) / atlasHeight),
 
 					X0 = (float)(leftSideBearing * emSize),
-					Y0 = (float)(geometry.Bounds.Top + baseline * emSize),
+					Y0 = (float)(geometry.Bounds.Top + baseline),
 
 					HAdvance = (float)(advancedWidth * emSize),
 
@@ -318,7 +318,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				geometry.Transform = transform;
 
 				// Draw
-				drawingContext.DrawGeometry(Brushes.White, null, geometry);
+				drawingContext.DrawGeometry(Brushes.White, new Pen(Brushes.Gray, 1.5) {  }, geometry);
 
 				// Advance the start location
 				currentX += totalWidth + space;
@@ -337,6 +337,16 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				App.Current.FormatResString("DrawingGlyphsFinished", visualList.Count, charInfoList.Count));
 			return (visualList, charInfoList);
 		}
+		
+		/// <summary>
+		/// Try to apply the geometry to get integer size.
+		/// </summary>
+		/// <param name="geometry"></param>
+		private void TrySetIntegerBounds(Geometry geometry)
+		{
+
+		}
+
 
 		/// <summary>
 		///     Try to save a drawn visual to the disk location.
@@ -424,26 +434,24 @@ namespace Sakura.Tools.Aoe2FontGenerator
 		/// <param name="pageCount">Total atlas count.</param>
 		private void SaveDebugBoxTextFile(IReadOnlyCollection<GlyphInfo> boxInfo, int pageCount)
 		{
-			using (var writer =
-				File.CreateText(Path.Combine(Setting.OutputDirectory, string.Empty, $"{Setting.MetadataFileName}.txt")))
-			{
-				writer.WriteLine(App.Current.FormatResString("TextureSizeLineFormat", Setting.TextureSize));
-				writer.WriteLine(App.Current.FormatResString("GlyphSizeLineFormat", Setting.GlyphSize));
-				writer.WriteLine(App.Current.FormatResString("GlyphSpaceLineFormat", Setting.GlyphSpace));
+			using var writer =
+				File.CreateText(Path.Combine(Setting.OutputDirectory, string.Empty, $"{Setting.MetadataFileName}.txt"));
+			writer.WriteLine(App.Current.FormatResString("TextureSizeLineFormat", Setting.TextureSize));
+			writer.WriteLine(App.Current.FormatResString("GlyphSizeLineFormat", Setting.GlyphSize));
+			writer.WriteLine(App.Current.FormatResString("GlyphSpaceLineFormat", Setting.GlyphSpace));
 
-				writer.WriteLine();
+			writer.WriteLine();
 
-				writer.WriteLine(App.Current.FormatResString("CharCountLineFormat", boxInfo.Count));
-				writer.WriteLine(App.Current.FormatResString("AtlasCountLineFormat", pageCount));
+			writer.WriteLine(App.Current.FormatResString("CharCountLineFormat", boxInfo.Count));
+			writer.WriteLine(App.Current.FormatResString("AtlasCountLineFormat", pageCount));
 
-				writer.WriteLine();
+			writer.WriteLine();
 
-				foreach (var c in boxInfo)
-					writer.WriteLine(App.Current.FormatResString("CharInfoLineFormat",
-						(char)c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
+			foreach (var c in boxInfo)
+				writer.WriteLine(App.Current.FormatResString("CharInfoLineFormat",
+					(char)c.CodePrint, c.W, c.H, c.U, c.V, c.S, c.T, c.Atlas, c.X0, c.Y0, c.HAdvance));
 
-				writer.Close();
-			}
+			writer.Close();
 		}
 
 		/// <summary>

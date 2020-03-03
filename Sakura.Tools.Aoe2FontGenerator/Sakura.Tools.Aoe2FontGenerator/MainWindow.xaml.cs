@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Sakura.Tools.Aoe2FontGenerator.Data;
@@ -63,7 +65,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 		public ObservableCollection<CharSetFontMapping> CharSetFontMappings
 		{
-			get => (ObservableCollection<CharSetFontMapping>) GetValue(CharSetFontMappingsProperty);
+			get => (ObservableCollection<CharSetFontMapping>)GetValue(CharSetFontMappingsProperty);
 			set => SetValue(CharSetFontMappingsProperty, value);
 		}
 
@@ -73,7 +75,7 @@ namespace Sakura.Tools.Aoe2FontGenerator
 
 		public GenerationSetting GenerationSetting
 		{
-			get => (GenerationSetting) GetValue(GenerationSettingProperty);
+			get => (GenerationSetting)GetValue(GenerationSettingProperty);
 			set => SetValue(GenerationSettingProperty, value);
 		}
 
@@ -121,11 +123,65 @@ namespace Sakura.Tools.Aoe2FontGenerator
 			App.Current.FontGenerator.Generate(CharSetFontMappings, GenerationSetting);
 		}
 
+		private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var dialog = new CommonSaveFileDialog
+			{
+				AlwaysAppendDefaultExtension = true,
+				DefaultExtension = ".aoe2fgp"
+			};
+			dialog.Filters.Add(new CommonFileDialogFilter(this.FindResString("ProjectFilesFilter"), "*.aoe2fgp"));
+			dialog.Filters.Add(new CommonFileDialogFilter(this.FindResString("AllFilesFilter"), "*.*"));
+
+			if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+			{
+				return;
+			}
+
+			try
+			{
+				using var file = File.Create(dialog.FileName);
+				var formatter = new BinaryFormatter();
+				formatter.Serialize(file, CharSetFontMappings);
+				formatter.Serialize(file, GenerationSetting);
+			}
+			catch (Exception ex)
+			{
+				this.ShowError(this.FindResString("CannotOpenProjectFileTitle"), this.FindResString("CannotOpenProjectFileDetail"), ex);
+			}
+
+		}
+
+		private void LoadButton_OnClick(object sender, RoutedEventArgs e)
+		{
+			var dialog = new CommonOpenFileDialog();
+			dialog.Filters.Add(new CommonFileDialogFilter(this.FindResString("ProjectFilesFilter"), "*.aoe2fgp"));
+			dialog.Filters.Add(new CommonFileDialogFilter(this.FindResString("AllFilesFilter"), "*.*"));
+
+			if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+			{
+				return;
+			}
+
+			try
+			{
+				using var file = File.OpenRead(dialog.FileName);
+				var formatter = new BinaryFormatter();
+				CharSetFontMappings = (ObservableCollection<CharSetFontMapping>)formatter.Deserialize(file);
+				GenerationSetting = (Models.GenerationSetting)formatter.Deserialize(file);
+			}
+			catch (Exception ex)
+			{
+				this.ShowError(this.FindResString("CannotSaveProjectFileTitle"), this.FindResString("CannotSaveProjectFileDetail"), ex);
+			}
+		}
+
 		private void ProgressLogger_Completed(object sender, EventArgs e)
 		{
 			LayoutRoot.GoToElementState(NormalState, true);
 		}
 
 		#endregion
+
 	}
 }

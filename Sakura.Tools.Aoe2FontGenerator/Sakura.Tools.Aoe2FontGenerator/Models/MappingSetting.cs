@@ -9,6 +9,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 	/// <summary>
 	///     Represents as the additional setting for a <see cref="CharSetFontMapping" />.
 	/// </summary>
+	[Serializable]
 	public class MappingSetting : INotifyPropertyChanged
 	{
 		/// <summary>

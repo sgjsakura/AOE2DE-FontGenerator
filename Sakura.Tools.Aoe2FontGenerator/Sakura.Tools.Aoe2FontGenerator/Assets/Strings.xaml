@@ -5,7 +5,7 @@
 
 	<sys:String x:Uid="sys:String_1" x:Key="MappingSettingHeaderStringFormat">Additional Setting - Font ratio: {0}, Baseline Offset: {1}</sys:String>
 
-	<!-- #region Font Generator Message -->
+	<!-- #region Font Generator Messages -->
 
 	<sys:String x:Uid="sys:String_2" x:Key="WorkerIsBusyError">The worker is working.</sys:String>
 
@@ -45,9 +45,21 @@
 
 	<!-- #endregion -->
 
-	<sys:String x:Uid="sys:String_27" x:Key="OpenOutputDirectoryErrorTitle">Cannot open output directory</sys:String>
-	<sys:String x:Uid="sys:String_28" x:Key="OpenOutputDirectoryErrorDetail">Maybe you set an invalid output directory in the output setting panel, or you do not has permission to open it.</sys:String>
+	<!-- #region Operation Error Messages -->
 
+	<sys:String x:Uid="sys:String_27" x:Key="OpenOutputDirectoryErrorTitle">Cannot open output directory</sys:String>
+	<sys:String x:Uid="sys:String_28" x:Key="OpenOutputDirectoryErrorDetail">Maybe you set an invalid output directory in the output setting panel, or you do not have permission to open it.</sys:String>
+
+	<sys:String x:Uid="sys:String_53" x:Key="CannotOpenProjectFileTitle">Cannot open project file</sys:String>
+	<sys:String x:Uid="sys:String_54" x:Key="CannotOpenProjectFileDetail">Maybe the file is incorrect or damages, or you do not have permission to open it.</sys:String>
+
+	<sys:String x:Uid="sys:String_55" x:Key="CannotSaveProjectFileTitle">Cannot save project file</sys:String>
+	<sys:String x:Uid="sys:String_56" x:Key="CannotSaveProjectFileDetail">Maybe the file is currently in use, or you do not have permission to write it.</sys:String>
+
+	<!-- #endregion -->
+
+
+	<!-- #region Setting Error Messages -->
 
 	<sys:String x:Uid="sys:String_29" x:Key="FileFontErrorMessage">Cannot open font file. Please make sure you provided the correct file path and you have permission to read it.</sys:String>
 	<sys:String x:Uid="sys:String_30" x:Key="FileCharSetErrorMessage">Cannot open charset file. Please make sure you provided the correct file path and you have permission to read it.</sys:String>
@@ -60,6 +72,8 @@
 
 	<sys:String x:Uid="sys:String_36" x:Key="MappingInvalidErrorTitle">Charset mapping setting is invalid</sys:String>
 	<sys:String x:Uid="sys:String_37" x:Key="MappingInvalidErrorDetail">Please set both the font source and the charset source for all mappings before starting the font generation.</sys:String>
+
+	<!-- #endregion -->
 
 	<!-- #region General Messages -->
 
@@ -77,6 +91,7 @@
 	<sys:String x:Uid="sys:String_45" x:Key="TextFilesFilter">Text Files</sys:String>
 	<sys:String x:Uid="sys:String_46" x:Key="FontFilesFilter">Font Files</sys:String>
 	<sys:String x:Uid="sys:String_47" x:Key="AllFilesFilter">All Files</sys:String>
+	<sys:String x:Uid="sys:String_57" x:Key="ProjectFilesFilter">Project Files</sys:String>
 
 	<!-- #endregion -->
 

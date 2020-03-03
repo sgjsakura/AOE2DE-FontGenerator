@@ -9,6 +9,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	/// <summary>
 	///     Define the font source used to generate font atlas.
 	/// </summary>
+	[Serializable]
 	public abstract class FontSource : INotifyPropertyChanged
 	{
 		/// <summary>

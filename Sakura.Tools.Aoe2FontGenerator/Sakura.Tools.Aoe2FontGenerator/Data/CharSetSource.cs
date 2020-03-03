@@ -9,6 +9,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	/// <summary>
 	///     Define the charset which atlas should included.
 	/// </summary>
+	[Serializable]
 	public abstract class CharSetSource : INotifyPropertyChanged
 	{
 		/// <summary>

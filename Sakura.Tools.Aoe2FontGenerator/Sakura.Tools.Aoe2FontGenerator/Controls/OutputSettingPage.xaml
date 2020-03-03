@@ -64,11 +64,11 @@
 
 						<Label x:Uid="Label_2" Margin="3" Grid.Row="0" Grid.Column="0">_Metadata File Name:</Label>
 						<TextBox x:Uid="MetaDataFileNameTextBox" Margin="3" Grid.Row="0" Grid.Column="1" Name="MetaDataFileNameTextBox"
-						         Text="{Binding Path=MetadataFileName}" />
+						         Text="{Binding Path=MetadataFileName, Mode=TwoWay}" />
 
 						<Label x:Uid="Label_3" Margin="3" Grid.Row="1" Grid.Column="0">_Surface File Name Format:</Label>
 						<TextBox x:Uid="SurfaceFileFormatTextBox" Margin="3" Grid.Row="1" Grid.Column="1" Name="SurfaceFileFormatTextBox"
-						         Text="{Binding Path=SurfaceFileNameFormat}" />
+						         Text="{Binding Path=SurfaceFileNameFormat, Mode=TwoWay}" />
 
 					</Grid>
 

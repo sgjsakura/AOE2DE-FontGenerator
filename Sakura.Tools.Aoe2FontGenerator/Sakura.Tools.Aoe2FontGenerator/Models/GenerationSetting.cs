@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 
 namespace Sakura.Tools.Aoe2FontGenerator.Models
 {
+	[Serializable]
 	public class GenerationSetting : INotifyPropertyChanged
 	{
 		private int _glyphSize;

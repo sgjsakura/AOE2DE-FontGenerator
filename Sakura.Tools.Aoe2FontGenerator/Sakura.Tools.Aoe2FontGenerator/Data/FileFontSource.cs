@@ -7,6 +7,7 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	/// <summary>
 	///     Using a font provided by a physical file.
 	/// </summary>
+	[Serializable]
 	public class FileFontSource : FontSource
 	{
 		private string _fontFilePath;
