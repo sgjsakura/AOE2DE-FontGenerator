@@ -121,6 +121,11 @@ Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_18:System.Windo
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_18:System.Windows.FrameworkElement.VerticalAlignment,None,FALSE,TRUE,,Center
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_18:System.Windows.FrameworkElement.Margin,None,FALSE,TRUE,,"3,0,0,0"
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_18:System.Windows.Controls.TextBlock.Foreground,None,FALSE,TRUE,,\#FF808080
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_19:System.Windows.Controls.TextBlock.$Content,Text,TRUE,TRUE,,#TextBlock_20; #TextBlock_13;
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_20:System.Windows.Controls.TextBlock.$Content,Text,TRUE,TRUE,,文本文件
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_21:System.Windows.Controls.TextBlock.$Content,Text,TRUE,TRUE,,
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_21:System.Windows.FrameworkElement.Margin,None,FALSE,TRUE,,"3,0,0,0"
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,TextBlock_21:System.Windows.Controls.TextBlock.TextTrimming,None,FALSE,TRUE,,CharacterEllipsis
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeBasedDataTemplateSelector_1:Sakura.Tools.Aoe2FontGenerator.Converters.TypeBasedDataTemplateSelector.$Content,None,TRUE,TRUE,,#converters:TypeDataTemplatePair_1;#converters:TypeDataTemplatePair_2;
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_1:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_2:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
@@ -128,6 +133,7 @@ Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeBasedDataT
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_3:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_4:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
 Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_5:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
+Sakura.Tools.Aoe2FontGenerator.g.resources:styles.baml,converters:TypeDataTemplatePair_6:Sakura.Tools.Aoe2FontGenerator.Converters.TypeDataTemplatePair.$Content,None,TRUE,TRUE,,
 Sakura.Tools.Aoe2FontGenerator.g.resources:strings.baml,sys:String_1:System.String.$Content,None,TRUE,TRUE,,附加设置 - 字形尺寸比例：{0}，基线偏移比例：{1}
 Sakura.Tools.Aoe2FontGenerator.g.resources:strings.baml,sys:String_2:System.String.$Content,None,TRUE,TRUE,,处理程序还在运行。
 Sakura.Tools.Aoe2FontGenerator.g.resources:strings.baml,sys:String_3:System.String.$Content,None,TRUE,TRUE,,生成已启动，正在初始化……

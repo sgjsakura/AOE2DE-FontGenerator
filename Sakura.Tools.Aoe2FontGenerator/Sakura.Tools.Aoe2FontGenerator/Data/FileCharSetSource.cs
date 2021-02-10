@@ -14,9 +14,23 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 	public class FileCharSetSource : CharSetSource
 	{
 		/// <summary>
-		///     Get or set the file path.
+		///     Backend field for <see cref="FilePath" /> property.
 		/// </summary>
-		public string FilePath { get; set; }
+		private string _filePath;
+
+		/// <summary>
+		///     Get or set the string which contains path to text file with source chars.
+		/// </summary>
+		public string FilePath
+		{
+		    get => _filePath;
+		    set
+		    {
+		        if (value == _filePath) return;
+		        _filePath = value;
+		        OnPropertyChanged();
+		    }
+		}
 
 		public override IEnumerable<int> GetValidCodePrints(IEnumerable<int> fontCodePrints)
 		{
@@ -32,4 +46,5 @@ namespace Sakura.Tools.Aoe2FontGenerator.Data
 			}
 		}
 	}
+
 }

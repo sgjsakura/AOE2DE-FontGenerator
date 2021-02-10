@@ -106,8 +106,8 @@
 
 						<Label x:Uid="Label_3" Margin="3" Grid.Column="0">Text _File Path:</Label>
 						<TextBox x:Uid="TextFilePathTextBox" Margin="3" Grid.Column="1" Name="TextFilePathTextBox"
-						         Text="{Binding Path=FilePath}" />
-						<Button x:Uid="BrowseTextFileButton" Margin="3" Grid.Column="2" Name="BrowseTextFileButton"
+						         Text="{Binding Path=FilePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        <Button x:Uid="BrowseTextFileButton" Margin="3" Grid.Column="2" Name="BrowseTextFileButton"
 						        Click="BrowseTextFileButton_OnClick">
 							Browse...
 						</Button>
