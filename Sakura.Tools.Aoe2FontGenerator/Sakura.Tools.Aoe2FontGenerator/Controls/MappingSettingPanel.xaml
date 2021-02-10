@@ -68,13 +68,41 @@
 						        TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
 						<TextBox x:Uid="TextBox_2" Margin="3" Grid.Column="2" Width="100"
 						         Text="{Binding Path=BaselineOffsetRatio, Mode=TwoWay}" />
+					</Grid>
+
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox x:Uid="GroupBox_3" Margin="3">
+				<GroupBox.Header>
+					<controls:ImageItem x:Uid="controls:ImageItem_3" Image="/Images/Outline_16x.png"
+					                    Text="Glyph Outline Thickness" />
+				</GroupBox.Header>
+				<StackPanel x:Uid="StackPanel_4" Orientation="Vertical">
+
+					<TextBlock x:Uid="TextBlock_4" Style="{StaticResource DescriptionTextBlockStyle}" HorizontalAlignment="Stretch" Margin="0,0,22,0">The fonts can optionally be generated with a baked-in outline of variable width. If outline is used the font will take up a bit more texture space.</TextBlock>
+
+					<Grid x:Uid="Grid_4">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition x:Uid="ColumnDefinition_7" Width="Auto" SharedSizeGroup="Labels" />
+							<ColumnDefinition x:Uid="ColumnDefinition_8" />
+							<ColumnDefinition x:Uid="ColumnDefinition_9" Width="Auto" SharedSizeGroup="Buttons" />
+						</Grid.ColumnDefinitions>
+
+						<Label x:Uid="Label_3" Margin="3" Grid.Column="0">Glyph outline thickness:</Label>
+						<Slider x:Uid="GlyphOutlineSlider" Name="GlyphOutlineSlider" Margin="3" Grid.Column="1"
+						        VerticalAlignment="Center" Maximum="2.5"
+						        Value="{Binding Path=GlyphOutlineThickness, Mode=TwoWay}" AutoToolTipPrecision="2"
+						        TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.05" />
+						<TextBox x:Uid="TextBox_3" Margin="3" Grid.Column="2" Width="100"
+						         Text="{Binding Path=GlyphOutlineThickness, Mode=TwoWay}" />
 
 					</Grid>
 
 				</StackPanel>
 
-
 			</GroupBox>
+
 
 		</StackPanel>
 

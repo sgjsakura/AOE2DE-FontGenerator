@@ -23,6 +23,12 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 		private double _glyphSizeRatio = 1;
 
 		/// <summary>
+ 		///     Backend field for the <see cref="GlyphOutlineThickness" /> property.
+		/// </summary>
+		private double _glyphOutlineThickness = 0;
+
+		/// <summary>
+
 		///     Value used to change the actual glyph size compared with the excepted glyph size.
 		/// </summary>
 		[Range(0, double.MaxValue)]
@@ -51,6 +57,20 @@ namespace Sakura.Tools.Aoe2FontGenerator.Models
 				OnPropertyChanged();
 			}
 		}
+		/// <summary>
+		///     Value used to change the actual glyph outline thickness.
+		/// </summary>
+		[Range(0, 2.5)]
+		public double GlyphOutlineThickness
+		{
+			get => _glyphOutlineThickness;
+			set
+			{
+					if (value.Equals(_glyphOutlineThickness)) return;
+					_glyphOutlineThickness = value;
+					OnPropertyChanged();
+		    }
+}
 
 
 		#region NPC Support

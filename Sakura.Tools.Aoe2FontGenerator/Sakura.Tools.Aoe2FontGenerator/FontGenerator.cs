@@ -9,6 +9,8 @@ using JetBrains.Annotations;
 using Sakura.Tools.Aoe2FontGenerator.Loggers;
 using Sakura.Tools.Aoe2FontGenerator.Models;
 using Sakura.Tools.Aoe2FontGenerator.Utilities;
+using Sakura.Tools.Aoe2FontGenerator.Properties;
+
 
 namespace Sakura.Tools.Aoe2FontGenerator
 {
@@ -245,8 +247,9 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				// Extract geometry and get outline size
 				var geometry = g.Typeface.GetGlyphOutline(index, emSize, emSize);
 
-				var totalWidth = geometry.Bounds.Width;
-				var totalHeight = geometry.Bounds.Height;
+				var totalWidth = (double) Math.Ceiling(geometry.Bounds.Width);
+				var totalHeight = (double) Math.Ceiling(geometry.Bounds.Height);
+
 
 				// Handle empty (the size will be -inf by default)
 				if (geometry.Bounds.IsEmpty)
@@ -318,7 +321,8 @@ namespace Sakura.Tools.Aoe2FontGenerator
 				geometry.Transform = transform;
 
 				// Draw
-				drawingContext.DrawGeometry(Brushes.White, new Pen(Brushes.Gray, 1.5) {  }, geometry);
+				drawingContext.DrawGeometry(Brushes.White, new Pen(Brushes.White, g.Setting.GlyphOutlineThickness) {  }, geometry);
+				
 
 				// Advance the start location
 				currentX += totalWidth + space;

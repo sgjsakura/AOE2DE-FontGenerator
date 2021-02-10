@@ -1,32 +1,30 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="Sakura.Tools.Aoe2FontGenerator.Properties" GeneratedClassName="Settings">
-	<Profiles />
-	<Settings>
-		<Setting Name="DefaultMetaFileName" Type="System.String" Scope="Application">
-			<Value Profile="(Default)">combined.box</Value>
-		</Setting>
-		<Setting Name="DefaultSurfaceFileFormat" Type="System.String" Scope="Application">
-			<Value Profile="(Default)">combined_{0:D4}.dds</Value>
-		</Setting>
-		<Setting Name="DefaultSansSerifMetaFileName" Type="System.String" Scope="Application">
-			<Value Profile="(Default)">combined_sansserif.box</Value>
-		</Setting>
-		<Setting Name="DefaultSansSerifSurfaceFileFormat" Type="System.String" Scope="Application">
-			<Value Profile="(Default)">combined_sansserif_{0:D4}.dds</Value>
-		</Setting>
-		<Setting Name="DefaultTextureSize" Type="System.Int32" Scope="Application">
-			<Value Profile="(Default)">4096</Value>
-		</Setting>
-		<Setting Name="DefaultGlyphSize" Type="System.Int32" Scope="Application">
-			<Value Profile="(Default)">64</Value>
-		</Setting>
-		<Setting Name="DefaultGlyphSpace" Type="System.Int32" Scope="Application">
-			<Value Profile="(Default)">8</Value>
-		</Setting>
-		<Setting Name="TexConvCommandLine" Type="System.String" Scope="Application">
-			<Value Profile="(Default)">-y -alpha -pow2 -m 1 -o {1} -f BGRA {0}</Value>
-		</Setting>
-	</Settings>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sakura.Tools.Aoe2FontGenerator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultMetaFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined.box</Value>
+    </Setting>
+    <Setting Name="DefaultSurfaceFileFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_{0:D4}.dds</Value>
+    </Setting>
+    <Setting Name="DefaultSansSerifMetaFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_sansserif.box</Value>
+    </Setting>
+    <Setting Name="DefaultSansSerifSurfaceFileFormat" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">combined_sansserif_{0:D4}.dds</Value>
+    </Setting>
+    <Setting Name="DefaultTextureSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4096</Value>
+    </Setting>
+    <Setting Name="DefaultGlyphSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="DefaultGlyphSpace" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="TexConvCommandLine" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">-y -alpha -pow2 -m 1 -o "{1}" -f BC1_UNORM "{0}"</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -128,6 +128,13 @@
 		<TextBlock x:Uid="TextBlock_14" Text="Not selected" Foreground="Gray" />
 	</DataTemplate>
 
+	<DataTemplate x:Uid="DataTemplate_10" x:Key="FileCharSetSourceDataTemplate">
+		<TextBlock x:Uid="TextBlock_19" d:DataContext="{d:DesignInstance data:FileCharSetSource}">
+			<TextBlock x:Uid="TextBlock_20">Text File</TextBlock>
+			<TextBlock x:Uid="TextBlock_21" Margin="3,0,0,0" Text="{Binding Path=FilePath}" TextTrimming="CharacterEllipsis" />
+		</TextBlock>
+	</DataTemplate>
+
 	<DataTemplate x:Uid="DataTemplate_9" DataType="{x:Type models:MappingSetting}">
 		<StackPanel x:Uid="StackPanel_1" Orientation="Horizontal">
 			<TextBlock x:Uid="TextBlock_15" VerticalAlignment="Center">Glyph Size Ratio</TextBlock>
@@ -136,7 +143,10 @@
 			<TextBlock x:Uid="TextBlock_17" VerticalAlignment="Center" Margin="3,0,0,0">Baseline Offset Ratio</TextBlock>
 			<TextBlock x:Uid="TextBlock_18" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray"
 			           Text="{Binding Path=BaselineOffsetRatio}" />
-		</StackPanel>
+			<TextBlock x:Uid="TextBlock_22" VerticalAlignment="Center" Margin="3,0,0,0">Outline Thickness</TextBlock>
+			<TextBlock x:Uid="TextBlock_23" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="Gray"
+			           Text="{Binding Path=GlyphOutlineThickness}" />
+        </StackPanel>
 	</DataTemplate>
 
 	<!-- DataTemplateSelector -->
@@ -158,6 +168,8 @@
 		                                 DataTemplate="{StaticResource RangeCharSetSourceDataTemplate}" />
 		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_5" Type="data:DirectCharSetSource"
 		                                 DataTemplate="{StaticResource DirectCharSetSourceDataTemplate}" />
+		<converters:TypeDataTemplatePair x:Uid="converters:TypeDataTemplatePair_6" Type="data:FileCharSetSource"
+		                                 DataTemplate="{StaticResource FileCharSetSourceDataTemplate}" />
 	</converters:TypeBasedDataTemplateSelector>
 
 
