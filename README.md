@@ -18,7 +18,7 @@ To use this tools to replace the in-game font, please follow the steps below:
 
 ## Frequently Q&A
 
-#### The generation is aborted with an error displayed
+#### Generation is aborted with an error displayed
 
 Please read the error message and operate following the instruction. If you still have any problem, you may submit a new issue in this project.
 
@@ -34,10 +34,10 @@ This is caused by your selected typeface does not correctly response with glyph 
 
 This is caused by your selected typeface has an incorrect baseline value. Please open the detailed mapping setting panel and try to adjust the "baseline offset ratio" to adjust the vertical location of glyphs.
 
-#### Some glyphs lookes chaotic
+#### Some glyphs look chaotic
 
 This is caused by the glyph size is too large (although may not obvious when displaying) and the Video RAM is damaged when loading glyphs. Please refer to the "The glyphs are too large/small in the game" section to solve this problem.
 
-#### Some glyphs become a question mark
+#### Some glyphs become question marks
 
 This should be caused if any glyph is missing. Your generated font file does not contain the character should be displayed and thus the game replace it with a question mark. Please consider to change the font source or add a secondary font source to supply missing chareacters.
